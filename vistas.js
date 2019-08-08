@@ -1,8 +1,8 @@
 // aqui exportaras las funciones que necesites
 import { logeo, registro } from './controles.js';
 
-export const loginPrincipal = (event) => {
-  event.preventDefault();
+export const loginPrincipal = () => {
+  //event.preventDefault();
   const correo = document.getElementById('email').value;
   const contrasena = document.getElementById('password').value;
   logeo(correo, contrasena)
@@ -14,17 +14,21 @@ export const loginPrincipal = (event) => {
     })
 };
 
-export const registroUsuario = (event) => {
-  event.preventDefault();
+export const registroUsuario = () => {
+  //event.preventDefault();
   const email = document.getElementById('email2').value;
   const password = document.getElementById('password2').value;
   registro(email, password)
   .then(function () {
-    changeRoute('#/home');
+    //document.getElementById('error').innerHTML = 'Te has registrado';
+    return changeRoute('#/home');
   })
   .catch(function (error) {
-    alert(error);
-  })
+    var errorCode = error . código ;
+    var errorMessage = error . mensaje ;
+    document.getElementById('error').innerHTML = errorCode;
+    alert(errorMessage)
+  });
 }
 export const changeRoute = (route) => {
   location.hash = route;
