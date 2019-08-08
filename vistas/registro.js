@@ -13,7 +13,8 @@ export const screenRegister = ()=>{
           <input class="inputs block" type="email" name="correo" id="email2" placeholder="Email">
           <input class="inputs block" type="password" name="contraseña" id="password2"  placeholder="Password">
           <button name="button" type="submit" id="registrar">Registrar</button>
-          </form>`
+          </form>
+          <p id="error"></p>`;
           
     divElemt.innerHTML = registerPage;
 

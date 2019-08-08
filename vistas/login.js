@@ -1,4 +1,5 @@
 import { loginPrincipal } from "../vistas.js";
+import { loginFacebook } from "../controles.js"
 
 export const screenLogin = () => {
   const divElemt = document.createElement('div');
@@ -24,6 +25,10 @@ export const screenLogin = () => {
   const buttonLogInEmail = divElemt.querySelector("#ingresar");
   buttonLogInEmail.addEventListener('click', () => {
     loginPrincipal();
+  });
+  const buttonLogInFacebbok = divElemt.querySelector("#fb");
+  buttonLogInFacebbok.addEventListener('click', () => {
+    loginFacebook();
   });
   
   return divElemt;
