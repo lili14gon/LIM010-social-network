@@ -27,7 +27,7 @@ const viewTmp = (router) => {
       root.appendChild(screenRegister());
       break;
     default:
-      root.appendChild(screenLogin());
+      root.innerHTML= 'Hola';
       break;
   }
 }
