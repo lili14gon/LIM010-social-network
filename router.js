@@ -1,6 +1,5 @@
-import { screenLogin } from './vistas/login.js'
-import { screenRegister } from './vistas/registro.js'
-import { logeo } from './controles.js';
+import { screenLogin } from './view/login.js'
+import { screenRegister } from './view/register.js'
 
 export const init = () => {
   changeTmp(window.location.hash);
