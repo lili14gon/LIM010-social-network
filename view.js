@@ -2,7 +2,7 @@
 import { loginEmail, loginRegister } from './control.js';
 
 export const viewLogin = () => {
-  //event.preventDefault();
+  event.preventDefault();
   const correo = document.getElementById('email').value;
   const contrasena = document.getElementById('password').value;
   loginEmail(correo, contrasena)
@@ -15,7 +15,7 @@ export const viewLogin = () => {
 };
 
 export const viewRegister = () => {
-  //event.preventDefault();
+  event.preventDefault();
   const email = document.getElementById('email2').value;
   const password = document.getElementById('password2').value;
   loginRegister(email, password)
@@ -24,12 +24,12 @@ export const viewRegister = () => {
     //return changeRoute('#/home');
   })
   .catch(function (error) {
-    const errorCode = error . código ;
-    const errorMessage = error . mensaje ;
-    //document.getElementById('error').innerHTML = errorCode;
-
-    console.log(errorMessage)
-  })
+     // Handle Errors here.
+     var errorCode = error.code;
+     var errorMessage = error.message;
+     console.log(errorCode);
+     console.log(errorMessage);
+   });
 }
 export const changeRoute = (route) => {
   location.hash = route;
