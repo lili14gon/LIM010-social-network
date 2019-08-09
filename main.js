@@ -1,4 +1,4 @@
-import { init } from './rutas.js'
+import { init } from './router.js'
 
 window.addEventListener('load', () =>{
   const firebaseConfig = {

@@ -1,6 +1,114 @@
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&Cormorant+Garamond|Montserrat&display=swap');
+/*font-family: 'Open Sans', sans-serif;
+font-family: 'Ubuntu', sans-serif;
+font-family: 'Montserrat', sans-serif; */
 * {
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 0.5px;
     font-size: 12px;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    min-height: 100vh;
+}
+#root {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.center {
+    text-align: center;
+}
+.flex-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.welcome {
+    width: 220px;
+    color: grey;
+    margin-bottom: 10px;
+}
+.welcome2 {
+    margin: 15px 0;
+}
+.inputs {
+    width: 220px;
+    margin: 6px 0;
+    border: 1px solid #f2ea77;
+}
+.btn-login {
+    width: 150px;
+    margin-top: 6px;
+    margin-bottom: 20px;
+    background: #d01818;
+    color: white;
+    border-style: none;
+    font-weight: bold;
+}
+.btn-login:hover {
+    background: #f2ea77;
+    color: #d01818;
+}
+.inputs, .btn-login {
+    border-radius: 15px;
+    padding: 7px;
+}
+.icon-input {
+    background: black;
+    color: white;
+    width: max-content;
+    align-self: flex-end;
 }
 .facebook, .google {
-    width: 35px;
+    width: 30px;
+}
+.btn-fb-google {
+margin: 10px 0;
+}
+.bold {
+    font-weight: bold;
+    color:#d01818;
+    line-height: none;
+    text-decoration: none;
+}
+.registro {
+    font-weight: bold;
+}
+.logo, .foods-kids, .welcome-description {
+    display: none;
+}
+
+@media screen and (min-width:764px) {
+    * {
+        font-size: 14px;
+    }
+    .logo, .foods-kids, .welcome-description {
+        display: block;
+    }
+    .welcome, .img {
+        display: none;
+    }
+    .center {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 85%;
+    }
+    .welcome-description {
+        width: 300px;
+        margin: 20px 0;
+        color: grey;
+    }
+    .inputs {
+        width: 300px;
+        margin: 10px 0;
+    }
+    .facebook, .google {
+        width: 40px;
+    }
 }

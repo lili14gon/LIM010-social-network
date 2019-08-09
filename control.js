@@ -1,8 +1,8 @@
-export const logeo = (correo, contrasena) => {
-  return firebase.auth().signInWithEmailAndPassword(correo, contrasena);
+export const loginEmail = (email, password) => {
+  return firebase.auth().signInWithEmailAndPassword(email, password);
 }
-export const registro = (correo, contrasena) => {
-  return firebase.auth().createUserWithEmailAndPassword(correo, contrasena);
+export const loginRegister = (email, password) => {
+  return firebase.auth().createUserWithEmailAndPassword(email, password);
 }
 export const loginGoogle = () => {
 	const provider = new firebase.auth.GoogleAuthProvider();
