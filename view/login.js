@@ -39,10 +39,7 @@ export const screenLogin = () => {
     loginGoogle();
     
   });
-  const buttonLogInGoogle = divElemt.querySelector("#goog");
-  buttonLogInGoogle.addEventListener('click', () => {
-    loginGoogle();
-  });
+  
   
   return divElemt;
 }
