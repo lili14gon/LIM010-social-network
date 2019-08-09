@@ -1,6 +1,6 @@
 import { screenLogin } from './vistas/login.js'
 import { screenRegister } from './vistas/registro.js'
-import { logeo } from './controles.js';
+import { screenMain } from './vistas/principal.js';
 
 export const init = () => {
   changeTmp(window.location.hash);
@@ -26,6 +26,9 @@ const viewTmp = (router) => {
     case '#/register':
       root.appendChild(screenRegister());
       break;
+    case '#/principal':
+        root.appendChild(screenMain());
+      break;  
     default:
       root.innerHTML= 'Hola';
       break;

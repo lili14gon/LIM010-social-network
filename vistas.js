@@ -1,15 +1,17 @@
 // aqui exportaras las funciones que necesites
-import { logeo, registro } from './controles.js';
+import { logeo, registro,observador } from './controles.js';
 
 export const loginPrincipal = () => {
   //event.preventDefault();
   const correo = document.getElementById('email').value;
   const contrasena = document.getElementById('password').value;
   logeo(correo, contrasena)
-    .then(function () {
-      console.log('Bienvenido');
+  observador()
+    .then(change=()=> {
+      return changeRoute('#/principal');
+      //console.log('Bienvenido');
     })
-    .catch(function (error) {
+    .catch(error=()=> {
       alert(error);
     })
 };
@@ -34,26 +36,26 @@ export const changeRoute = (route) => {
   location.hash = route;
 };
 
-/*export const observador = () => {
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      aparece();
-      // User is signed in.
-      var displayName = user.displayName;
-      var email = user.email;
-      console.log(user);
-      var emailVerified = user.emailVerified;
-      var photoURL = user.photoURL;
-      var isAnonymous = user.isAnonymous;
-      var uid = user.uid;
-      var providerData = user.providerData;
-      // ...
-    } else {
-      console.log('no existe usuario activo');
-    }
-  });
-};
-observador();
+// export const observador = () => {
+//   firebase.auth().onAuthStateChanged(function (user) {
+//     if (user) {
+//       aparece();
+//       // User is signed in.
+//       var displayName = user.displayName;
+//       var email = user.email;
+//       console.log(user);
+//       var emailVerified = user.emailVerified;
+//       var photoURL = user.photoURL;
+//       var isAnonymous = user.isAnonymous;
+//       var uid = user.uid;
+//       var providerData = user.providerData;
+//       // ...
+//     } else {
+//       console.log('no existe usuario activo');
+//     }
+//   });
+// };
+// observador();
 
 const aparece = () => {
   const root = document.getElementById('root');
@@ -61,4 +63,4 @@ const aparece = () => {
   <p>Bienvenido!</p>
   <button id="cerrar">Cerrar sesión</button>
   `;
-}*/
+}
