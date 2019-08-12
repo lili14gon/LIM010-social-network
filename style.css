@@ -21,6 +21,7 @@ body {
 }
 .center {
     text-align: center;
+    width: 80%;
 }
 .flex-form {
     display: flex;
@@ -29,22 +30,22 @@ body {
     align-items: center;
 }
 .welcome {
-    width: 220px;
+    width: 100%;
     color: grey;
-    margin-bottom: 10px;
+    margin-bottom: 8%;
 }
 .welcome2 {
-    margin: 15px 0;
+    margin: 8% 0;
 }
 .inputs {
-    width: 220px;
-    margin: 6px 0;
+    width: 100%;
+    margin: 3% 0;
     border: 1px solid #f2ea77;
 }
 .btn-login {
-    width: 150px;
-    margin-top: 6px;
-    margin-bottom: 20px;
+    width: 50%;
+    margin-top: 5%;
+    margin-bottom: 10%;
     background: #d01818;
     color: white;
     border-style: none;
@@ -56,7 +57,7 @@ body {
 }
 .inputs, .btn-login {
     border-radius: 15px;
-    padding: 7px;
+    padding: 3%;
 }
 .icon-input {
     background: black;
@@ -82,8 +83,100 @@ margin: 10px 0;
 .logo, .foods-kids, .welcome-description {
     display: none;
 }
-
+.register-ok {
+    font-size: 16px;
+    color: #00BCD4;
+}
+.ok {
+    font-size: 13px;
+    margin: 15px 0;
+    font-weight: bold;
+    color: grey;
+}
+.ir-login {
+    font-size: 15px;
+    font-weight: bold;
+    color: #202de0;
+    line-height: none;
+    margin: 15px 0;
+}
+.ir-login:hover {
+    text-decoration: none;
+    color: #cf1717;
+}
+.focus {
+    border: 1px solid #cf1717;
+    color: #cf1717;
+}
+/* falta responsive */
+.container-home {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: center; */
+    flex-direction: column;
+}
+.header {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f2ea77;
+    padding: 0 20px;
+}
+.exit-img {
+    width: 20px;
+}
+.main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+.exit-input {
+    text-decoration: none;
+}
+select {
+    width: 125px;
+    background: transparent;
+    border: none;
+}
+.exit-container {
+    display: flex;
+    justify-content: space-between;
+    width: 125px;
+}
+.container-user {
+    margin-top: 20px;
+    border: 1px solid;
+    border-radius: 5px;
+    width: 250px;
+    height: 200px;
+    margin-right: 20px;
+}
+.color-img {
+    height: 50%;
+    background: #cf1717;
+}
+.email-user {
+    display: flex;
+    justify-content: center;
+    /* align-content: center; */
+    height: 50%;
+    align-items: center;
+}
+.colunm-post {
+    border: 1px solid;
+    width: 380px;
+    margin-top: 20px;
+}
 @media screen and (min-width:764px) {
+    /* .fondo-fruit {
+        background-image: url('./img/clock-vegetables-fruit.jpg');
+        background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    } */
     * {
         font-size: 14px;
     }
@@ -110,5 +203,15 @@ margin: 10px 0;
     }
     .facebook, .google {
         width: 40px;
+    }
+    .register-ok {
+        font-size: 30px;
+        color: #cf1717;
+    }
+    .ok {
+        font-size: 15px;
+    }
+    .ir-login {
+        font-size: 18px;
     }
 }

@@ -32,3 +32,7 @@ export const observador = () => {
     }
   });
 };
+// export const observer = () => {
+//   var provider = new firebase.auth.FacebookAuthProvider();
+//   return firebase.auth().signInWithPopup(provider)
+// };

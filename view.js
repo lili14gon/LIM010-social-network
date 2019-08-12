@@ -10,56 +10,72 @@ export const viewLogin = () => {
     .then(function () {
       observador();
       console.log('Bienvenido');
-      return changeRoute('#/principal');
+      //document.getElementById('root').innerHTML = 'hola';
+      return changeRoute('#/home');
     })
     .catch(function(error){
-      
       const errorCode = error.code;
       const errorMessage = error.message;
       if(correo==='' || contrasena ===''){
-       errores.innerHTML='ingresa los campos completos';
+        document.getElementById('error').innerHTML='Ingresa los campos completos';
       }
       else if(errorMessage){
-     errores.innerHTML = 'La contraseña no es válida o el usuario no tiene una cuenta.';
+        document.getElementById('error').innerHTML = 'La contraseña no es válida o el usuario no tiene una cuenta.';
       }
-      console.log(errorMessage);
+      //console.log(errorMessage);
       //console.log(errorCode);
     });
-}
+};
 
 export const viewRegister = () => {
   event.preventDefault();
-  const email = document.getElementById('email2').value;
-  const password = document.getElementById('password2').value;
-  const volver = document.getElementById("volver");
-  const errores = document.getElementById('error');
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
   loginRegister(email, password)
-    .then(function () {
-      errores.innerHTML = 'Te has registrado';
-      volver.innerHTML = 'volver';
-      console.log('ya registrado');
-      console.log(location.hash);
-    })
-
-    .catch(function (error) {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      //alert(errorMessage)
-      console.log(errorMessage);
-      console.log(errorCode);
-      if(email==='' || password ===''){
-        errores.innerHTML='ingrese los campos completos para crear la cuenta';
-       }
-       else if(errorMessage){
-      errores.innerHTML = 'La contraseña debe tener como minimo 6 caracteres';
-       }
-    })
-
+  .then(function () {
+    if (name != '') {
+      const newName = MaysPrimera(name.toLowerCase());
+      document.getElementById('screen-register').innerHTML = `
+      <h1 class="register-ok">Ya eres parte de Foods Kids!</h1>
+      <p class="ok">Bienvenido(a) ${newName}</p>
+      <img src="./img/confeti.gif">
+      <a class="ir-login" href="#/login" id="registrate">Ir a Log in</a>`;
+    } else {
+      document.getElementById('screen-register').innerHTML = `
+      <h1 class="register-ok">Ya eres parte de Foods Kids!</h1>
+      <p class="ok">Te has registrado correctamente</p>
+      <img src="./img/confeti.gif">
+      <a class="ir-login" href="#/login" id="registrate">Ir a Log in</a>`;
+      //return changeRoute('#/home');
+    }
+  })
+  .catch(function (error) {
+     // Handle Errors here.
+     const errorCode = error.code;
+     const errorMessage = error.message;
+     if (errorMessage === 'The email address is badly formatted.') {
+      document.getElementById('error').innerHTML = 'Completa correctamente los campos.'
+      document.getElementById('email').value = '';
+      document.getElementById('password').value = '';
+      document.getElementById('email').classList.add('focus');
+      document.getElementById('password').classList.add('focus');
+     } else if (errorCode === 'auth/weak-password') {
+      document.getElementById('error').innerHTML = 'La contraseña debe tener 6 caracteres o más.'
+      document.getElementById('password').value = '';
+      document.getElementById('email').classList.remove('focus');
+      document.getElementById('password').classList.add('focus');
+    } 
+     //document.getElementById('error').innerHTML = errorMessage;
+   });
 }
 export const changeRoute = (route) => {
   location.hash = route;
 };
 
+const MaysPrimera = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 // export const observador = () => {
 //   firebase.auth().onAuthStateChanged(function (user) {
 //     if (user) {
@@ -87,4 +103,4 @@ export const changeRoute = (route) => {
 //   <p>Bienvenido!</p>
 //   <button id="cerrar">Cerrar sesión</button>
 //   `;
-//}
+// }

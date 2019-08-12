@@ -1,6 +1,6 @@
 import { screenLogin } from './view/login.js'
 import { screenRegister } from './view/register.js'
-import {screenMain} from './view/principal.js'
+import { screenHome } from './view/home.js';
 
 export const init = () => {
   changeTmp(window.location.hash);
@@ -9,7 +9,7 @@ export const init = () => {
 } 
 const changeTmp = (hash) => {
   if (hash === '#/' || hash === '' || hash === '#') {
-    return viewTmp('#/home');
+    return viewTmp('#/login');
   } else {
     return viewTmp(hash);
   }
@@ -19,16 +19,16 @@ const viewTmp = (router) => {
   const root = document.getElementById('root');
   root.innerHTML = '';
   switch (router) {
-    case '#/home':
+    case '#/login':
       root.innerHTML = '';
       root.appendChild(screenLogin());
       break;
     case '#/register':
       root.appendChild(screenRegister());
       break;
-    case '#/principal':
-        root.appendChild(screenMain());
-      break;  
+    case '#/home':
+      root.appendChild(screenHome());
+      break;
     default:
       root.innerHTML= 'Hola';
       break;
