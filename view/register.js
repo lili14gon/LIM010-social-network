@@ -11,13 +11,13 @@ export const screenRegister = ()=>{
       <input class="inputs" type="email" name="correo" id="email2" placeholder="Email">
       <input class="inputs" type="password" name="contrasena" id="password2" placeholder="Password">
       <button class="btn-login" name="button" type="submit" id="registrar">Ok</button>
-      <p id="error"></p>
+      <p id="error"></p><a href="#/home" id="volver"></a>
       </form>`;
           
     divElemt.innerHTML = registerPage;
     divElemt.classList.add('center');
 
-    const buttonLog = divElemt.querySelector("#registrar");
+  const buttonLog = divElemt.querySelector("#registrar");
   buttonLog.addEventListener('click', () => {
     viewRegister();
   });

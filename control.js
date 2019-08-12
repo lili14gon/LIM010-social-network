@@ -1,3 +1,4 @@
+
 export const loginEmail = (email, password) => {
   return firebase.auth().signInWithEmailAndPassword(email, password);
 }
@@ -17,7 +18,6 @@ export const observador = () => {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       console.log('existe usuario activo');
-     // aparece();
       // User is signed in.
       var displayName = user.displayName;
       var email = user.email;

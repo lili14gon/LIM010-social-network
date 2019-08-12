@@ -1,5 +1,6 @@
 import { screenLogin } from './view/login.js'
 import { screenRegister } from './view/register.js'
+import {screenMain} from './view/principal.js'
 
 export const init = () => {
   changeTmp(window.location.hash);

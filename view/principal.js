@@ -7,7 +7,6 @@ export const screenMain = () => {
           <h1 class="margin name text-color">- Foods Kids -</h1>
           <p><strong>Bienvenido a Foods Kids </strong> </p>
       </form>`;
-
   divElemt.innerHTML = loginPage;  
   return divElemt;
 }
