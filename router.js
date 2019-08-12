@@ -1,5 +1,6 @@
 import { screenLogin } from './view/login.js'
 import { screenRegister } from './view/register.js'
+import {screenMain} from './view/principal.js'
 
 export const init = () => {
   changeTmp(window.location.hash);
@@ -25,6 +26,9 @@ const viewTmp = (router) => {
     case '#/register':
       root.appendChild(screenRegister());
       break;
+    case '#/principal':
+        root.appendChild(screenMain());
+      break;  
     default:
       root.innerHTML= 'Hola';
       break;
