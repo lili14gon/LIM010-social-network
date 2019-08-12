@@ -33,10 +33,12 @@ export const screenLogin = () => {
   const buttonLogInFacebbok = divContainer.querySelector("#fb");
   buttonLogInFacebbok.addEventListener('click', () => {
     loginFacebook();
+    
   });
   const buttonLogInGoogle = divContainer.querySelector("#goog");
   buttonLogInGoogle.addEventListener('click', () => {
     loginGoogle();
+    
   });
   
   return divContainer;

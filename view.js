@@ -5,6 +5,7 @@ export const viewLogin = () => {
   event.preventDefault();
   const correo = document.getElementById('email').value;
   const contrasena = document.getElementById('password').value;
+  const errores = document.getElementById('error');
   loginEmail(correo, contrasena)
     .then(function () {
       observador();
