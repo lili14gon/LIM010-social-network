@@ -21,14 +21,14 @@ export const viewRegister = () => {
   loginRegister(email, password)
   .then(function () {
     document.getElementById('error').innerHTML = 'Te has registrado';
-    //return changeRoute('#/home');
+     return changeRoute('#/home');
   })
   .catch(function (error) {
     const errorCode = error . código ;
     const errorMessage = error . mensaje ;
-    //document.getElementById('error').innerHTML = errorCode;
+    document.getElementById('error').innerHTML = errorCode;
 
-    console.log(errorMessage)
+    alert(errorMessage);
   })
 }
 export const changeRoute = (route) => {
