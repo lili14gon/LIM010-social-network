@@ -1,5 +1,5 @@
 // aqui exportaras las funciones que necesites
-import { loginEmail, loginRegister, observador } from './control.js';
+import { loginEmail, loginRegister, observador, loginOut } from './control.js';
 
 export const viewLogin = () => {
   event.preventDefault();
@@ -26,6 +26,19 @@ export const viewLogin = () => {
       //console.log(errorCode);
     });
 };
+export const salir= ()=>{
+  loginOut()
+  .then(function() {
+       // Sign-out successful.
+       console.log('saliendo....')
+       return changeRoute('#/login');
+     }).catch(function(error) {
+     // An error happened.
+      console.log(error)
+     });
+}
+
+
 
 export const viewRegister = () => {
   event.preventDefault();
@@ -35,6 +48,7 @@ export const viewRegister = () => {
   loginRegister(email, password)
   .then(function () {
     if (name != '') {
+      //console.log(user);
       const newName = MaysPrimera(name.toLowerCase());
       document.getElementById('screen-register').innerHTML = `
       <h1 class="register-ok">Ya eres parte de Foods Kids!</h1>
@@ -76,6 +90,10 @@ export const changeRoute = (route) => {
 const MaysPrimera = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+
+
+
 // export const observador = () => {
 //   firebase.auth().onAuthStateChanged(function (user) {
 //     if (user) {

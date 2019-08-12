@@ -1,3 +1,5 @@
+import { salir } from "../view.js";
+
 // import { } from "../view.js";
 // import {  } from "../control.js"
 
@@ -12,7 +14,7 @@ export const screenHome = () => {
     <img class="foods-kids" src="img/foods-kids.png" alt="nombre foods kids de la página web"/>
     <div class="exit-container">
       <img class="exit-img" src="img/desconectarte.png">
-      <a href="#" class="exit-input">Cerrar Sesión</a>
+      <button id="cerrar">cerrar sesion</button>
     </div>
   </div>
   <div class="main">
@@ -27,7 +29,9 @@ export const screenHome = () => {
 
   divContainer.innerHTML = homeTemplate;
   divContainer.classList.add('container-home');
-  
+ divContainer.querySelector('#cerrar').addEventListener('click', () => {
+  salir();
+});
   return divContainer;
 }
 
