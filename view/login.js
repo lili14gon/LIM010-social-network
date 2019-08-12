@@ -14,6 +14,7 @@ export const screenLogin = () => {
     <input class="inputs" type="email" name="correo" id="email" placeholder="Email">
     <input class="inputs" type="password" name="contrasena" id="password"  placeholder="Password">
     <button class= "btn-login" name="button" type="submit" id="ingresar">Log in</button>
+    <p id="error"></p>
     <p class="registro">O bien ingresa con..</p>
     <div class="btn-fb-google">
       <a id="fb" href="#"><img class="facebook" src="./img/fb.png"/></a>
