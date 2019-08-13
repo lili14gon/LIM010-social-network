@@ -1,5 +1,5 @@
-import { viewLogin } from "../view.js";
-import { loginFacebook, loginGoogle } from "../control.js"
+import { viewLogin, facebook, google } from "../view.js";
+//import { loginFacebook, loginGoogle } from "../control.js"
 
 export const screenLogin = () => {
   const divContainer = document.createElement('div');
@@ -32,14 +32,12 @@ export const screenLogin = () => {
   });
   const buttonLogInFacebbok = divContainer.querySelector("#fb");
   buttonLogInFacebbok.addEventListener('click', () => {
-    loginFacebook();
+    facebook();
     
   });
   const buttonLogInGoogle = divContainer.querySelector("#goog");
   buttonLogInGoogle.addEventListener('click', () => {
-    loginGoogle();
-    
+   google();
   });
-  
   return divContainer;
 }
