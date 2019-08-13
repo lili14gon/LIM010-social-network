@@ -3,7 +3,6 @@ import { loginEmail,
   loginFacebook,
   loginGoogle,
   loginRegister, 
-  emailVerification, 
   loginOut , 
   observador} from './control.js';
 
@@ -51,7 +50,6 @@ export const viewRegister = () => {
   const password = document.getElementById('password').value;
   loginRegister(email, password)
   .then(function() {
-    emailVerification()
   //   console.log(result.user.emailVerified );
   // observador()
   // if (result.user.emailVerified === false) {
