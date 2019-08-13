@@ -27,7 +27,7 @@ export const screenHome = () => {
     <div class="colunm-post">
     <p><textarea class="estilotextarea"name="comentarios" required  placeholder="¿Que quieres compartir?"></textarea>
     </p>
-    <p><input type="submit" value="compartir"><p>
+    <p><input type="submit" value="compartir"class="inpu"></p>
     </div>
   </div>`;
 
