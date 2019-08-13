@@ -169,11 +169,13 @@ select {
     border: 1px solid;
     width: max-content;
     margin-top: 20px;
-    height: 170px;
+    height: 140px;
     border-radius: 3px;
 }
-textarea{
-    justify-content: center;
+.estilotextarea{
+    width: 400px;
+    height: 70px;
+    
 }
 @media screen and (min-width:764px) {
     /* .fondo-fruit {
