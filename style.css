@@ -128,13 +128,26 @@ margin: 10px 0;
 .exit-img {
     width: 20px;
 }
+.error {
+    color: #d01818;
+    font-weight: bold;
+    margin-bottom: 5px;
+    width: 300px;
+}
+.obligatorio {
+    align-self: self-start;
+    color: #d01818;
+    font-size: 12px;
+}
 .main {
     flex: 1;
     display: flex;
     justify-content: center;
 }
 .exit-input {
-    text-decoration: none;
+    background: none;
+    border: none;
+    padding: 0;
 }
 select {
     width: 125px;
@@ -167,9 +180,20 @@ select {
 }
 .colunm-post {
     border: 1px solid;
-    width: 380px;
+    width: max-content;
     margin-top: 20px;
-}
+    height: 140px;
+    border-radius: 3px;
+ }
+ .estilotextarea{
+    width: 400px;
+    height: 70px;
+    margin: 15px;
+ }
+ .inpu{
+    margin:5px;
+    border-radius:8px
+ }
 @media screen and (min-width:764px) {
     /* .fondo-fruit {
         background-image: url('./img/clock-vegetables-fruit.jpg');

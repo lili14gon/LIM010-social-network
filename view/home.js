@@ -1,5 +1,4 @@
-// import { } from "../view.js";
-// import {  } from "../control.js"
+import {  viewExit } from "../view.js"
 
 export const screenHome = () => {
   const divContainer = document.createElement('div');
@@ -12,22 +11,28 @@ export const screenHome = () => {
     <img class="foods-kids" src="img/foods-kids.png" alt="nombre foods kids de la página web"/>
     <div class="exit-container">
       <img class="exit-img" src="img/desconectarte.png">
-      <a href="#" class="exit-input">Cerrar Sesión</a>
+      <button class="exit-input" id="cerrar">Cerrar sesión</button>
     </div>
   </div>
   <div class="main">
     <div class="container-user">
       <div class="color-img"></div>
       <div class="email-user">
-        <p>Correo user</p>
+        <p>Correo user name </p>
       </div>
     </div>
-    <div class="colunm-post"></div>
+    <div class="colunm-post">
+    <p><textarea class="estilotextarea"name="Comentarios" required  placeholder="¿Que quieres compartir?"></textarea>
+    </p>
+    <p><input type="submit" value="Compartir"class="inpu"></p>
+    </div>
   </div>`;
 
   divContainer.innerHTML = homeTemplate;
   divContainer.classList.add('container-home');
-  
+  divContainer.querySelector('#cerrar').addEventListener('click', () => {
+    viewExit();
+  });
   return divContainer;
 }
 
