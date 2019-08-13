@@ -5,8 +5,12 @@ export const loginEmail = (email, password) => {
 export const loginRegister = (email, password) => {
   return firebase.auth().createUserWithEmailAndPassword(email, password);
 }
+export const loginOut = () => {
+  return firebase.auth().signOut();
+}
 export const loginGoogle = () => {
-	const provider = new firebase.auth.GoogleAuthProvider();
+  const provider = new firebase.auth.GoogleAuthProvider();
+
   return firebase.auth().signInWithPopup(provider)
 };
 export const loginFacebook = () => {
@@ -36,6 +40,7 @@ export const observador = () => {
       var isAnonymous = user.isAnonymous;
       var uid = user.uid;
       var providerData = user.providerData;
+
       // ...
     } else {
       console.log('no existe usuario activo');

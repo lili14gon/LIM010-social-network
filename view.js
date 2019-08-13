@@ -58,6 +58,7 @@ export const viewRegister = () => {
   //   document.getElementById('error').innerHTML = 'No podemos encontrar una cuenta con ésta dirección de email';
   //else {
     if (name != '') {
+      //console.log(user);
       const newName = MaysPrimera(name.toLowerCase());
       document.getElementById('screen-register').innerHTML = `
       <h1 class="register-ok">Foods Kids agradece tu registro ${newName}!</h1>

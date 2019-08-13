@@ -37,6 +37,5 @@ export const screenLogin = () => {
   buttonLogInGoogle.addEventListener('click', () => {
     viewGoogle();
   });
-  
   return divContainer;
 }
