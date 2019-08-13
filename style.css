@@ -167,8 +167,13 @@ select {
 }
 .colunm-post {
     border: 1px solid;
-    width: 380px;
+    width: max-content;
     margin-top: 20px;
+    height: 170px;
+    border-radius: 3px;
+}
+textarea{
+    justify-content: center;
 }
 @media screen and (min-width:764px) {
     /* .fondo-fruit {

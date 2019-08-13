@@ -1,5 +1,6 @@
 import { viewLogin } from "../view.js";
 import { loginFacebook, loginGoogle } from "../control.js"
+import { changeRoute } from "../view.js";
 
 export const screenLogin = () => {
   const divContainer = document.createElement('div');
@@ -37,8 +38,15 @@ export const screenLogin = () => {
   });
   const buttonLogInGoogle = divContainer.querySelector("#goog");
   buttonLogInGoogle.addEventListener('click', () => {
-    loginGoogle();
-    
+    loginGoogle()
+      .then((response) => {
+        console.log(response)
+        return changeRoute("#/home");
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+// console.log(loginGoogle());
   });
   
   return divContainer;

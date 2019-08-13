@@ -38,8 +38,6 @@ export const salir= ()=>{
      });
 }
 
-
-
 export const viewRegister = () => {
   event.preventDefault();
   const name = document.getElementById('name').value;

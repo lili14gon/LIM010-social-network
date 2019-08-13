@@ -9,7 +9,8 @@ export const loginOut = () => {
   return firebase.auth().signOut();
 }
 export const loginGoogle = () => {
-	const provider = new firebase.auth.GoogleAuthProvider();
+  const provider = new firebase.auth.GoogleAuthProvider();
+
   return firebase.auth().signInWithPopup(provider)
 };
 export const loginFacebook = () => {

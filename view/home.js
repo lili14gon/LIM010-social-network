@@ -21,10 +21,13 @@ export const screenHome = () => {
     <div class="container-user">
       <div class="color-img"></div>
       <div class="email-user">
-        <p>Correo user</p>
+        <p>Correo user name </p>
       </div>
     </div>
-    <div class="colunm-post"></div>
+    <div class="colunm-post">
+    <textarea  class="text"name="textarea" rows="5" cols="70">¿Que quieres compartir?</textarea>
+    <button id="compartir">Compartir</button>
+    </div>
   </div>`;
 
   divContainer.innerHTML = homeTemplate;
