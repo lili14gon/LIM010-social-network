@@ -24,7 +24,7 @@ export const viewLogin = () => {
       console.log(result.user.emailVerified );
    
       if (result.user.emailVerified === false) {
-        document.getElementById('error').innerHTML = 'No has verificado tu dirección de email';
+        errores.innerHTML = 'No has verificado tu dirección de email';
       } else {
         return changeRoute('#/home');
       }
@@ -50,6 +50,7 @@ export const viewRegister = () => {
   const password = document.getElementById('password').value;
   loginRegister(email, password)
   .then(function() {
+    emailVerification()
   //   console.log(result.user.emailVerified );
   // observador()
   // if (result.user.emailVerified === false) {
