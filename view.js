@@ -2,6 +2,7 @@ import { loginEmail,
   loginFacebook,
   loginGoogle,
   loginRegister, 
+  emailVerification,
   loginOut , 
   observador} from './control.js';
 
