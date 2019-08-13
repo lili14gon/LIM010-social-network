@@ -45,8 +45,7 @@ export const observador = () => {
     }
   });
 };
-export const createUser = (cred) => {
-	return firebase.firestore().collection('users').doc(cred.user.uid).set({
-		name: cred.user.displayName
-	})
-}
+// export const observer = () => {
+//   var provider = new firebase.auth.FacebookAuthProvider();
+//   return firebase.auth().signInWithPopup(provider)
+// };
