@@ -23,9 +23,7 @@ user.sendEmailVerification().then(function() {
 }).catch(function(error) {
 });
 };
-export const loginOut = () => {
-  return firebase.auth().signOut();
-}
+
 
 export const observador = () => {
   firebase.auth().onAuthStateChanged(function (user) {
