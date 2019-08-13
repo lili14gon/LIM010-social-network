@@ -1,5 +1,5 @@
 // aqui exportaras las funciones que necesites
-import { loginEmail, loginRegister, observador, loginOut } from './control.js';
+import { loginEmail, loginRegister, observador, loginOut, loginGoogle,loginFacebook } from './control.js';
 
 export const viewLogin = () => {
   event.preventDefault();
@@ -36,6 +36,26 @@ export const salir= ()=>{
      // An error happened.
       console.log(error)
      });
+}
+export  const facebook=()=>{
+  loginFacebook()
+  .then((response)=>{
+    console.log(response)
+    return changeRoute('#/home');
+  })
+  .catch((error)=>{
+    console.log(error)
+  });
+}
+export  const google=()=>{
+  loginGoogle()
+  .then((response)=>{
+    console.log(response)
+    return changeRoute('#/home');
+  })
+  .catch((error)=>{
+    console.log(error)
+  });
 }
 
 export const viewRegister = () => {
