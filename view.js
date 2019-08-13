@@ -1,5 +1,11 @@
 // aqui exportaras las funciones que necesites
-import { loginEmail, loginRegister, observador, loginOut, loginGoogle,loginFacebook } from './control.js';
+import { loginEmail, 
+  loginFacebook,
+  loginGoogle,
+  loginRegister, 
+  emailVerification, 
+  loginOut , 
+  observador} from './control.js';
 
 export const viewLogin = () => {
   event.preventDefault();
@@ -7,11 +13,22 @@ export const viewLogin = () => {
   const contrasena = document.getElementById('password').value;
   const errores = document.getElementById('error');
   loginEmail(correo, contrasena)
-    .then(function () {
-      observador();
-      console.log('Bienvenido');
-      //document.getElementById('root').innerHTML = 'hola';
-      return changeRoute('#/home');
+    // .then(function () {
+    //   observador();
+    //   console.log('Bienvenido');
+    //   //document.getElementById('root').innerHTML = 'hola';
+    //   return changeRoute('#/home');
+    // })
+    .then((result) => {
+      observador()
+
+      console.log(result.user.emailVerified );
+   
+      if (result.user.emailVerified === false) {
+        document.getElementById('error').innerHTML = 'No has verificado tu dirección de email';
+      } else {
+        return changeRoute('#/home');
+      }
     })
     .catch(function(error){
       const errorCode = error.code;
@@ -20,43 +37,12 @@ export const viewLogin = () => {
         document.getElementById('error').innerHTML='Ingresa los campos completos';
       }
       else if(errorMessage){
-        document.getElementById('error').innerHTML = 'La contraseña no es válida o el usuario no tiene una cuenta.';
+        document.getElementById('error').innerHTML = 'La contraseña no es válida o el usuario no ha verificado su cuenta.';
       }
       //console.log(errorMessage);
       //console.log(errorCode);
     });
 };
-export const salir= ()=>{
-  loginOut()
-  .then(function() {
-       // Sign-out successful.
-       console.log('saliendo....')
-       return changeRoute('#/login');
-     }).catch(function(error) {
-     // An error happened.
-      console.log(error)
-     });
-}
-export  const facebook=()=>{
-  loginFacebook()
-  .then((response)=>{
-    console.log(response)
-    return changeRoute('#/home');
-  })
-  .catch((error)=>{
-    console.log(error)
-  });
-}
-export  const google=()=>{
-  loginGoogle()
-  .then((response)=>{
-    console.log(response)
-    return changeRoute('#/home');
-  })
-  .catch((error)=>{
-    console.log(error)
-  });
-}
 
 export const viewRegister = () => {
   event.preventDefault();
@@ -64,22 +50,27 @@ export const viewRegister = () => {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   loginRegister(email, password)
-  .then(function () {
+  .then(function() {
+    emailVerification()
+  //   console.log(result.user.emailVerified );
+  // observador()
+  // if (result.user.emailVerified === false) {
+  //   document.getElementById('error').innerHTML = 'No podemos encontrar una cuenta con ésta dirección de email';
+  //else {
     if (name != '') {
       //console.log(user);
       const newName = MaysPrimera(name.toLowerCase());
       document.getElementById('screen-register').innerHTML = `
-      <h1 class="register-ok">Ya eres parte de Foods Kids!</h1>
-      <p class="ok">Bienvenido(a) ${newName}</p>
+      <h1 class="register-ok">Foods Kids agradece tu registro ${newName}!</h1>
+      <p class="ok">Verifica tu cuenta email para acceder a Foods Kids</p>
       <img src="./img/confeti.gif">
       <a class="ir-login" href="#/login" id="registrate">Ir a Log in</a>`;
     } else {
       document.getElementById('screen-register').innerHTML = `
-      <h1 class="register-ok">Ya eres parte de Foods Kids!</h1>
-      <p class="ok">Te has registrado correctamente</p>
+      <h1 class="register-ok">Foods Kids agradece tu registro!</h1>
+      <p class="ok">Verifica tu cuenta email para acceder a Foods Kids</p>
       <img src="./img/confeti.gif">
       <a class="ir-login" href="#/login" id="registrate">Ir a Log in</a>`;
-      //return changeRoute('#/home');
     }
   })
   .catch(function (error) {
@@ -101,42 +92,41 @@ export const viewRegister = () => {
      //document.getElementById('error').innerHTML = errorMessage;
    });
 }
-export const changeRoute = (route) => {
+const changeRoute = (route) => {
   location.hash = route;
 };
 
 const MaysPrimera = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
-
-
-
-
-// export const observador = () => {
-//   firebase.auth().onAuthStateChanged(function (user) {
-//     if (user) {
-//       aparece();
-//       // User is signed in.
-//       var displayName = user.displayName;
-//       var email = user.email;
-//       console.log(user);
-//       var emailVerified = user.emailVerified;
-//       var photoURL = user.photoURL;
-//       var isAnonymous = user.isAnonymous;
-//       var uid = user.uid;
-//       var providerData = user.providerData;
-//       // ...
-//     } else {
-//       console.log('no existe usuario activo');
-//     }
-//   });
-// };
-// observador();
-
-// const aparece = () => {
-//   const root = document.getElementById('root');
-//   root.innerHTML = `
-//   <p>Bienvenido!</p>
-//   <button id="cerrar">Cerrar sesión</button>
-//   `;
-// }
+export const viewExit = () => {
+  loginOut()
+  .then(function() {
+       // Sign-out successful.
+       console.log('saliendo....')
+       return changeRoute('#/login');
+     }).catch(function(error) {
+     // An error happened.
+      console.log(error)
+     });
+}
+export  const viewFacebook = () => {
+  loginFacebook() 
+  .then((response) => {
+    console.log(response)
+    return changeRoute('#/home');
+  })
+  .catch((error) => {
+    console.log(error)
+  });
+}
+export  const viewGoogle = () => {
+  loginGoogle()
+  .then((response) => {
+    console.log(response)
+    return changeRoute('#/home');
+  })
+  .catch((error) => {
+    console.log(error)
+  });
+}

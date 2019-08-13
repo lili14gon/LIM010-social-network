@@ -17,6 +17,16 @@ export const loginFacebook = () => {
   var provider = new firebase.auth.FacebookAuthProvider();
   return firebase.auth().signInWithPopup(provider)
 };
+export const emailVerification = () => {
+  var user = firebase.auth().currentUser;
+user.sendEmailVerification().then(function() {
+}).catch(function(error) {
+});
+};
+export const loginOut = () => {
+  return firebase.auth().signOut();
+}
+
 export const observador = () => {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
@@ -37,7 +47,8 @@ export const observador = () => {
     }
   });
 };
-// export const observer = () => {
-//   var provider = new firebase.auth.FacebookAuthProvider();
-//   return firebase.auth().signInWithPopup(provider)
-// };
+export const createUser = (cred) => {
+	return firebase.firestore().collection('users').doc(cred.user.uid).set({
+		name: cred.user.displayName
+	})
+}

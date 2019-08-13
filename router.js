@@ -5,7 +5,6 @@ import { screenHome } from './view/home.js';
 export const init = () => {
   changeTmp(window.location.hash);
    window.addEventListener('hashchange', () => changeTmp(window.location.hash));
-  //if (("onhashchange" in window)) window.onhashchange = () => changeTmp(window.location.hash);
 } 
 const changeTmp = (hash) => {
   if (hash === '#/' || hash === '' || hash === '#') {
