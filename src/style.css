@@ -33,14 +33,16 @@ body {
     width: 100%;
     color: grey;
     margin-bottom: 8%;
+    font-size: 35px;
 }
 .welcome2 {
-    margin: 8% 0;
+    margin: 8% 0;  
 }
 .inputs {
     width: 100%;
     margin: 3% 0;
     border: 1px solid #f2ea77;
+    outline: none;
 }
 .btn-login {
     width: 50%;
@@ -78,9 +80,11 @@ margin: 10px 0;
     color:#d01818;
     line-height: none;
     text-decoration: none;
+    font-size: 18px;
 }
 .registro {
     font-weight: bold;
+    font-size: 18px;
 }
 .logo, .foods-kids, .welcome-description {
     display: none;
@@ -223,6 +227,7 @@ select {
         width: 300px;
         margin: 20px 0;
         color: grey;
+        font-size: 20px;
     }
     .inputs {
         width: 350px;
