@@ -1,6 +1,6 @@
 # Creando una Red Social
 
-Bienvenida a tu primer proyecto del track de Frontend en Laboratoria.
+Bienvenida a tu primer proyecto del track de Frontend en Laboratoria..
 
 En este proyecto construirás una red social, cuya temáticas dejaremos a tu elección.
 
