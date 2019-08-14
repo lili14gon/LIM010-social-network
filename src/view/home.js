@@ -19,7 +19,7 @@ export const screenHome = () => {
   <div class="main">
     <div class="container-user">
       <div class="color-img">
-       <img src='"${nameEmail().photoURL}"'/>
+       <img src='${nameEmail().photoURL}'/>
        </div>
       <div class="email-user">
         <p id="name-user"></p>
@@ -31,7 +31,7 @@ export const screenHome = () => {
     <p><input type="submit" value="compartir"class="inpu"></p>
     </div>
   </div>`;
-
+console.log(nameEmail().photoURL);
   divContainer.innerHTML = homeTemplate;
   divContainer.classList.add('container-home');
   // console.log(nameEmail());
