@@ -5,9 +5,10 @@ import {
   loginFacebook,
   loginGoogle,
   loginRegister,
-  emailVerification,
+  // emailVerification,
   loginOut,
   observador,
+  nameEmail
 } from './controller/control.js';
 
 const changeRoute = (route) => {
@@ -117,3 +118,11 @@ export const viewGoogle = () => {
     console.log(error);
   });
 };
+const emailVerification = () =>{
+  nameEmail().sendEmailVerification()
+  .then((response) => {
+console.log(response);
+}).catch((error) =>{
+  console.log(error);
+})
+}

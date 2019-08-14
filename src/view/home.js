@@ -1,5 +1,5 @@
 import { viewExit } from '../view.js';
-// import { nameEmail } from '../controller/control.js';
+import { nameEmail } from '../controller/control.js';
 
 export const screenHome = () => {
   const divContainer = document.createElement('div');
@@ -18,7 +18,9 @@ export const screenHome = () => {
   </div>
   <div class="main">
     <div class="container-user">
-      <div class="color-img"></div>
+      <div class="color-img">
+       <img src='"${nameEmail().photoURL}"'/>
+       </div>
       <div class="email-user">
         <p id="name-user"></p>
       </div>
@@ -33,7 +35,8 @@ export const screenHome = () => {
   divContainer.innerHTML = homeTemplate;
   divContainer.classList.add('container-home');
   // console.log(nameEmail());
-  // divContainer.querySelector('#name-user').innerHTML = nameEmail().email;
+   divContainer.querySelector('#name-user').innerHTML = nameEmail().email;
+  //  divContainer.querySelector('#imagen').innerHTML = nameEmail().photoURL;
   divContainer.querySelector('#cerrar').addEventListener('click', () => {
     viewExit();
   });
