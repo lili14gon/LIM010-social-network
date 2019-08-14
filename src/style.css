@@ -6,7 +6,7 @@ font-family: 'Montserrat', sans-serif; */
 * {
     font-family: 'Open Sans', sans-serif;
      letter-spacing: 0.5px; 
-    font-size: 12px;
+    font-size: 14px;
     margin: 0;
     box-sizing: border-box;
 }
@@ -50,6 +50,7 @@ body {
     color: white;
     border-style: none;
     font-weight: bold;
+    cursor: pointer;
 }
 .btn-login:hover {
     background: #f2ea77;
@@ -57,7 +58,8 @@ body {
 }
 .inputs, .btn-login {
     border-radius: 15px;
-    padding: 3%;
+    padding: 4%;
+    outline: none;
 }
 .icon-input {
     background: black;
@@ -66,7 +68,7 @@ body {
     align-self: flex-end;
 }
 .facebook, .google {
-    width: 30px;
+    width: 40px;
 }
 .btn-fb-google {
 margin: 10px 0;
@@ -203,7 +205,7 @@ select {
     background-size: cover;
     } */
     * {
-        font-size: 14px;
+        font-size: 16px;
     }
     .logo, .foods-kids, .welcome-description {
         display: block;
@@ -223,11 +225,11 @@ select {
         color: grey;
     }
     .inputs {
-        width: 300px;
+        width: 350px;
         margin: 10px 0;
     }
     .facebook, .google {
-        width: 40px;
+        width: 48px;
     }
     .register-ok {
         font-size: 30px;

@@ -1,16 +1,18 @@
-import {  viewExit } from "../view.js"
+import { viewExit } from '../view.js';
+// import { nameEmail } from '../controller/control.js';
 
 export const screenHome = () => {
   const divContainer = document.createElement('div');
   divContainer.innerHTML = '';
+  // const user = firebase.auth().currentUser;
   const homeTemplate = `  
   <div class="header">
     <select>
       <option value=0>Fulana Suarez</option>
     </select>
-    <img class="foods-kids" src="img/foods-kids.png" alt="nombre foods kids de la página web"/>
+    <img class="foods-kids" src="../img/foods-kids.png" alt="nombre foods kids de la página web"/>
     <div class="exit-container">
-      <img class="exit-img" src="img/desconectarte.png">
+      <img class="exit-img" src="../img/desconectarte.png">
       <button class="exit-input" id="cerrar">Cerrar sesión</button>
     </div>
   </div>
@@ -18,7 +20,7 @@ export const screenHome = () => {
     <div class="container-user">
       <div class="color-img"></div>
       <div class="email-user">
-        <p>Correo user name </p>
+        <p id="name-user"></p>
       </div>
     </div>
     <div class="colunm-post">
@@ -30,11 +32,13 @@ export const screenHome = () => {
 
   divContainer.innerHTML = homeTemplate;
   divContainer.classList.add('container-home');
+  // console.log(nameEmail());
+  // divContainer.querySelector('#name-user').innerHTML = nameEmail().email;
   divContainer.querySelector('#cerrar').addEventListener('click', () => {
     viewExit();
   });
   return divContainer;
-}
+};
 
 /* <i class="fa fa-picture-o" aria-hidden="true"></i>
 <i class="fa fa-paper-plane" aria-hidden="true"></i>
