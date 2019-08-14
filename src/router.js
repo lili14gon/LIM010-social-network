@@ -1,18 +1,6 @@
-import { screenLogin } from './view/login.js'
-import { screenRegister } from './view/register.js'
+import { screenLogin } from './view/login.js';
+import { screenRegister } from './view/register.js';
 import { screenHome } from './view/home.js';
-
-export const init = () => {
-  changeTmp(window.location.hash);
-   window.addEventListener('hashchange', () => changeTmp(window.location.hash));
-} 
-const changeTmp = (hash) => {
-  if (hash === '#/' || hash === '' || hash === '#') {
-    return viewTmp('#/login');
-  } else {
-    return viewTmp(hash);
-  }
-};
 
 const viewTmp = (router) => {
   const root = document.getElementById('root');
@@ -29,7 +17,19 @@ const viewTmp = (router) => {
       root.appendChild(screenHome());
       break;
     default:
-      root.innerHTML= 'Hola';
+      root.innerHTML = 'Hola';
       break;
   }
-}
+};
+
+const changeTmp = (hash) => {
+  if (hash === '#/' || hash === '' || hash === '#') {
+    return viewTmp('#/login');
+  }
+  return viewTmp(hash);
+};
+
+export const init = () => {
+  changeTmp(window.location.hash);
+  window.addEventListener('hashchange', () => changeTmp(window.location.hash));
+};

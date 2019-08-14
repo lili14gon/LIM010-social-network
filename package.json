@@ -2,7 +2,7 @@
   "name": "social-network",
   "version": "1.0.0",
   "description": "Social Network @ Laboratoria",
-  "main": "index.html",
+  "main": "src/index.html",
   "keywords": [
     "javascript",
     "firebase",
@@ -11,8 +11,8 @@
   "license": "MIT",
   "scripts": {
     "htmlhint": "htmlhint dist/*.html ",
-    "eslint": "eslint --ext .js test/",
-    "stylelint": "stylelint --aei **/*.css",
+    "eslint": "eslint --ext .js src/ test/",
+    "stylelint": "stylelint --aei src/**/*.css",
     "lint": "npm run eslint && npm run htmlhint && npm run stylelint",
     "test": "jest --coverage",
     "pretest": "npm run lint"
