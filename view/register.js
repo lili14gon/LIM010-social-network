@@ -12,7 +12,7 @@ export const screenRegister = ()=>{
       <input class="inputs" type="email" name="email" id="email" placeholder="Email (*)">
       <input class="inputs" type="password" name="password" id="password" placeholder="Password (*)">
       <p class="obligatorio">Campos obligatorios (*)</p>
-      <button class="btn-login" name="button" type="submit" id="registrar">Ok</button>
+      <button class="btn-login" name="button" type="submit" id="registrar">Registrate</button>
       <p class="error" id="error"></p>
       </form>`;
     

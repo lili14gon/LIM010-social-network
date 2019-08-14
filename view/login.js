@@ -38,4 +38,4 @@ export const screenLogin = () => {
     viewGoogle();
   });
   return divContainer;
-}
+} 

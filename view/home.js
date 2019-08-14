@@ -1,7 +1,4 @@
-import { salir } from "../view.js";
-
-// import { } from "../view.js";
-// import {  } from "../control.js"
+import { viewExit } from "../view.js";
 
 export const screenHome = () => {
   const divContainer = document.createElement('div');
@@ -25,7 +22,7 @@ export const screenHome = () => {
       </div>
     </div>
     <div class="colunm-post">
-    <p><textarea class="estilotextarea"name="Comentarios" required  placeholder="¿Que quieres compartir?"></textarea>
+    <p><textarea class="estilotextarea"name="comentarios" required  placeholder="¿Que quieres compartir?"></textarea>
     </p>
     <p><input type="submit" value="compartir"class="inpu"></p>
     </div>
@@ -34,7 +31,7 @@ export const screenHome = () => {
   divContainer.innerHTML = homeTemplate;
   divContainer.classList.add('container-home');
  divContainer.querySelector('#cerrar').addEventListener('click', () => {
-  salir();
+  viewExit();
 });
   return divContainer;
 }
