@@ -31,21 +31,21 @@ export const loginFacebook = () => {
 //   });
 // };
 
- export const nameEmail = () => {
-   const user = firebase.auth().currentUser;
-   console.log(user.email);
-   console.log(user.photoURL);
-   return user;
- };
+export const nameEmail = () => {
+  const user = firebase.auth().currentUser;
+  // console.log(user.email);
+  // console.log(user.photoURL);
+  return user;
+};
 
 export const observador = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      console.log('Existe usuario activo');
+      // console.log('Existe usuario activo');
       // console.log(user);
-      
+
     } else {
-      console.log('No existe usuario activo');
+      // console.log('No existe usuario activo');
     }
   });
 };

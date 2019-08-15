@@ -8,7 +8,7 @@ import {
   // emailVerification,
   loginOut,
   observador,
-  nameEmail
+  nameEmail,
 } from './controller/control.js';
 
 const changeRoute = (route) => {
@@ -30,7 +30,7 @@ export const viewLogin = () => {
     if (result.user.emailVerified === false) {
       document.getElementById('error').innerHTML = 'No has verificado tu dirección de email';
     } else {
-      return changeRoute('#/home');
+      changeRoute('#/home');
     }
   }).catch((error) => {
     const errorMessage = error.message;
@@ -40,6 +40,14 @@ export const viewLogin = () => {
       document.getElementById('error').innerHTML = 'La contraseña no es válida o el usuario no está registrado.';
     }
   });
+};
+const emailVerification = () => {
+  nameEmail().sendEmailVerification()
+    .then((response) => {
+      console.log(response);
+    }).catch((error) => {
+      console.log(error);
+    });
 };
 
 export const viewRegister = () => {
@@ -118,11 +126,3 @@ export const viewGoogle = () => {
     console.log(error);
   });
 };
-const emailVerification = () =>{
-  nameEmail().sendEmailVerification()
-  .then((response) => {
-console.log(response);
-}).catch((error) =>{
-  console.log(error);
-})
-}

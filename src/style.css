@@ -5,7 +5,7 @@ font-family: 'Ubuntu', sans-serif;
 font-family: 'Montserrat', sans-serif; */
 * {
     font-family: 'Open Sans', sans-serif;
-     letter-spacing: 0.5px; 
+    letter-spacing: 0.5px; 
     font-size: 14px;
     margin: 0;
     box-sizing: border-box;
@@ -54,14 +54,14 @@ body {
     font-weight: bold;
     cursor: pointer;
 }
-.btn-login:hover {
-    background: #f2ea77;
-    color: #d01818;
-}
 .inputs, .btn-login {
     border-radius: 15px;
     padding: 4%;
     outline: none;
+}
+.btn-login:hover {
+    background: #f2ea77;
+    color: #d01818;
 }
 .icon-input {
     background: black;
