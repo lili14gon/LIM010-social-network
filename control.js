@@ -10,35 +10,39 @@ export const loginOut = () => {
 }
 export const loginGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
-
   return firebase.auth().signInWithPopup(provider)
 };
 export const loginFacebook = () => {
   var provider = new firebase.auth.FacebookAuthProvider();
   return firebase.auth().signInWithPopup(provider)
 };
+// export const emailVerification = () => {
+//   var user = firebase.auth().currentUser;
+// user.sendEmailVerification().then((response)=>{console.log(response)})
+// .catch(function(error) {
+// });
+// };
 export const emailVerification = () => {
-  var user = firebase.auth().currentUser;
-user.sendEmailVerification().then(function() {
-}).catch(function(error) {
-});
+  console.log(user);
+  return firebase.auth().currentUser;
 };
-
-
 export const observador = () => {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       console.log('existe usuario activo');
       // User is signed in.
       var displayName = user.displayName;
-      var email = user.email;
+      let email = user.email;
+      console.log(email);
       console.log(user);
       var emailVerified = user.emailVerified;
       var photoURL = user.photoURL;
+    //console.log(photoURL);
       var isAnonymous = user.isAnonymous;
       var uid = user.uid;
       var providerData = user.providerData;
-
+      let correo = document.getElementById('correo-electronico');
+        // correo.innerHTML = user.email;
       // ...
     } else {
       console.log('no existe usuario activo');

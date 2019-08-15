@@ -1,4 +1,5 @@
 import {  viewExit } from "../view.js"
+import { emailVerification } from "../control.js"
 
 export const screenHome = () => {
   const divContainer = document.createElement('div');
@@ -18,7 +19,7 @@ export const screenHome = () => {
     <div class="container-user">
       <div class="color-img"></div>
       <div class="email-user">
-        <p>Correo user name </p>
+      <p id="correo-electronico"></p>
       </div>
     </div>
     <div class="colunm-post">
@@ -30,6 +31,11 @@ export const screenHome = () => {
 
   divContainer.innerHTML = homeTemplate;
   divContainer.classList.add('container-home');
+  // divContainer.querySelector('#correo').innerHTML=observador().then((response)=>{console.log(response)});
+ // observador().then((response)=>{console.log(response)}).catch((error)=>{console.log(error)});
+  //console.log(emailVerification().email);
+  divContainer.querySelector('#correo-electronico').innerHTML=emailVerification().email;
+  
   divContainer.querySelector('#cerrar').addEventListener('click', () => {
     viewExit();
   });

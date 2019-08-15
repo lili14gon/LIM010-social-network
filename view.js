@@ -13,17 +13,10 @@ export const viewLogin = () => {
   const contrasena = document.getElementById('password').value;
   const errores = document.getElementById('error');
   loginEmail(correo, contrasena)
-    // .then(function () {
-    //   observador();
-    //   console.log('Bienvenido');
-    //   //document.getElementById('root').innerHTML = 'hola';
-    //   return changeRoute('#/home');
-    // })
     .then((result) => {
       observador()
-
-      console.log(result.user.emailVerified );
-   
+      //console.log(user.email);
+      //console.log(result.user.emailVerified );
       if (result.user.emailVerified === false) {
         document.getElementById('error').innerHTML = 'No has verificado tu dirección de email';
       } else {
@@ -51,7 +44,8 @@ export const viewRegister = () => {
   const password = document.getElementById('password').value;
   loginRegister(email, password)
   .then(function() {
-    emailVerification()
+    verifica();
+   // emailVerification()
   //   console.log(result.user.emailVerified );
   // observador()
   // if (result.user.emailVerified === false) {
@@ -113,7 +107,7 @@ export const viewExit = () => {
 export  const viewFacebook = () => {
   loginFacebook() 
   .then((response) => {
-    console.log(response)
+   // console.log(response)
     return changeRoute('#/home');
   })
   .catch((error) => {
@@ -123,10 +117,20 @@ export  const viewFacebook = () => {
 export  const viewGoogle = () => {
   loginGoogle()
   .then((response) => {
-    console.log(response)
+    //console.log(response.user)
     return changeRoute('#/home');
   })
   .catch((error) => {
     console.log(error)
   });
 }
+const verifica = ()=>{
+  emailVerification().sendEmailVerification()
+  .then((response)=>{console.log(response)})
+ .catch(function(error) {
+ });
+}
+// export const nombre=()=>{
+//   const name=document.getElementById('name').value;
+//   return MaysPrimera(name.toLowerCase());
+// }
