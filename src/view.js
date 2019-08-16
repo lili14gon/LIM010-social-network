@@ -41,7 +41,6 @@ export const viewLogin = () => {
     }
   });
 };
-
 const emailVerification = () => {
   nameEmail().sendEmailVerification()
     .then((response) => {

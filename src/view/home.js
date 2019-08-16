@@ -21,21 +21,19 @@ export const screenHome = () => {
         <img src='${nameEmail().photoURL}'/>
       </div>
       <div class="email-user">
-        <p id="name-user"></p>
+        <p id="name-user">${nameEmail().email}</p>
       </div>
     </div>
     <div class="colunm-post">
-    <p><textarea class="estilotextarea"name="comentarios" required  placeholder="¿Que quieres compartir?"></textarea>
-    </p>
-    <p><input type="submit" value="compartir"class="inpu"></p>
+      <p><textarea class="estilotextarea"name="comentarios" required  placeholder="¿Que quieres compartir?"></textarea></p>
+      <p><input type="submit" value="compartir"class="inpu"></p>
     </div>
   </div>`;
-
   // console.log(nameEmail().photoURL);
   divContainer.innerHTML = homeTemplate;
   divContainer.classList.add('container-home');
   // console.log(nameEmail());
-  divContainer.querySelector('#name-user').innerHTML = nameEmail().email;
+  // divContainer.querySelector('#name-user').innerHTML = nameEmail().email;
   divContainer.querySelector('#cerrar').addEventListener('click', () => {
     viewExit();
   });
