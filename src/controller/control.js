@@ -23,33 +23,20 @@ export const loginFacebook = () => {
   return firebase.auth().signInWithPopup(provider);
 };
 
-export const emailVerification = () => {
+export const nameEmail = () => {
   const user = firebase.auth().currentUser;
-  user.sendEmailVerification().then(() => {
-  }).catch(() => {
-    // console.log(error);
-  });
+  // console.log(user.email);
+  // console.log(user.photoURL);
+  return user;
 };
 
-// export const nameEmail = () => {
-//   const user = firebase.auth().currentUser;
-//   console.log(user);
-//   return user;
+// export const observador = () => {
+//   firebase.auth().onAuthStateChanged((user) => {
+//     if (user) {
+//       // console.log('Existe usuario activo');
+//       // console.log(user);
+//     } else {
+//       // console.log('No existe usuario activo');
+//     }
+//   });
 // };
-
-export const observador = () => {
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      console.log('Existe usuario activo');
-      // console.log(user);
-    } else {
-      console.log('No existe usuario activo');
-    }
-  });
-};
-export const createUser = (cred) => {
-  const resultFirebase = firebase.firestore().collection('users');
-  return resultFirebase.doc(cred.user.uid).set({
-    name: cred.user.displayName,
-  });
-};

@@ -5,9 +5,10 @@ import {
   loginFacebook,
   loginGoogle,
   loginRegister,
-  emailVerification,
+  // emailVerification,
+  nameEmail,
   loginOut,
-  observador,
+  // observador,
 } from './controller/control.js';
 
 const changeRoute = (route) => {
@@ -24,12 +25,12 @@ export const viewLogin = () => {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   loginEmail(email, password).then((result) => {
-    observador();
+    // observador();
     console.log(result.user.emailVerified);
     if (result.user.emailVerified === false) {
       document.getElementById('error').innerHTML = 'No has verificado tu dirección de email';
     } else {
-      return changeRoute('#/home');
+      changeRoute('#/home');
     }
   }).catch((error) => {
     const errorMessage = error.message;
@@ -39,6 +40,15 @@ export const viewLogin = () => {
       document.getElementById('error').innerHTML = 'La contraseña no es válida o el usuario no está registrado.';
     }
   });
+};
+
+const emailVerification = () => {
+  nameEmail().sendEmailVerification()
+    .then((response) => {
+      console.log(response);
+    }).catch((error) => {
+      console.log(error);
+    });
 };
 
 export const viewRegister = () => {
