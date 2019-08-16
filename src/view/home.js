@@ -4,7 +4,6 @@ import { nameEmail } from '../controller/control.js';
 export const screenHome = () => {
   const divContainer = document.createElement('div');
   divContainer.innerHTML = '';
-  // const user = firebase.auth().currentUser;
   const homeTemplate = `  
   <div class="header">
     <select>
@@ -34,8 +33,7 @@ export const screenHome = () => {
   divContainer.innerHTML = homeTemplate;
   divContainer.classList.add('container-home');
   // console.log(nameEmail());
-  //  divContainer.querySelector('#name-user').innerHTML = nameEmail().email;
-  //  divContainer.querySelector('#imagen').innerHTML = nameEmail().photoURL;
+  // divContainer.querySelector('#name-user').innerHTML = nameEmail().email;
   divContainer.querySelector('#cerrar').addEventListener('click', () => {
     viewExit();
   });
