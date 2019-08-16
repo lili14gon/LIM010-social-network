@@ -6,9 +6,9 @@ import {
   loginGoogle,
   loginRegister,
   // emailVerification,
-  loginOut,
-  observador,
   nameEmail,
+  loginOut,
+  // observador,
 } from './controller/control.js';
 
 const changeRoute = (route) => {
@@ -25,7 +25,7 @@ export const viewLogin = () => {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   loginEmail(email, password).then((result) => {
-    observador();
+    // observador();
     console.log(result.user.emailVerified);
     if (result.user.emailVerified === false) {
       document.getElementById('error').innerHTML = 'No has verificado tu dirección de email';
