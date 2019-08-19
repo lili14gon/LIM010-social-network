@@ -7,6 +7,7 @@ import {
   loginFacebook,
   nameEmail,
 } from '../src/controller/control.js';
+
 // configurando firebase mock
 const firebasemock = require('firebase-mock');
 
@@ -16,7 +17,7 @@ const mockdatabase = new firebasemock.MockFirebase();
 // mockfirestore.autoFlush();
 mockauth.autoFlush();
 global.firebase = firebasemock.MockFirebaseSdk(
-// use null if your code does not use RTDB
+  // use null if your code does not use RTDB
   path => (path ? mockdatabase.child(path) : null),
   () => mockauth,
   // () => mockfirestore,
@@ -48,8 +49,10 @@ describe('loginOut', () => {
     expect(typeof loginOut).toBe('function');
   });
   it('Debería poder Cerrar Sesión', () => {
-    loginOut().then((rsp) => {
-      expect(rsp).toBe(rsp);
+    loginEmail('etr604@gmail.com', '123456').then(() => {
+      loginOut().then((response) => {
+        expect(response).toBe('undefined');
+      });
     });
   });
 });
@@ -77,11 +80,11 @@ describe('nameEmail', () => {
   it('debería ser una función', () => {
     expect(typeof nameEmail).toBe('function');
   });
-  it('debería devolver usuario con sesión activa', (done) => {
+  it('debería devolver usuario con sesión activa', () => {
     loginEmail('etr604@gmail.com', '123456').then(() => {
-      const user = nameEmail();
-      expect(user.email).toEqual('etr604@gmail.com');
-      done();
+      nameEmail().then((user) => {
+        expect(user.email).toBe('etr604@gmail.com');
+      });
     });
   });
 });

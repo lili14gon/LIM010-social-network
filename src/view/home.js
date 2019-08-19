@@ -1,5 +1,6 @@
 import { viewExit } from '../view.js';
 import { nameEmail } from '../controller/control.js';
+// import { comentar } from '../controller/control.js';
 
 export const screenHome = () => {
   const divContainer = document.createElement('div');
@@ -25,20 +26,42 @@ export const screenHome = () => {
       </div>
     </div>
     <div class="colunm-post">
-      <p><textarea class="estilotextarea"name="comentarios" required  placeholder="¿Que quieres compartir?"></textarea></p>
-      <p><input type="submit" value="compartir"class="inpu"></p>
+      <p><textarea class="estilotextarea"name="comentarios" required  placeholder="¿Que quieres compartir? id="comentario"></textarea></p>
+      <p><input type="button" value="compartir"class="inpu" id="compartir"></p>
     </div>
+    <div id="comentariosContenedor"></div>
   </div>`;
   // console.log(nameEmail().photoURL);
   divContainer.innerHTML = homeTemplate;
   divContainer.classList.add('container-home');
-  // console.log(nameEmail());
+  //  console.log(nameEmail());
   // divContainer.querySelector('#name-user').innerHTML = nameEmail().email;
   divContainer.querySelector('#cerrar').addEventListener('click', () => {
+    // firebase.auth().signOut().then((x) => {
+    //   console.log(x);
+    // })
+    //   .catch(function (error) {
+    //     // Handle Errors here.
+    //     let errorCode = error.code;
+    //     let errorMessage = error.message;
+    //     // ...
+    //   });
     viewExit();
   });
   return divContainer;
 };
+
+// const textComentario = divContainer.querySelector('#comentario');
+
+// const buttonCompartir = divContainer.querySelector('#compartir');
+// const comentariosContenedor = divContainer.querySelector('#comentarioContenedor');
+// buttonCompartir.addEventListener('click',() => {
+//   comentar(textComentario.value).then(() => {
+//     const texto = `<p>${textComentario.value}</p>`
+//     comentariosContenedor.innerHTML(comentariosContenedor.innerHTML += texto)
+//   });
+// });
+
 
 /* <i class="fa fa-picture-o" aria-hidden="true"></i>
 <i class="fa fa-paper-plane" aria-hidden="true"></i>

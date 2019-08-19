@@ -1,34 +1,41 @@
-export const loginEmail = (email, password) => {
-  const resultFirebase = firebase.auth().signInWithEmailAndPassword(email, password);
-  return resultFirebase;
-};
+// export const crearUsuarioConEmailYPasswoard = (email, password) => {
+//   return firebase.auth().createUserWithEmailAndPassword(email, password);
+// };
 
-export const loginRegister = (email, password) => {
-  const resultFirebase = firebase.auth().createUserWithEmailAndPassword(email, password);
-  return resultFirebase;
-};
 
-export const loginOut = () => {
-  const resultFirebase = firebase.auth().signOut();
-  return resultFirebase;
-};
+const loginEmail = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password);
 
-export const loginGoogle = () => {
+// eslint-disable-next-line max-len
+const loginRegister = (email, password) => firebase.auth().createUserWithEmailAndPassword(email, password);
+
+const loginOut = () => firebase.auth().signOut();
+
+const loginGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   return firebase.auth().signInWithPopup(provider);
 };
 
-export const loginFacebook = () => {
+const loginFacebook = () => {
   const provider = new firebase.auth.FacebookAuthProvider();
   return firebase.auth().signInWithPopup(provider);
 };
 
-export const nameEmail = () => {
-  const user = firebase.auth().currentUser;
-  // console.log(user.email);
-  // console.log(user.photoURL);
-  return user;
+const nameEmail = () => firebase.auth().currentUser;
+
+export {
+  loginEmail,
+  loginRegister,
+  loginOut,
+  loginGoogle,
+  loginFacebook,
+  nameEmail,
 };
+
+// export const comentar = (comentario) => {
+//   return firebase.firestore().collection('post').add({
+//     texto: comentario
+//   });
+// },
 
 // export const observador = () => {
 //   firebase.auth().onAuthStateChanged((user) => {

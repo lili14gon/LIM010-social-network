@@ -26,6 +26,7 @@ export const viewLogin = () => {
   const password = document.getElementById('password').value;
   loginEmail(email, password).then((result) => {
     // observador();
+    console.log(result);
     console.log(result.user.emailVerified);
     if (result.user.emailVerified === false) {
       document.getElementById('error').innerHTML = 'No has verificado tu dirección de email';
@@ -55,7 +56,8 @@ export const viewRegister = () => {
   const name = document.getElementById('name').value;
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
-  loginRegister(email, password).then(() => {
+  loginRegister(email, password).then((response) => {
+    console.log(response);
     emailVerification();
     if (name !== '') {
       // console.log(user);
@@ -94,10 +96,11 @@ export const viewRegister = () => {
 };
 
 export const viewExit = () => {
-  loginOut().then(() => {
+  loginOut().then((response) => {
     // Sign-out successful.
+    changeRoute('#/login');
     console.log('Saliendo....');
-    return changeRoute('#/login');
+    console.log(response);
   }).catch((error) => {
     // An error happened.
     console.log(error);
@@ -107,21 +110,16 @@ export const viewExit = () => {
 export const viewFacebook = () => {
   loginFacebook().then((response) => {
     console.log(response);
-    return changeRoute('#/home');
+    changeRoute('#/home');
   }).catch((error) => {
     console.log(error);
-    // if (error.message ===
-    // 'An account already exists with the same email address but different sign-in credentials.
-    // Sign in using a provider associated with this email address.') {
-    return changeRoute('#/home');
-    // }
   });
 };
 
 export const viewGoogle = () => {
   loginGoogle().then((response) => {
     console.log(response);
-    return changeRoute('#/home');
+    changeRoute('#/home');
   }).catch((error) => {
     console.log(error);
   });
