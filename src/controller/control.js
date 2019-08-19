@@ -22,6 +22,11 @@ const loginFacebook = () => {
 
 const nameEmail = () => firebase.auth().currentUser;
 
+const createData = (post, correo) => firebase.firestore().collection('Posts').add({
+  text: post,
+  email: correo,
+});
+
 export {
   loginEmail,
   loginRegister,
@@ -29,21 +34,5 @@ export {
   loginGoogle,
   loginFacebook,
   nameEmail,
+  createData,
 };
-
-// export const comentar = (comentario) => {
-//   return firebase.firestore().collection('post').add({
-//     texto: comentario
-//   });
-// },
-
-// export const observador = () => {
-//   firebase.auth().onAuthStateChanged((user) => {
-//     if (user) {
-//       // console.log('Existe usuario activo');
-//       // console.log(user);
-//     } else {
-//       // console.log('No existe usuario activo');
-//     }
-//   });
-// };

@@ -9,6 +9,7 @@ import {
   nameEmail,
   loginOut,
   // observador,
+  createData,
 } from './controller/control.js';
 
 const changeRoute = (route) => {
@@ -122,5 +123,15 @@ export const viewGoogle = () => {
     changeRoute('#/home');
   }).catch((error) => {
     console.log(error);
+  });
+};
+
+export const createPost = () => {
+  const comentario = document.getElementById('comentario');
+  createData(comentario, nameEmail().email).then((response) => {
+    console.log('se agrego a tu colleccion', response.id);
+    // document.getElementById('comentario').value = ''
+  }).catch((error) => {
+    console.log('no se agrego', error);
   });
 };

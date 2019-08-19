@@ -6,21 +6,22 @@ import {
   loginGoogle,
   loginFacebook,
   nameEmail,
+  createData,
 } from '../src/controller/control.js';
 
 // configurando firebase mock
 const firebasemock = require('firebase-mock');
 
 const mockauth = new firebasemock.MockFirebase();
-// const mockfirestore = new firebasemock.MockFirestore();
+const mockfirestore = new firebasemock.MockFirestore();
 const mockdatabase = new firebasemock.MockFirebase();
-// mockfirestore.autoFlush();
+mockfirestore.autoFlush();
 mockauth.autoFlush();
 global.firebase = firebasemock.MockFirebaseSdk(
   // use null if your code does not use RTDB
   path => (path ? mockdatabase.child(path) : null),
   () => mockauth,
-  // () => mockfirestore,
+  () => mockfirestore,
 );
 
 // iniciando tests
@@ -85,6 +86,19 @@ describe('nameEmail', () => {
       nameEmail().then((user) => {
         expect(user.email).toBe('etr604@gmail.com');
       });
+    });
+  });
+});
+describe('createData', () => {
+  it('debería retornar un objeto', () => {
+    expect(typeof createData('hola como estar', 'etr604@gmail.com')).toBe('object');
+  });
+  it('debería ser una función', () => {
+    expect(typeof createData).toBe('function');
+  });
+  it('Deberia de poder agregar una post e email', () => {
+    createData('hola como estar', 'etr604@gmail.com').then((data) => {
+      expect(data).toBe('hola como estar', 'etr604@gmail.com');
     });
   });
 });

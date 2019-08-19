@@ -1,6 +1,6 @@
-import { viewExit } from '../view.js';
+import { viewExit, createPost } from '../view.js';
 import { nameEmail } from '../controller/control.js';
-// import { comentar } from '../controller/control.js';
+
 
 export const screenHome = () => {
   const divContainer = document.createElement('div');
@@ -37,30 +37,21 @@ export const screenHome = () => {
   //  console.log(nameEmail());
   // divContainer.querySelector('#name-user').innerHTML = nameEmail().email;
   divContainer.querySelector('#cerrar').addEventListener('click', () => {
-    // firebase.auth().signOut().then((x) => {
-    //   console.log(x);
-    // })
-    //   .catch(function (error) {
-    //     // Handle Errors here.
-    //     let errorCode = error.code;
-    //     let errorMessage = error.message;
-    //     // ...
-    //   });
     viewExit();
+  });
+  const buttonCompartir = divContainer.querySelector('#compartir');
+  // const comentariosContenedor = divContainer.querySelector('#comentarioContenedor');
+  buttonCompartir.addEventListener('click', () => {
+    // const textComent = document.getElementById('comentario').value;
+    createPost();
+    /* createData(textComent, nameEmail().email).then((response) => {
+      console.log('se agrego a tu colleccion', response);
+    }).catch((error) => {
+      console.log('no se agrego', error);
+    }); */
   });
   return divContainer;
 };
-
-// const textComentario = divContainer.querySelector('#comentario');
-
-// const buttonCompartir = divContainer.querySelector('#compartir');
-// const comentariosContenedor = divContainer.querySelector('#comentarioContenedor');
-// buttonCompartir.addEventListener('click',() => {
-//   comentar(textComentario.value).then(() => {
-//     const texto = `<p>${textComentario.value}</p>`
-//     comentariosContenedor.innerHTML(comentariosContenedor.innerHTML += texto)
-//   });
-// });
 
 
 /* <i class="fa fa-picture-o" aria-hidden="true"></i>
