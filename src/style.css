@@ -54,15 +54,16 @@ body {
     font-weight: bold;
     cursor: pointer;
 }
-.btn-login:hover {
-    background: #f2ea77;
-    color: #d01818;
-}
 .inputs, .btn-login {
     border-radius: 15px;
     padding: 4%;
     outline: none;
 }
+.btn-login:hover {
+    background: #f2ea77;
+    color: #d01818;
+}
+
 .icon-input {
     background: black;
     color: white;

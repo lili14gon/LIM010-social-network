@@ -1,4 +1,4 @@
-import { viewExit } from '../view.js';
+import { viewExit, createPost } from '../view.js';
 import { nameEmail } from '../controller/control.js';
 
 export const screenHome = () => {
@@ -22,23 +22,28 @@ export const screenHome = () => {
        <img src='${nameEmail().photoURL}'/>
        </div>
       <div class="email-user">
-        <p id="name-user"></p>
+        <p id="name-user">${nameEmail().email}</p>
       </div>
     </div>
     <div class="colunm-post">
-    <p><textarea class="estilotextarea"name="comentarios" required  placeholder="¿Que quieres compartir?"></textarea>
+    <p><textarea class="estilotextarea" name="comentarios" id="ingresar-texto" required  placeholder="¿Que quieres compartir?"></textarea>
     </p>
-    <p><input type="submit" value="compartir"class="inpu"></p>
+    <p><input type="submit" value="compartir"class="inpu" id="compartir"></p>
+    </div>
+    <div class="colunm-post" id ="publicado">
     </div>
   </div>`;
-console.log(nameEmail().photoURL);
+  // console.log(nameEmail().photoURL);
   divContainer.innerHTML = homeTemplate;
   divContainer.classList.add('container-home');
   // console.log(nameEmail());
-   divContainer.querySelector('#name-user').innerHTML = nameEmail().email;
+  // divContainer.querySelector('#name-user').innerHTML = nameEmail().email;
   //  divContainer.querySelector('#imagen').innerHTML = nameEmail().photoURL;
   divContainer.querySelector('#cerrar').addEventListener('click', () => {
     viewExit();
+  });
+  divContainer.querySelector('#compartir').addEventListener('click', () => {
+    createPost();
   });
   return divContainer;
 };

@@ -1,6 +1,7 @@
 import { screenLogin } from './view/login.js';
 import { screenRegister } from './view/register.js';
 import { screenHome } from './view/home.js';
+import { viewPost } from './view.js';
 
 const viewTmp = (router) => {
   const root = document.getElementById('root');
@@ -15,10 +16,12 @@ const viewTmp = (router) => {
       break;
     case '#/home':
       root.appendChild(screenHome());
+      viewPost();
       break;
     default:
       root.innerHTML = 'Hola';
       break;
+
   }
 };
 

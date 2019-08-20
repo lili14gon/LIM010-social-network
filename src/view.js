@@ -7,8 +7,10 @@ import {
   loginRegister,
   // emailVerification,
   loginOut,
-  observador,
-  nameEmail
+  // observador,
+  savePost,
+  nameEmail,
+  readPost,
 } from './controller/control.js';
 
 const changeRoute = (route) => {
@@ -19,18 +21,25 @@ const maysFirst = (string) => {
   const resultFirst = string.charAt(0).toUpperCase() + string.slice(1);
   return resultFirst;
 };
-
+const emailVerification = () => {
+  nameEmail().sendEmailVerification()
+    .then((response) => {
+      console.log(response);
+    }).catch((error) => {
+      console.log(error);
+    });
+};
 export const viewLogin = () => {
   window.event.preventDefault();
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   loginEmail(email, password).then((result) => {
-    observador();
+    // observador();
     console.log(result.user.emailVerified);
     if (result.user.emailVerified === false) {
       document.getElementById('error').innerHTML = 'No has verificado tu dirección de email';
     } else {
-      return changeRoute('#/home');
+      changeRoute('#/home');
     }
   }).catch((error) => {
     const errorMessage = error.message;
@@ -118,11 +127,18 @@ export const viewGoogle = () => {
     console.log(error);
   });
 };
-const emailVerification = () =>{
-  nameEmail().sendEmailVerification()
-  .then((response) => {
-console.log(response);
-}).catch((error) =>{
-  console.log(error);
-})
-}
+// console.log(createUser());
+export const createPost = () => {
+  const text = document.getElementById('ingresar-texto').value;
+  savePost(text, nameEmail().email);
+  document.getElementById('ingresar-texto').value = '';
+};
+export const viewPost = () => {
+  const viewText = document.getElementById('publicado');
+  for (let i = 0; i < readPost().length; i += 1) {
+    viewText.innerHTML = `<p>publicado por ${readPost()[i].usuario}</p>
+  <p><textarea class="estilotextarea" name="comentarios" id=""
+   required  placeholder="¿Que quieres compartir?"></textarea>${readPost()[i].texto}</p>
+  <p><input type="submit" value="compartir"class="inpu" id="">like</p>`;
+  }
+};
