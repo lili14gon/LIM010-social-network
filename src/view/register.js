@@ -1,4 +1,4 @@
-import { viewRegister } from '../view.js';
+import { viewRegister } from '../controller.js';
 
 export const screenRegister = () => {
   const divContainer = document.createElement('div');

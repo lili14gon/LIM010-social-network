@@ -201,6 +201,11 @@ select {
     margin:5px;
     border-radius:8px
  }
+ .img-perfil{
+     border-radius:50%;
+     width: 100%;
+     padding: 10%;
+ }
 @media screen and (min-width:764px) {
     /* .fondo-fruit {
         background-image: url('./img/clock-vegetables-fruit.jpg');

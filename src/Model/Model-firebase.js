@@ -22,11 +22,6 @@ const loginFacebook = () => {
 
 const nameEmail = () => firebase.auth().currentUser;
 
-const createData = (post, correo) => firebase.firestore().collection('Posts').add({
-  text: post,
-  email: correo,
-});
-
 export {
   loginEmail,
   loginRegister,
@@ -34,5 +29,4 @@ export {
   loginGoogle,
   loginFacebook,
   nameEmail,
-  createData,
 };

@@ -1,5 +1,5 @@
-import { viewExit, createPost } from '../view.js';
-import { nameEmail } from '../controller/control.js';
+import { viewExit, createPost } from '../controller.js';
+import { nameEmail } from '../Model/Model-firebase.js';
 
 
 export const screenHome = () => {
@@ -8,7 +8,7 @@ export const screenHome = () => {
   const homeTemplate = `  
   <div class="header">
     <select>
-      <option value=0>Fulana Suarez</option>
+      <option value=0>${nameEmail().displayName}</option>
     </select>
     <img class="foods-kids" src="../img/foods-kids.png" alt="nombre foods kids de la página web"/>
     <div class="exit-container">
@@ -19,14 +19,14 @@ export const screenHome = () => {
   <div class="main">
     <div class="container-user">
       <div class="color-img">
-        <img src='${nameEmail().photoURL}'/>
       </div>
       <div class="email-user">
+      <div><img class="img-perfil" src='${nameEmail().photoURL}'/></div>
         <p id="name-user">${nameEmail().email}</p>
       </div>
     </div>
     <div class="colunm-post">
-      <p><textarea class="estilotextarea"name="comentarios" required  placeholder="¿Que quieres compartir? id="comentario"></textarea></p>
+      <p><textarea class="estilotextarea"name="comentarios" required  placeholder="¿Que quieres compartir?" id="comentario"></textarea></p>
       <p><input type="button" value="compartir"class="inpu" id="compartir"></p>
     </div>
     <div id="comentariosContenedor"></div>
