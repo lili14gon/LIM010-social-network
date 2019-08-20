@@ -1,4 +1,4 @@
-import { viewLogin, viewFacebook, viewGoogle } from '../view.js';
+import { viewLogin, viewFacebook, viewGoogle } from '../controller.js';
 
 export const screenLogin = () => {
   const divContainer = document.createElement('div');

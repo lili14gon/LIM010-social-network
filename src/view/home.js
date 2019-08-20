@@ -1,5 +1,5 @@
-import { viewExit, createPost } from '../view.js';
-import { nameEmail } from '../controller/control.js';
+import { viewExit, createPost } from '../controller.js';
+import { nameEmail } from '../Model/Model-firebase.js';
 
 
 export const screenHome = () => {
@@ -20,8 +20,8 @@ export const screenHome = () => {
     <div class="container-user">
       <div class="color-img">
       </div>
-      <div class="email-user"><div>
-      <img class="img-perfil"src='${nameEmail().photoURL}'/></div>
+      <div class="email-user">
+      <div><img class="img-perfil" src='${nameEmail().photoURL}'/></div>
         <p id="name-user">${nameEmail().email}</p>
       </div>
     </div>

@@ -5,12 +5,11 @@ import {
   loginFacebook,
   loginGoogle,
   loginRegister,
-  // emailVerification,
   nameEmail,
   loginOut,
-  // observador,
-  createData,
-} from './controller/control.js';
+} from './Model/Model-firebase.js';
+
+import { createData } from './Model/Model-firestore.js';
 
 const changeRoute = (route) => {
   window.location.hash = route;
@@ -126,10 +125,10 @@ export const viewGoogle = () => {
 };
 
 export const createPost = () => {
-  const comentario = document.getElementById('comentario');
+  const comentario = document.getElementById('comentario').value;
   createData(comentario, nameEmail().email).then((response) => {
+    document.getElementById('comentario').value = '';
     console.log('se agrego a tu colleccion', response.id);
-    // document.getElementById('comentario').value = ''
   }).catch((error) => {
     console.log('no se agrego', error);
   });

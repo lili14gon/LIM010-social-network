@@ -13,8 +13,7 @@ import {
   loginGoogle,
   loginFacebook,
   nameEmail,
-  createData,
-} from '../src/controller/control.js';
+} from '../src/Model/Model-firebase.js';
 
 // configurando firebase mock
 const firebasemock = require('firebase-mock');
@@ -96,16 +95,16 @@ describe('nameEmail', () => {
     });
   });
 });
-describe('createData', () => {
-  it('debería retornar un objeto', () => {
-    expect(typeof createData('hola como estar', 'etr604@gmail.com')).toBe('object');
-  });
-  it('debería ser una función', () => {
-    expect(typeof createData).toBe('function');
-  });
-  it('Deberia de poder agregar una post e email', () => {
-    createData('hola como estar', 'etr604@gmail.com').then((data) => {
-      expect(data).toBe('hola como estar', 'etr604@gmail.com');
-    });
-  });
-});
+// describe('createData', () => {
+//   it('debería retornar un objeto', () => {
+//     expect(typeof createData('hola como estar', 'etr604@gmail.com')).toBe('object');
+//   });
+//   it('debería ser una función', () => {
+//     expect(typeof createData).toBe('function');
+//   });
+//   it('Deberia de poder agregar una post e email', () => {
+//     createData('hola como estar', 'etr604@gmail.com').then((data) => {
+//       expect(data).toBe('hola como estar', 'etr604@gmail.com');
+//     });
+//   });
+// });
