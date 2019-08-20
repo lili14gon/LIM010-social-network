@@ -5,7 +5,7 @@ font-family: 'Ubuntu', sans-serif;
 font-family: 'Montserrat', sans-serif; */
 * {
     font-family: 'Open Sans', sans-serif;
-     letter-spacing: 0.5px; 
+    letter-spacing: 0.5px; 
     font-size: 14px;
     margin: 0;
     box-sizing: border-box;
@@ -63,7 +63,6 @@ body {
     background: #f2ea77;
     color: #d01818;
 }
-
 .icon-input {
     background: black;
     color: white;
@@ -158,7 +157,7 @@ margin: 10px 0;
     padding: 0;
 }
 select {
-    width: 125px;
+    width: 220px;
     background: transparent;
     border: none;
 }
@@ -201,6 +200,11 @@ select {
  .inpu{
     margin:5px;
     border-radius:8px
+ }
+ .ima-perfil{
+     border-radius: 50%;
+     width: 100%;
+     padding: 10%;
  }
 @media screen and (min-width:764px) {
     /* .fondo-fruit {

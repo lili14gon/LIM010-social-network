@@ -13,7 +13,9 @@ import {
   loginGoogle,
   loginFacebook,
   nameEmail,
+  createData,
 } from '../src/controller/control.js';
+
 // configurando firebase mock
 const firebasemock = require('firebase-mock');
 
@@ -26,8 +28,9 @@ global.firebase = firebasemock.MockFirebaseSdk(
   // use null if your code does not use RTDB
   path => (path ? mockdatabase.child(path) : null),
   () => mockauth,
-  // () => mockfirestore,
+  () => mockfirestore,
 );
+
 // iniciando tests
 describe('loginEmail', () => {
   it('debería ser una función', () => {
@@ -54,8 +57,10 @@ describe('loginOut', () => {
     expect(typeof loginOut).toBe('function');
   });
   it('Debería poder Cerrar Sesión', () => {
-    loginOut('etr604@gmail.com', '123456').then((rsp) => {
-      expect(rsp.email).toBe('undefined');
+    loginEmail('etr604@gmail.com', '123456').then(() => {
+      loginOut().then((response) => {
+        expect(response).toBe('undefined');
+      });
     });
   });
 });
@@ -83,11 +88,24 @@ describe('nameEmail', () => {
   it('debería ser una función', () => {
     expect(typeof nameEmail).toBe('function');
   });
-  it('debería devolver usuario con sesión activa', (done) => {
+  it('debería devolver usuario con sesión activa', () => {
     loginEmail('etr604@gmail.com', '123456').then(() => {
-      const user = nameEmail();
-      expect(user.email).toEqual('etr604@gmail.com');
-      done();
+      nameEmail().then((user) => {
+        expect(user.email).toBe('etr604@gmail.com');
+      });
+    });
+  });
+});
+describe('createData', () => {
+  it('debería retornar un objeto', () => {
+    expect(typeof createData('hola como estar', 'etr604@gmail.com')).toBe('object');
+  });
+  it('debería ser una función', () => {
+    expect(typeof createData).toBe('function');
+  });
+  it('Deberia de poder agregar una post e email', () => {
+    createData('hola como estar', 'etr604@gmail.com').then((data) => {
+      expect(data).toBe('hola como estar', 'etr604@gmail.com');
     });
   });
 });

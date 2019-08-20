@@ -27,6 +27,17 @@ export const screenLogin = () => {
 
   const buttonLogInEmail = divContainer.querySelector('#login');
   buttonLogInEmail.addEventListener('click', () => {
+    // firebase.auth().createUserWithEmailAndPassword(email, password)
+    // .then((x)=>{
+    //   console.log(x);
+    // })
+    // .catch(function(error) {
+    //   // Handle Errors here.
+    //   var errorCode = error.code;
+    //   var errorMessage = error.message;
+    //   // ...
+    // });
+    // alert('hola')
     viewLogin();
   });
   const buttonLogInFacebbok = divContainer.querySelector('#fb');
