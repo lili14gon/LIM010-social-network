@@ -9,7 +9,8 @@ import {
   loginOut,
 } from './Model/Model-firebase.js';
 
-import { createData } from './Model/Model-firestore.js';
+import { createData, readPost } from './Model/Model-firestore.js';
+import { screenPost } from './view/post.js';
 
 const changeRoute = (route) => {
   window.location.hash = route;
@@ -19,7 +20,6 @@ const maysFirst = (string) => {
   const resultFirst = string.charAt(0).toUpperCase() + string.slice(1);
   return resultFirst;
 };
-
 export const viewLogin = () => {
   window.event.preventDefault();
   const email = document.getElementById('email').value;
@@ -127,10 +127,16 @@ export const viewGoogle = () => {
 
 export const createPost = () => {
   const comentario = document.getElementById('comentario').value;
-  createData(comentario, nameEmail().email).then((response) => {
-    document.getElementById('comentario').value = '';
-    console.log('se agrego a tu colleccion', response.id);
-  }).catch((error) => {
-    console.log('no se agrego', error);
-  });
+  createData(comentario, nameEmail().email, nameEmail().uid)
+    .then((response) => {
+      document.getElementById('comentario').value = '';
+      console.log('se agrego a tu colleccion', response.id);
+    }).catch((error) => {
+      console.log('no se agrego', error);
+    });
+};
+export const viewPost = () => {
+  const totalView = document.getElementById('comentariosContenedor');
+  console.log(totalView);
+  totalView.appendChild(screenPost());
 };

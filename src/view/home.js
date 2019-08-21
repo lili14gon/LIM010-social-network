@@ -1,6 +1,5 @@
-import { viewExit, createPost } from '../controller.js';
+import { viewExit, createPost, viewPost } from '../controller.js';
 import { nameEmail } from '../Model/Model-firebase.js';
-
 
 export const screenHome = () => {
   const divContainer = document.createElement('div');
@@ -42,13 +41,8 @@ export const screenHome = () => {
   const buttonCompartir = divContainer.querySelector('#compartir');
   // const comentariosContenedor = divContainer.querySelector('#comentarioContenedor');
   buttonCompartir.addEventListener('click', () => {
-    // const textComent = document.getElementById('comentario').value;
     createPost();
-    /* createData(textComent, nameEmail().email).then((response) => {
-      console.log('se agrego a tu colleccion', response);
-    }).catch((error) => {
-      console.log('no se agrego', error);
-    }); */
+    viewPost();
   });
   return divContainer;
 };
