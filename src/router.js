@@ -1,6 +1,7 @@
 import { screenLogin } from './view/login.js';
 import { screenRegister } from './view/register.js';
 import { screenHome } from './view/home.js';
+// import { viewPost } from './controller.js';
 
 const viewTmp = (router) => {
   const root = document.getElementById('root');

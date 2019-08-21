@@ -95,16 +95,4 @@ describe('nameEmail', () => {
     });
   });
 });
-// describe('createData', () => {
-//   it('debería retornar un objeto', () => {
-//     expect(typeof createData('hola como estar', 'etr604@gmail.com')).toBe('object');
-//   });
-//   it('debería ser una función', () => {
-//     expect(typeof createData).toBe('function');
-//   });
-//   it('Deberia de poder agregar una post e email', () => {
-//     createData('hola como estar', 'etr604@gmail.com').then((data) => {
-//       expect(data).toBe('hola como estar', 'etr604@gmail.com');
-//     });
-//   });
-// });
+

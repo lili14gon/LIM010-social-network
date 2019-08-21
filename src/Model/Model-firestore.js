@@ -1,8 +1,20 @@
-const createData = (post, correo) => firebase.firestore().collection('Posts').add({
+const createData = (post, correo, id) => firebase.firestore().collection('Posts').add({
   text: post,
   email: correo,
+  idUsuario: id,
 });
+const readPost = (llamado) => {
+  firebase.firestore().collection('Posts').onSnapshot((datos) => {
+    const array = [];
+    datos.forEach((doc) => {
+      array.push(doc.data());
+      console.log(array);
+    });
+    llamado(array);
+  });
+};
 
 export {
   createData,
+  readPost,
 };
