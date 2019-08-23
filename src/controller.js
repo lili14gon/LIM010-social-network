@@ -9,8 +9,7 @@ import {
   loginOut,
 } from './Model/Model-firebase.js';
 
-import { createData } from './Model/Model-firestore.js';
-
+import { createData, deletePost } from './Model/Model-firestore.js';
 
 const changeRoute = (route) => {
   window.location.hash = route;

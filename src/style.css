@@ -196,6 +196,28 @@ select {
     border-radius: 3px;
     background: #d01818;
  }
+ .post{
+    margin-top: 20px;
+    height: 140px;
+    border-radius: 3px;
+    padding: 10px;
+    border: 1px solid;
+ }
+ .header-post{
+    display: flex;
+    cursor: pointer;
+    justify-content: space-between;
+}
+.button-post{
+    display: flex;
+    justify-content: flex-start;
+    cursor: pointer;
+}
+.btn-compartir{
+    width: 25%;
+    margin-left: 3.5%;
+    border-radius: 8px;
+}
  .estilotextarea{
     width: 400px;
     height: 70px;
@@ -212,10 +234,14 @@ select {
      width: 100%;
      padding: 10%;
  }
- .estilotex{
-    width: 80vh;
-    height: 80px;
-    margin: 15px;
+ .postPublic{
+    border-radius: 3px;
+    /* padding: 5% 0%; */
+    border: 1px solid;
+ }
+ .hide {
+     display: none;
+
  }
 @media screen and (min-width:764px) {
     /* .fondo-fruit {

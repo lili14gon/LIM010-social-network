@@ -1,8 +1,7 @@
 import { viewExit, createPost } from '../controller.js';
 import { nameEmail } from '../Model/Model-firebase.js';
 import { screenPost } from './post.js';
-
-export const screenHome = (dato) => {
+export const screenHome = (post) => {
   const divContainer = document.createElement('div');
   divContainer.innerHTML = '';
   const homeTemplate = `  
@@ -25,11 +24,17 @@ export const screenHome = (dato) => {
         <p id="name-user">${nameEmail().email}</p>
       </div>
     </div>
+    <div class="total">
     <div class="colunm-post">
-      <p><textarea class="estilotextarea"name="comentarios" required  placeholder="¿Que quieres compartir?" id="comentario"></textarea></p>
-      <p><input type="button" value="compartir"class="inpu" id="compartir"></p>
+      <textarea class="estilotextarea"name="comentarios" required  placeholder="¿Que quieres compartir?" id="comentario"></textarea>
+       <input type="submit" value="compartir"class="btn-compartir" id="compartir">
+       <select id="post-privacy" class="">
+  		<option value="public">Public</option>
+  		<option value="private">Private</option>
+	      </select>
     </div>
     <div id="comentariosContenedor"></div>
+  </div>
   </div>`;
   // console.log(nameEmail().photoURL);
   divContainer.innerHTML = homeTemplate;
@@ -46,12 +51,11 @@ export const screenHome = (dato) => {
   });
 
   const totalView = divContainer.querySelector('#comentariosContenedor');
-  // const arra = [1, 2, 3, 4, 5];
-  for (let i = 0; i < dato.length; i += 1) {
-    console.log(totalView);
-    console.log(dato);
-    totalView.appendChild(screenPost(dato[i]));
+
+  for (let i = 0; i < post.length; i++) {
+    totalView.appendChild(screenPost(post[i]));
   }
+
   return divContainer;
 };
 
