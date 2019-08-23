@@ -1,7 +1,8 @@
-import { viewExit, createPost, viewPost } from '../controller.js';
+import { viewExit, createPost } from '../controller.js';
 import { nameEmail } from '../Model/Model-firebase.js';
+import { screenPost } from './post.js';
 
-export const screenHome = () => {
+export const screenHome = (post) => {
   const divContainer = document.createElement('div');
   divContainer.innerHTML = '';
   const homeTemplate = `  
@@ -24,11 +25,17 @@ export const screenHome = () => {
         <p id="name-user">${nameEmail().email}</p>
       </div>
     </div>
+    <div class="total">
     <div class="colunm-post">
-      <p><textarea class="estilotextarea"name="comentarios" required  placeholder="¿Que quieres compartir?" id="comentario"></textarea></p>
-      <p><input type="button" value="compartir"class="inpu" id="compartir"></p>
+      <textarea class="estilotextarea"name="comentarios" required  placeholder="¿Que quieres compartir?" id="comentario"></textarea>
+       <input type="submit" value="compartir"class="btn-compartir" id="compartir">
+       <select id="post-privacy" class="">
+  		<option value="public">Public</option>
+  		<option value="private">Private</option>
+	      </select>
     </div>
     <div id="comentariosContenedor"></div>
+  </div>
   </div>`;
   // console.log(nameEmail().photoURL);
   divContainer.innerHTML = homeTemplate;
@@ -42,8 +49,18 @@ export const screenHome = () => {
   // const comentariosContenedor = divContainer.querySelector('#comentarioContenedor');
   buttonCompartir.addEventListener('click', () => {
     createPost();
-    viewPost();
   });
+
+  const totalView = divContainer.querySelector('#comentariosContenedor');
+  // const array = [1, 2, 3];
+
+  for (let i = 0; i < post.length; i++) {
+    totalView.appendChild(screenPost(post[i]));
+  }
+  // post.forEach(element => {
+  //   totalView.appendChild(screenPost(element));
+  // });
+
   return divContainer;
 };
 
