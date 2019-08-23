@@ -14,10 +14,13 @@ body {
     min-height: 100vh;
 }
 #root {
-    min-height: 100vh;
+    /* min-height: 100vh; */
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.centerlogin{
+    min-height: 100vh;
 }
 .center {
     text-align: center;
@@ -191,6 +194,7 @@ select {
     margin-top: 20px;
     height: 140px;
     border-radius: 3px;
+    background: #d01818;
  }
  .post{
     margin-top: 20px;
@@ -218,10 +222,12 @@ select {
     width: 400px;
     height: 70px;
     margin: 15px;
+    background: #f2ea77;
  }
  .inpu{
     margin:5px;
-    border-radius:8px
+    border-radius:8px;
+   
  }
  .img-perfil{
      border-radius:50%;
@@ -235,6 +241,7 @@ select {
  }
  .hide {
      display: none;
+
  }
 @media screen and (min-width:764px) {
     /* .fondo-fruit {
@@ -281,4 +288,5 @@ select {
     .ir-login {
         font-size: 18px;
     }
+    /* F */
 }

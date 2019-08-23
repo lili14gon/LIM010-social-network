@@ -1,7 +1,6 @@
 import { viewExit, createPost } from '../controller.js';
 import { nameEmail } from '../Model/Model-firebase.js';
 import { screenPost } from './post.js';
-
 export const screenHome = (post) => {
   const divContainer = document.createElement('div');
   divContainer.innerHTML = '';
@@ -52,18 +51,13 @@ export const screenHome = (post) => {
   });
 
   const totalView = divContainer.querySelector('#comentariosContenedor');
-  // const array = [1, 2, 3];
 
   for (let i = 0; i < post.length; i++) {
     totalView.appendChild(screenPost(post[i]));
   }
-  // post.forEach(element => {
-  //   totalView.appendChild(screenPost(element));
-  // });
 
   return divContainer;
 };
-
 
 /* <i class="fa fa-picture-o" aria-hidden="true"></i>
 <i class="fa fa-paper-plane" aria-hidden="true"></i>

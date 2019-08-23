@@ -134,14 +134,3 @@ export const createPost = () => {
       console.log('no se agrego', error);
     });
 };
-// export const viewDeletePost = (idU) => {
-//   if (idU === nameEmail().uid) {
-//     deletePost(idU);
-//   }
-// };
-
-// export const viewPost = () => {
-//   const totalView = document.getElementById('comentariosContenedor');
-//   console.log(totalView);
-//   totalView.appendChild(screenPost());
-// };
