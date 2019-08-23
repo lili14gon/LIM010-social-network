@@ -9,8 +9,8 @@ import {
   loginOut,
 } from './Model/Model-firebase.js';
 
-import { createData, readPost } from './Model/Model-firestore.js';
-import { screenPost } from './view/post.js';
+import { createData } from './Model/Model-firestore.js';
+
 
 const changeRoute = (route) => {
   window.location.hash = route;
@@ -134,9 +134,4 @@ export const createPost = () => {
     }).catch((error) => {
       console.log('no se agrego', error);
     });
-};
-export const viewPost = () => {
-  const totalView = document.getElementById('comentariosContenedor');
-  console.log(totalView);
-  totalView.appendChild(screenPost());
 };

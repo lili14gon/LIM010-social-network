@@ -1,7 +1,8 @@
-import { viewExit, createPost, viewPost } from '../controller.js';
+import { viewExit, createPost } from '../controller.js';
 import { nameEmail } from '../Model/Model-firebase.js';
+import { screenPost } from './post.js';
 
-export const screenHome = () => {
+export const screenHome = (dato) => {
   const divContainer = document.createElement('div');
   divContainer.innerHTML = '';
   const homeTemplate = `  
@@ -42,11 +43,17 @@ export const screenHome = () => {
   // const comentariosContenedor = divContainer.querySelector('#comentarioContenedor');
   buttonCompartir.addEventListener('click', () => {
     createPost();
-    viewPost();
   });
+
+  const totalView = divContainer.querySelector('#comentariosContenedor');
+  // const arra = [1, 2, 3, 4, 5];
+  for (let i = 0; i < dato.length; i += 1) {
+    console.log(totalView);
+    console.log(dato);
+    totalView.appendChild(screenPost(dato[i]));
+  }
   return divContainer;
 };
-
 
 /* <i class="fa fa-picture-o" aria-hidden="true"></i>
 <i class="fa fa-paper-plane" aria-hidden="true"></i>

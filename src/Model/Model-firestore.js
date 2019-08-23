@@ -8,7 +8,6 @@ const readPost = (llamado) => {
     const array = [];
     datos.forEach((doc) => {
       array.push(doc.data());
-      console.log(array);
     });
     llamado(array);
   });

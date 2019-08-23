@@ -1,8 +1,9 @@
 import { screenLogin } from './view/login.js';
 import { screenRegister } from './view/register.js';
 import { screenHome } from './view/home.js';
+import { readPost } from './Model/Model-firestore.js';
 // import { viewPost } from './controller.js';
-
+// const array = [1, 2, 3, 4];
 const viewTmp = (router) => {
   const root = document.getElementById('root');
   root.innerHTML = '';
@@ -15,7 +16,12 @@ const viewTmp = (router) => {
       root.appendChild(screenRegister());
       break;
     case '#/home':
-      root.appendChild(screenHome());
+      const dato = (arr) => {
+      root.innerHTML = '';
+      root.appendChild(screenHome(arr));
+      };
+      
+      readPost(dato);
       break;
     default:
       root.innerHTML = 'Hola';
