@@ -129,9 +129,9 @@ export const screenPost = (datoPost) => {
     });
     const coment = divContainer.querySelector('#coment');
     const call = (dato) => {
-     dato.forEach(element => {
+      dato.forEach(element => {
         coment.appendChild(screenComent(element));
-       });
+      });
     };
     readComent(datoPost.id, call);
   }

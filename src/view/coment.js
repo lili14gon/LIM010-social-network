@@ -8,7 +8,7 @@ export const screenComent = (data) => {
   const comentTemplate = `  
       <div class="">
       <p id="nombre">${data.correo}</p>
-      <textarea id="comment" class="text-coment" type="text">${data.comment}</textarea>
+      <textarea id="comment" class="text-coment" type="text">${data.comentario}</textarea>
       <a id="btn-delete-comentario"><img class="imgPequeño" src="../img/papelera.png" /></a>
       <button type="" class="" id="edit-coment">Editar</button>
       </div>
@@ -29,19 +29,24 @@ export const screenComent = (data) => {
     eliminar.addEventListener('click', () => {
       deleteComment(data.idPost, data.id);
     });
-    edit.addEventListener('click', () => {
-      contador += 1;
-      if (contador === 1) {
-        edit.innerText = 'Guardar';
-        textArea.disabled = false;
-        textArea.select();
-      } else {
-        contador = 0;
-        editComment(data.idPost, data.id, textArea.value);
-        edit.innerText = 'Editar';
-        textArea.disabled = true;
-      }
-    });
+    if (nameEmail().email !== data.correo) {
+      edit.classList.add('hide');
+    } else {
+      edit.classList.remove('hide');
+      edit.addEventListener('click', () => {
+        contador += 1;
+        if (contador === 1) {
+          edit.innerText = 'Guardar';
+          textArea.disabled = false;
+          textArea.select();
+        } else {
+          editComment(data.idPost, data.id, textArea.value);
+          contador = 0;
+          edit.innerText = 'Editar';
+          textArea.disabled = true;
+        }
+      });
+    }
   }
   return divContainer;
 };

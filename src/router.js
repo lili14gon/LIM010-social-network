@@ -15,7 +15,7 @@ const viewTmp = (router) => {
       root.appendChild(screenRegister());
       break;
     case '#/home':
-       const call = (array1) => {
+      const call = (array1) => {
         console.log(array1);
         root.innerHTML = '';
         root.appendChild(screenHome(array1));

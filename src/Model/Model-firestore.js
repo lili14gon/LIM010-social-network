@@ -21,7 +21,7 @@ const editPost = (id, newText) => firebase.firestore().collection('Posts').doc(i
 });
 const addComment = (text, email, postId, id) => firebase.firestore().collection('Posts').doc(postId).collection('comment')
   .add({
-    comment: text,
+    comentario: text,
     correo: email,
     idPost: postId,
     idUsuario: id,
@@ -43,7 +43,7 @@ const deleteComment = (idD, id) => firebase.firestore().collection('Posts').doc(
 const editComment = (idD, id, newText) => firebase.firestore().collection('Posts').doc(idD).collection('comment')
   .doc(id)
   .update({
-    text: newText,
+    comentario: newText,
   });
 export {
   createData,

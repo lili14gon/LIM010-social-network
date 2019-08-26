@@ -65,7 +65,6 @@ export const screenHome = (post) => {
   return divContainer;
 };
 
-
 /* <i class="fa fa-picture-o" aria-hidden="true"></i>
 <i class="fa fa-paper-plane" aria-hidden="true"></i>
 <i class="fa fa-heart-o" aria-hidden="true"></i>
