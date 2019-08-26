@@ -9,7 +9,7 @@ import {
   loginOut,
 } from './Model/Model-firebase.js';
 
-import { createData, deletePost } from './Model/Model-firestore.js';
+import { createData } from './Model/Model-firestore.js';
 
 const changeRoute = (route) => {
   window.location.hash = route;
@@ -126,7 +126,9 @@ export const viewGoogle = () => {
 
 export const createPost = () => {
   const comentario = document.getElementById('comentario').value;
-  createData(comentario, nameEmail().email, nameEmail().uid)
+  const privacidad = document.getElementById('post-privacy').value;
+  console.log(privacidad);
+  createData(comentario, nameEmail().email, nameEmail().uid, privacidad)
     .then((response) => {
       document.getElementById('comentario').value = '';
       console.log('se agrego a tu colleccion', response.id);

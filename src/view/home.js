@@ -1,6 +1,8 @@
 import { viewExit, createPost } from '../controller.js';
 import { nameEmail } from '../Model/Model-firebase.js';
 import { screenPost } from './post.js';
+// import { screenComent } from './coment.js';
+
 export const screenHome = (post) => {
   const divContainer = document.createElement('div');
   divContainer.innerHTML = '';
@@ -29,8 +31,8 @@ export const screenHome = (post) => {
       <textarea class="estilotextarea"name="comentarios" required  placeholder="¿Que quieres compartir?" id="comentario"></textarea>
        <input type="submit" value="compartir"class="btn-compartir" id="compartir">
        <select id="post-privacy" class="">
-  		<option value="public">Public</option>
-  		<option value="private">Private</option>
+  		<option value="public" id="public">Public</option>
+  		<option value="private" id="private">Private</option>
 	      </select>
     </div>
     <div id="comentariosContenedor"></div>
@@ -52,9 +54,13 @@ export const screenHome = (post) => {
 
   const totalView = divContainer.querySelector('#comentariosContenedor');
 
-  for (let i = 0; i < post.length; i++) {
+  for (let i = 0; i < post.length; i += 1) {
     totalView.appendChild(screenPost(post[i]));
   }
+  
+  // post.forEach(element => {
+  //   totalView.appendChild(screenPost(screenComent(element)));
+  // });
 
   return divContainer;
 };

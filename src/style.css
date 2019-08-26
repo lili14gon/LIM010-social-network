@@ -197,8 +197,8 @@ select {
     background: #d01818;
  }
  .post{
-    margin-top: 20px;
-    height: 140px;
+    margin-top: 25px;
+    height: 300%;
     border-radius: 3px;
     padding: 10px;
     border: 1px solid;
@@ -242,6 +242,13 @@ select {
  .hide {
      display: none;
 
+ }
+ .imgPequeño{
+    width: 20px;
+ }
+ .text-coment{
+     height: 30px;
+     width: 85%;
  }
 @media screen and (min-width:764px) {
     /* .fondo-fruit {
