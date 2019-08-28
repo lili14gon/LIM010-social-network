@@ -1,9 +1,3 @@
-// const createData = (post, correo, id, estado) => firebase.firestore().collection('Posts').add({
-//   text: post,
-//   email: correo,
-//   idUsuario: id,
-//   privacidad: estado,
-// });
 const createData = (post, correo, id, estado, likes, date) => firebase.firestore().collection('Posts').add({
   text: post,
   email: correo,
@@ -13,11 +7,11 @@ const createData = (post, correo, id, estado, likes, date) => firebase.firestore
   time: date,
 });
 const readPost = (llamado) => {
-  console.log(llamado);
+  // console.log(llamado);
   firebase.firestore().collection('Posts').orderBy('time', 'desc').onSnapshot((datos) => {
     const array = [];
     datos.forEach((doc) => {
-      console.log(doc);
+      // console.log(doc);
       array.push({ id: doc.id, ...doc.data() });
     });
     llamado(array);
@@ -42,12 +36,13 @@ const addComment = (text, email, postId, id, date) => firebase.firestore().colle
     time: date,
   });
 const readComent = (idPost, callback) => {
-  firebase.firestore().collection('Posts').doc(idPost).collection('comment').orderBy('time', 'desc')
+  firebase.firestore().collection('Posts').doc(idPost).collection('comment')
+    .orderBy('time', 'desc')
     .onSnapshot((datos) => {
       const data = [];
       datos.forEach((doc) => {
         data.push({ id: doc.id, ...doc.data() });
-        console.log(data);
+        // console.log(data);
       });
       callback(data);
     });

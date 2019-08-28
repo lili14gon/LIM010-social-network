@@ -34,7 +34,7 @@ export const screenHome = (post) => {
       <select id="post-privacy" >
   		<option value="public" id="public">Public</option>
   		<option value="private" id="private">Private</option>
-	      </select>
+	    </select>
       <input type="submit" value="Compartir"class="btn-compartir" id="compartir">
       </div>
     </div>
@@ -60,7 +60,6 @@ export const screenHome = (post) => {
   for (let i = 0; i < post.length; i += 1) {
     totalView.appendChild(screenPost(post[i]));
   }
-  
   // post.forEach(element => {
   //   totalView.appendChild(screenPost(screenComent(element)));
   // });
