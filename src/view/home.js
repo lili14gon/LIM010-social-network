@@ -32,9 +32,9 @@ export const screenHome = (post) => {
       <div class= "options-post">
       <i class="btn-img fa fa-picture-o" aria-hidden="true"></i> 
       <select id="post-privacy" >
-  		<option value="public" id="public">Public</option>
-  		<option value="private" id="private">Private</option>
-	    </select>
+  <option value="public" id="public">Public</option>
+  <option value="private" id="private">Private</option>
+</select>
       <input type="submit" value="Compartir"class="btn-compartir" id="compartir">
       </div>
     </div>
