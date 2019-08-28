@@ -15,12 +15,15 @@ const viewTmp = (router) => {
       root.appendChild(screenRegister());
       break;
     case '#/home':
-      const call = (array1) => {
-        console.log(array1);
+      // const call = (array1) => {
+      //   console.log(array1);
+      //   root.innerHTML = '';
+      //   root.appendChild(screenHome(array1));
+      // }
+      readPost((call) => {
         root.innerHTML = '';
-        root.appendChild(screenHome(array1));
-      }
-      readPost(call);
+        root.appendChild(screenHome(call));
+      });
       break;
     default:
       root.innerHTML = 'Hola';

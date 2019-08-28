@@ -8,7 +8,7 @@ export const screenHome = (post) => {
   divContainer.innerHTML = '';
   const homeTemplate = `  
   <div class="header">
-    <select>
+    <select class="select">
       <option value=0>${nameEmail().displayName}</option>
     </select>
     <img class="foods-kids" src="../img/foods-kids.png" alt="nombre foods kids de la página web"/>
@@ -22,20 +22,23 @@ export const screenHome = (post) => {
       <div class="color-img">
       </div>
       <div class="email-user">
-      <div><img class="img-perfil" src='${nameEmail().photoURL}'/></div>
+      <img class="img-perfil" src='${nameEmail().photoURL}'/>
         <p id="name-user">${nameEmail().email}</p>
       </div>
     </div>
     <div class="total">
     <div class="colunm-post">
       <textarea class="estilotextarea"name="comentarios" required  placeholder="¿Que quieres compartir?" id="comentario"></textarea>
-       <input type="submit" value="compartir"class="btn-compartir" id="compartir">
-       <select id="post-privacy" class="">
+      <div class= "options-post">
+      <i class="btn-img fa fa-picture-o" aria-hidden="true"></i> 
+      <select id="post-privacy" >
   		<option value="public" id="public">Public</option>
   		<option value="private" id="private">Private</option>
 	      </select>
+      <input type="submit" value="Compartir"class="btn-compartir" id="compartir">
+      </div>
     </div>
-    <div id="comentariosContenedor"></div>
+    <div class="posts-content" id="comentariosContenedor"></div>
   </div>
   </div>`;
   // console.log(nameEmail().photoURL);

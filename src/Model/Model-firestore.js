@@ -1,14 +1,23 @@
-const createData = (post, correo, id, estado) => firebase.firestore().collection('Posts').add({
+// const createData = (post, correo, id, estado) => firebase.firestore().collection('Posts').add({
+//   text: post,
+//   email: correo,
+//   idUsuario: id,
+//   privacidad: estado,
+// });
+const createData = (post, correo, id, estado, likes, date) => firebase.firestore().collection('Posts').add({
   text: post,
   email: correo,
   idUsuario: id,
   privacidad: estado,
+  like: likes,
+  time: date,
 });
 const readPost = (llamado) => {
   console.log(llamado);
-  firebase.firestore().collection('Posts').onSnapshot((datos) => {
+  firebase.firestore().collection('Posts').orderBy('time', 'desc').onSnapshot((datos) => {
     const array = [];
     datos.forEach((doc) => {
+      console.log(doc);
       array.push({ id: doc.id, ...doc.data() });
     });
     llamado(array);
@@ -16,18 +25,24 @@ const readPost = (llamado) => {
 };
 const deletePost = idD => firebase.firestore().collection('Posts').doc(idD).delete();
 
+
+const editLikes = (idD, newLikes) => firebase.firestore().collection('Posts').doc(idD).update({
+  like: newLikes,
+});
+
 const editPost = (id, newText) => firebase.firestore().collection('Posts').doc(id).update({
   text: newText,
 });
-const addComment = (text, email, postId, id) => firebase.firestore().collection('Posts').doc(postId).collection('comment')
+const addComment = (text, email, postId, id, date) => firebase.firestore().collection('Posts').doc(postId).collection('comment')
   .add({
     comentario: text,
     correo: email,
     idPost: postId,
     idUsuario: id,
+    time: date,
   });
 const readComent = (idPost, callback) => {
-  firebase.firestore().collection('Posts').doc(idPost).collection('comment')
+  firebase.firestore().collection('Posts').doc(idPost).collection('comment').orderBy('time', 'desc')
     .onSnapshot((datos) => {
       const data = [];
       datos.forEach((doc) => {
@@ -54,4 +69,5 @@ export {
   readComent,
   deleteComment,
   editComment,
+  editLikes,
 };

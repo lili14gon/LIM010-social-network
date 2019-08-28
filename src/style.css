@@ -111,11 +111,11 @@ margin: 10px 0;
 }
 .ir-login:hover {
     text-decoration: none;
-    color: #cf1717;
+    color: #e41749;
 }
 .focus {
-    border: 1px solid #cf1717;
-    color: #cf1717;
+    border: 1px solid #e41749;
+    color: #e41749;
 }
 /* falta responsive */
 .container-home {
@@ -159,7 +159,7 @@ margin: 10px 0;
     border: none;
     padding: 0;
 }
-select {
+.select {
     width: 220px;
     background: transparent;
     border: none;
@@ -167,7 +167,6 @@ select {
 .exit-container {
     display: flex;
     justify-content: space-between;
-    width: 125px;
 }
 .container-user {
     margin-top: 20px;
@@ -179,7 +178,7 @@ select {
 }
 .color-img {
     height: 50%;
-    background: #cf1717;
+    background: #e41749;
 }
 .email-user {
     display: flex;
@@ -190,23 +189,33 @@ select {
 }
 .colunm-post {
     border: 1px solid;
-    width: max-content;
+    /* width: max-content; */
     margin-top: 20px;
-    height: 140px;
+    /* height: 140px; */
     border-radius: 3px;
-    background: #d01818;
+    /* background: #d01818; */
  }
  .post{
     margin-top: 25px;
-    height: 300%;
+    /* height: 300%; */
     border-radius: 3px;
-    padding: 10px;
+    padding: 15px;
     border: 1px solid;
+    width: 482px;
  }
  .header-post{
     display: flex;
-    cursor: pointer;
     justify-content: space-between;
+    background: #f2ea77;
+    padding: 10px;
+    border: 1px solid rgb(192, 188, 188);
+}
+.comandos-post {
+    background: #f1f1f1;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid rgb(192, 188, 188);
 }
 .button-post{
     display: flex;
@@ -214,15 +223,21 @@ select {
     cursor: pointer;
 }
 .btn-compartir{
-    width: 25%;
-    margin-left: 3.5%;
-    border-radius: 8px;
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: 1;
+    border: none;
+    color: #e41749;
+    background: #f2ea77;
+    font-weight: bold;
 }
  .estilotextarea{
-    width: 400px;
+    width: 500px;
     height: 70px;
     margin: 15px;
-    background: #f2ea77;
+    border-radius: 3px;
+    /* background: #f2ea77; */
+    box-sizing: border-box;
  }
  .inpu{
     margin:5px;
@@ -231,8 +246,8 @@ select {
  }
  .img-perfil{
      border-radius:50%;
-     width: 100%;
-     padding: 10%;
+     width: 30%;
+     margin: 0 5px 0 0;
  }
  .postPublic{
     border-radius: 3px;
@@ -247,8 +262,115 @@ select {
     width: 20px;
  }
  .text-coment{
-     height: 30px;
+     height: 42px;
      width: 85%;
+     background: white;
+     border-radius: 5px;
+     padding: 5px;
+     font-size: 13px;
+ }
+ .btn-comment {
+    font-size: 22px;
+    font-weight: bold;
+    /* background: #e41749; */
+    color: #e41749;
+    padding: 10px;
+ }
+ .color{
+     color: red;
+ }
+ .options-post {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 15px 15px 15px;
+ }
+ .btn-img {
+    color: #f2ea77;
+    background: #e41749;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 18px;
+ }
+ .textarea-post {
+    background: white;
+    border: 1px solid rgb(192, 188, 188);
+    padding: 10px;
+    height: 55px;
+ }
+ .posts-content {
+     margin-top: 30px;
+ }
+ .count {
+     font-weight: bold;
+     margin: 0 10px;
+ }
+ .creador {
+     font-weight: bold;
+     color: darkslategray;
+ }
+ .clock {
+     font-size: 14px;
+     color: #e41749;
+ }
+ .clock-comment {
+    font-size: 12px;
+    color: darkslategray;
+ }
+ .clock-icon {
+    color: #e41749;
+ }
+ .email-comment {
+    font-size: 15px;
+    color: slategray;
+ }
+ .delete {
+    color: darkslategray;
+    font-size: 22px;
+ }
+ .textarea-comment {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+    background: #f1f1f1;
+    padding: 10px 0;
+ }
+ .creador-comment {
+     display: flex;
+     justify-content: space-between;
+     margin-bottom: 8px;
+ }
+ .container-comment {
+    text-align: center;
+    padding: 10px;
+    background: white;
+    /* background: #f2ea77; */
+    border-radius: 10px;
+    margin: 8px;
+    border: 3px solid #f2ea77;
+ }
+ .background {
+    background: #f1f1f1;
+ }
+ .container-posts {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+     margin: 25px 0;
+ }
+ .flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+ .flex-comment {
+     display: flex;
+     flex-direction: column;
+     margin: 0 8px;
+ }
+ .buttons-comments {
+     font-size: 20px;
+     color: dimgray;
  }
 @media screen and (min-width:764px) {
     /* .fondo-fruit {
@@ -287,7 +409,7 @@ select {
     }
     .register-ok {
         font-size: 30px;
-        color: #cf1717;
+        color: #e41749;
     }
     .ok {
         font-size: 15px;
