@@ -6,20 +6,28 @@ export const screenComent = (data) => {
   const divContainer = document.createElement('div');
   divContainer.innerHTML = '';
   const comentTemplate = `  
-      <div class="">
-      <p id="nombre">${data.correo}</p>
+      <div class="creador-comment">
+      <p class="email-comment" id="nombre">${data.correo}</p>
+      <p class="clock-comment"><i class="clock-icon fa fa-clock-o" aria-hidden="true"></i> ${data.time}</p>
+      </div>
+      <div class="flex">
       <textarea id="comment" class="text-coment" type="text">${data.comentario}</textarea>
-      <a id="btn-delete-comentario"><img class="imgPequeño" src="../img/papelera.png" /></a>
-      <button type="" class="" id="edit-coment">Editar</button>
+      <div class="flex-comment">
+        <i id="btn-delete-comentario" class="buttons-comments fa fa-trash" aria-hidden="true"></i>
+        <i id="edit-coment" class="buttons-comments fa fa-pencil-square-o" aria-hidden="true"></i>
+        <i id="save" class="hide buttons-comments fa fa-floppy-o" aria-hidden="true"></i>
+      </div>
       </div>
       `;
   divContainer.innerHTML = comentTemplate;
+  divContainer.classList.add('container-comment');
   const eliminar = divContainer.querySelector('#btn-delete-comentario');
   const textArea = divContainer.querySelector('#comment');
   const edit = divContainer.querySelector('#edit-coment');
+  const save = divContainer.querySelector('#save');
   console.log(nameEmail().email);
   console.log(data.idUsuario);
-  let contador = 0;
+
   if (nameEmail().email !== data.idUsuario) {
     eliminar.classList.add('hide');
     edit.classList.add('hide');
@@ -34,17 +42,17 @@ export const screenComent = (data) => {
     } else {
       edit.classList.remove('hide');
       edit.addEventListener('click', () => {
-        contador += 1;
-        if (contador === 1) {
-          edit.innerText = 'Guardar';
-          textArea.disabled = false;
-          textArea.select();
-        } else {
-          editComment(data.idPost, data.id, textArea.value);
-          contador = 0;
-          edit.innerText = 'Editar';
-          textArea.disabled = true;
-        }
+        save.classList.remove('hide');
+        edit.classList.add('hide');
+        textArea.disabled = false;
+        // textArea.focus();
+        textArea.select();
+      });
+      save.addEventListener('click', () => {
+        editComment(data.idPost, data.id, textArea.value);
+        edit.classList.remove('hide');
+        save.classList.add('hide');
+        textArea.disabled = true;
       });
     }
   }

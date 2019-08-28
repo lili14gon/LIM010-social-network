@@ -124,11 +124,35 @@ export const viewGoogle = () => {
   });
 };
 
+// export const createPost = () => {
+//   const comentario = document.getElementById('comentario').value;
+//   const privacidad = document.getElementById('post-privacy').value;
+//   console.log(privacidad);
+//   createData(comentario, nameEmail().email, nameEmail().uid, privacidad)
+//     .then((response) => {
+//       document.getElementById('comentario').value = '';
+//       console.log('se agrego a tu colleccion', response.id);
+//     }).catch((error) => {
+//       console.log('no se agrego', error);
+//     });
+// };
+
+export const timePublic = () => {
+  const f = new Date();
+  const mes = f.getMonth() + 1;
+  const cad = `${f.getDate()}/${mes}/${f.getFullYear()} - ${f.getHours()}:${f.getMinutes()}:${f.getSeconds()}`;
+  console.log(cad);
+  window.status = cad;
+  return window.status;
+};
 export const createPost = () => {
   const comentario = document.getElementById('comentario').value;
   const privacidad = document.getElementById('post-privacy').value;
+  const date = timePublic();
+  let likes = document.getElementById('contador');
+  likes = 0;
   console.log(privacidad);
-  createData(comentario, nameEmail().email, nameEmail().uid, privacidad)
+  createData(comentario, nameEmail().email, nameEmail().uid, privacidad, likes, date)
     .then((response) => {
       document.getElementById('comentario').value = '';
       console.log('se agrego a tu colleccion', response.id);
