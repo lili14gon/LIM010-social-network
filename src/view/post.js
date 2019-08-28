@@ -1,69 +1,12 @@
 import { deletePost, editPost, addComment, readComent } from '../Model/Model-firestore.js';
 import { nameEmail } from '../Model/Model-firebase.js';
 import { screenComent } from './coment.js';
+
 // import { viewDeletePost } from '../controller.js';
 
 export const screenPost = (datoPost) => {
   const divContainer = document.createElement('div');
   let postTemplate = '';
-  // if (datoPost.idUsuario === nameEmail().uid) {
-  //   postTemplate = `  
-  //    <div class="post"> 
-  //   <div class="button-post"><p id="nombre">${datoPost.email}</p><a id="btn-delete"><img class="google" src="../img/papelera.png" /></a>
-  //     <p>${datoPost.privacidad}</p>
-  //     </div>
-  //     <div class="postPublic">
-  //     <label id="comentario" class="estilotextarea">${datoPost.text}</label>
-  //     <textarea class="hide"name="comentarios" required  placeholder="¿Que quieres compartir?" id="newcoment">${datoPost.text}</textarea>
-  //     </div>
-  //     <div class="header-post">
-  //        <button type="" class="inpu" id="likes">likes</button>
-  //        <button type="" class="inpu" id="editar">editar</button>
-  //        <button type="" class="hide" id="edita-guarda">guardar</button>
-
-  //      </div>
-  //      <div id="coment"></<div>
-  //    </div>`;
-  // } else if (datoPost.privacidad === 'public') {
-  //   postTemplate = `  
-  //    <div class="post">
-  //   <div class="button-post"><p id="nombre">${datoPost.email}</p>
-  //   <p>${datoPost.privacidad}</p>
-  //     </div>
-  //     <div class="postPublic">
-  //     <label id="comentario" class="estilotextarea">${datoPost.text}</label>
-
-  //     </div>
-  //     <div class="header-post">
-  //        <button type="" class="inpu" id="likes">likes</button>
-  //      </div>
-  //      <div id="coment"></<div>
-  //    </div>`;
-  // } else {
-  //   postTemplate = '';
-  // }
-  // divContainer.innerHTML = postTemplate;
-  // divContainer.classList.add('container-home');
-  // if (datoPost.idUsuario === nameEmail().uid) {
-  //   const eliminar = divContainer.querySelector('#btn-delete');
-  //   eliminar.addEventListener('click', () => {
-  //     deletePost(datoPost.id);
-  //   });
-  //   const editar = divContainer.querySelector('#editar');
-  //   const label = divContainer.querySelector('#comentario');
-  //   const textArea = divContainer.querySelector('#newcoment');
-  //   const btnSave = divContainer.querySelector('#edita-guarda');
-  //   editar.addEventListener('click', () => {
-  //     label.classList.add('hide');
-  //     textArea.classList.remove('hide');
-  //     editar.classList.add('hide');
-  //     btnSave.classList.remove('hide');
-  //   });
-  //   btnSave.addEventListener('click', () => {
-  //     const newComentario = textArea.value;
-  //     editPost(datoPost.id, newComentario);
-  //   });
-  // }
   if (datoPost.privacidad === 'public' || datoPost.idUsuario === nameEmail().uid) {
     postTemplate = `  
      <div class="post"> 
@@ -129,7 +72,8 @@ export const screenPost = (datoPost) => {
     });
     const coment = divContainer.querySelector('#coment');
     const call = (dato) => {
-      dato.forEach(element => {
+      coment.innerHTML = '';
+      dato.forEach((element) => {
         coment.appendChild(screenComent(element));
       });
     };

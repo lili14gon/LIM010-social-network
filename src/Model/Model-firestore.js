@@ -32,7 +32,7 @@ const readComent = (idPost, callback) => {
       const data = [];
       datos.forEach((doc) => {
         data.push({ id: doc.id, ...doc.data() });
-        console.log(data);
+        console.log(datos.length);
       });
       callback(data);
     });

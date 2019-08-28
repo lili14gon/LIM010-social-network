@@ -31,9 +31,9 @@ export const screenHome = (post) => {
       <textarea class="estilotextarea"name="comentarios" required  placeholder="¿Que quieres compartir?" id="comentario"></textarea>
        <input type="submit" value="compartir"class="btn-compartir" id="compartir">
        <select id="post-privacy" class="">
-  		<option value="public" id="public">Public</option>
-  		<option value="private" id="private">Private</option>
-	      </select>
+      <option value="public" id="public">Public</option>
+      <option value="private" id="private">Private</option>
+    </select>
     </div>
     <div id="comentariosContenedor"></div>
   </div>
@@ -57,7 +57,7 @@ export const screenHome = (post) => {
   for (let i = 0; i < post.length; i += 1) {
     totalView.appendChild(screenPost(post[i]));
   }
-  
+
   // post.forEach(element => {
   //   totalView.appendChild(screenPost(screenComent(element)));
   // });
