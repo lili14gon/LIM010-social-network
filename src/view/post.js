@@ -1,4 +1,8 @@
-import { deletePost, editPost, addComment, readComent, editLikes } from '../Model/Model-firestore.js';
+/* eslint-disable no-console */
+
+import {
+  deletePost, editPost, addComment, readComent, editLikes, editPrivacity,
+} from '../Model/Model-firestore.js';
 import { nameEmail } from '../Model/Model-firebase.js';
 import { screenComent } from './coment.js';
 import { timePublic } from '../controller.js';
@@ -11,16 +15,21 @@ export const screenPost = (datoPost) => {
     postTemplate = `   
       <div class="header-post">
         <div class="flex-creador">
-          <p id="nombre" class="creador">Publicado por ${datoPost.email} | ${datoPost.privacidad}</p>
+        <div class="flex-creador-privicity">
+          <p id="nombre" class="creador">Publicado por ${datoPost.email} | </p>
+          <p id="privacidad-no-user">${datoPost.privacidad}</p>
+          <select class="hide select" id="post-privacy-user" >
+  <option value="public" id="public">public</option>
+  <option value="private" id="private">private</option>
+</select></div>
           <p class="clock"><i class="fa fa-clock-o" aria-hidden="true"></i> ${datoPost.time}</p>
         </div>
           <i id="btn-delete" class="delete fa fa-trash" aria-hidden="true"></i>
-        <!--<a id="btn-delete"><img class="imgPequeño" src="../img/papelera.png" /></a>-->
       </div>
       <textarea class="textarea-post" name="comentarios" id="newcoment">${datoPost.text}</textarea>
       <div class="comandos-post">
         <i id="like" class="btn-img fa fa-heart-o" aria-hidden="true"></i>
-        <i id="dislike" class="btn-img fa fa-heart" aria-hidden="true"></i>
+        <i id="dislike" class=" fa fa-heart" aria-hidden="true"></i>
         <!--<a id="like"><img class="imgPequeño" src="../img/corazon-blanco.png" /></a>-->
         <!--<a id="dislike"><img class="imgPequeño" src="../img/corazon-rojo.png" /></a>-->
         <p id="count" class="count" >${datoPost.like}</p>
@@ -42,14 +51,23 @@ export const screenPost = (datoPost) => {
     const editar = divContainer.querySelector('#editar');
     const eliminar = divContainer.querySelector('#btn-delete');
     const guardar = divContainer.querySelector('#guardar');
-    // const likes = divContainer.querySelector('#likes');
-    
+    const postPrivacyUser = divContainer.querySelector('#post-privacy-user');
+    postPrivacyUser.value = datoPost.privacidad;
+    const privacidadNoUser = divContainer.querySelector('#privacidad-no-user');
     if (datoPost.idUsuario !== nameEmail().uid) {
       eliminar.classList.add('hide');
       editar.classList.add('hide');
       textArea.disabled = true;
     } else {
       textArea.disabled = true;
+      postPrivacyUser.classList.remove('hide');
+      privacidadNoUser.classList.add('hide');
+      // const newPrivacity = privacidadNoUser.value;
+      postPrivacyUser.addEventListener('click', (event) => {
+        const indice = event.target.value;
+        editPrivacity(datoPost.id, indice);
+      });
+      // eliminar.classList.remove('hide');
       eliminar.addEventListener('click', () => {
         deletePost(datoPost.id);
       });
@@ -60,7 +78,6 @@ export const screenPost = (datoPost) => {
         guardar.classList.remove('hide');
         editar.classList.add('hide');
         textArea.disabled = false;
-        // textArea.focus();
         textArea.select();
       });
       guardar.addEventListener('click', () => {
@@ -73,23 +90,24 @@ export const screenPost = (datoPost) => {
     const like = divContainer.querySelector('#like');
     const dislike = divContainer.querySelector('#dislike');
     dislike.classList.add('hide');
-    like.addEventListener('click', () => {
+    like.addEventListener('click', (event) => {
+      event.preventDefault();
       like.classList.add('hide');
       dislike.classList.remove('hide');
       const valor = datoPost.like + 1;
       editLikes(datoPost.id, valor);
-      console.log('holitasssssssssssssssssssss');
     });
-    dislike.addEventListener('click', () => {
-      const valor = datoPost.like - 1;
-      editLikes(datoPost.id, valor);
-      like.classList.remove('hide');
-      dislike.classList.add('hide');
-    });
+    // count.innerHTML = '';
+    // dislike.addEventListener('click', () => {
+    //   const valor = datoPost.like - 1;
+    //   editLikes(datoPost.id, valor);
+    //   like.classList.remove('hide');
+    //   dislike.classList.add('hide');
+    // });
     const comentar = divContainer.querySelector('#button-coment');
     comentar.addEventListener('click', () => {
       const comentario = divContainer.querySelector('#comment-new').value;
-      console.log(comentario);
+      // console.log(comentario);
       const date = timePublic();
       addComment(comentario, nameEmail().email, datoPost.id, datoPost.email, date)
         .then((response) => {
@@ -100,13 +118,19 @@ export const screenPost = (datoPost) => {
         });
     });
     const coment = divContainer.querySelector('#coment');
-    const call = (dato) => {
+    // const call = (dato) => {
+    //   coment.innerHTML = '';
+    //   dato.forEach(element => {
+    //     coment.appendChild(screenComent(element));
+    //   });
+    // };
+    // readComent(datoPost.id, call);
+    readComent(datoPost.id, (dato) => {
       coment.innerHTML = '';
       dato.forEach((element) => {
         coment.appendChild(screenComent(element));
       });
-    };
-    readComent(datoPost.id, call);
+    });
   }
   return divContainer;
 };
