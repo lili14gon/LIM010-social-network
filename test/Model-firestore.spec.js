@@ -41,3 +41,12 @@ describe('readPost', () => {
     });
   });
 });
+
+// describe('readPost', () => {
+//   it('debería retornar un objeto', () => {
+//     expect(typeof readPost('hola como estar', 'etr604@gmail.com')).toBe('object');
+//   });
+//   it('debería ser una función', () => {
+//     expect(typeof readPost).toBe('function');
+//   });
+// });
