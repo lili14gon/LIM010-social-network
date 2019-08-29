@@ -9,9 +9,7 @@
 //   // () => mockauth,
 //   () => mockfirestore,
 import MockFirebase from 'mock-cloud-firestore';
-import {
-  createData,
-} from '../src/Model/Model-firestore.js';
+import { createData } from '../src/Model/Model-firestore';
 
 const fixtureData = {
   __collection__: {

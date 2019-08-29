@@ -7,11 +7,9 @@ const createData = (post, correo, id, estado, likes, date) => firebase.firestore
   time: date,
 });
 const readPost = (llamado) => {
-  // console.log(llamado);
   firebase.firestore().collection('Posts').orderBy('time', 'desc').onSnapshot((datos) => {
     const array = [];
     datos.forEach((doc) => {
-      // console.log(doc);
       array.push({ id: doc.id, ...doc.data() });
     });
     llamado(array);
@@ -19,6 +17,9 @@ const readPost = (llamado) => {
 };
 const deletePost = idD => firebase.firestore().collection('Posts').doc(idD).delete();
 
+const editPrivacity = (idD, newEstado) => firebase.firestore().collection('Posts').doc(idD).update({
+  privacidad: newEstado,
+});
 const editLikes = (idD, newLikes) => firebase.firestore().collection('Posts').doc(idD).update({
   like: newLikes,
 });
@@ -41,6 +42,7 @@ const readComent = (idPost, callback) => {
       const data = [];
       datos.forEach((doc) => {
         data.push({ id: doc.id, ...doc.data() });
+        // console.log(data);
       });
       callback(data);
     });
@@ -63,4 +65,5 @@ export {
   deleteComment,
   editComment,
   editLikes,
+  editPrivacity,
 };
