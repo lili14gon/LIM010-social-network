@@ -5,11 +5,11 @@ import {
   loginFacebook,
   loginGoogle,
   loginRegister,
-  // emailVerification,
-  nameEmail,
+  currentUser,
   loginOut,
-  // observador,
-} from './controller/control.js';
+} from './model/model-firebase.js';
+
+import { addPost } from './model/model-firestore.js';
 
 const changeRoute = (route) => {
   window.location.hash = route;
@@ -19,13 +19,13 @@ const maysFirst = (string) => {
   const resultFirst = string.charAt(0).toUpperCase() + string.slice(1);
   return resultFirst;
 };
-
-export const viewLogin = () => {
+export const controllerLogin = () => {
   window.event.preventDefault();
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   loginEmail(email, password).then((result) => {
     // observador();
+    console.log(result);
     console.log(result.user.emailVerified);
     if (result.user.emailVerified === false) {
       document.getElementById('error').innerHTML = 'No has verificado tu dirección de email';
@@ -42,7 +42,7 @@ export const viewLogin = () => {
   });
 };
 const emailVerification = () => {
-  nameEmail().sendEmailVerification()
+  currentUser().sendEmailVerification()
     .then((response) => {
       console.log(response);
     }).catch((error) => {
@@ -50,12 +50,13 @@ const emailVerification = () => {
     });
 };
 
-export const viewRegister = () => {
+export const controllerRegister = () => {
   window.event.preventDefault();
   const name = document.getElementById('name').value;
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
-  loginRegister(email, password).then(() => {
+  loginRegister(email, password).then((response) => {
+    console.log(response);
     emailVerification();
     if (name !== '') {
       // console.log(user);
@@ -93,36 +94,69 @@ export const viewRegister = () => {
   });
 };
 
-export const viewExit = () => {
-  loginOut().then(() => {
+export const controllerExit = () => {
+  loginOut().then((response) => {
     // Sign-out successful.
+    changeRoute('#/login');
     console.log('Saliendo....');
-    return changeRoute('#/login');
+    console.log(response);
   }).catch((error) => {
     // An error happened.
     console.log(error);
   });
 };
 
-export const viewFacebook = () => {
+export const controllerFacebook = () => {
   loginFacebook().then((response) => {
     console.log(response);
-    return changeRoute('#/home');
+    changeRoute('#/home');
   }).catch((error) => {
     console.log(error);
-    // if (error.message ===
-    // 'An account already exists with the same email address but different sign-in credentials.
-    // Sign in using a provider associated with this email address.') {
-    return changeRoute('#/home');
-    // }
   });
 };
 
-export const viewGoogle = () => {
+export const controllerGoogle = () => {
   loginGoogle().then((response) => {
     console.log(response);
-    return changeRoute('#/home');
+    changeRoute('#/home');
   }).catch((error) => {
     console.log(error);
   });
+};
+
+// export const createPost = () => {
+//   const comentario = document.getElementById('comentario').value;
+//   const privacidad = document.getElementById('post-privacy').value;
+//   console.log(privacidad);
+//   addPost(comentario, currentUser().email, currentUser().uid, privacidad)
+//     .then((response) => {
+//       document.getElementById('comentario').value = '';
+//       console.log('se agrego a tu colleccion', response.id);
+//     }).catch((error) => {
+//       console.log('no se agrego', error);
+//     });
+// };
+
+export const timePublic = () => {
+  const f = new Date();
+  const mes = f.getMonth() + 1;
+  const cad = `${f.getDate()}/${mes}/${f.getFullYear()} - ${f.getHours()}:${f.getMinutes()}:${f.getSeconds()}`;
+  console.log(cad);
+  window.status = cad;
+  return window.status;
+};
+export const createPost = () => {
+  const comentario = document.getElementById('comentario').value;
+  const privacidad = document.getElementById('post-privacy').value;
+  const date = timePublic();
+  let likes = document.getElementById('contador');
+  likes = 0;
+  console.log(privacidad);
+  addPost(comentario, currentUser().email, currentUser().uid, privacidad, likes, date)
+    .then((response) => {
+      document.getElementById('comentario').value = '';
+      console.log('se agrego a tu colleccion', response.id);
+    }).catch((error) => {
+      console.log('no se agrego', error);
+    });
 };

@@ -1,47 +1,57 @@
-import { viewExit } from '../view.js';
-import { nameEmail } from '../controller/control.js';
+import { controllerExit, createPost } from '../controller.js';
+import { currentUser } from '../model/model-firebase.js';
+import { viewPosts } from './post.js';
 
-export const screenHome = () => {
-  const divContainer = document.createElement('div');
-  divContainer.innerHTML = '';
+export const viewHome = (arrPost) => {
+  const homeContainer = document.createElement('div');
+  homeContainer.innerHTML = '';
   const homeTemplate = `  
-  <div class="header">
-    <select>
-      <option value=0>Fulana Suarez</option>
-    </select>
+  <header>
+    <p class="select">${currentUser().displayName}</p>
     <img class="foods-kids" src="../img/foods-kids.png" alt="nombre foods kids de la página web"/>
-    <div class="exit-container">
-      <img class="exit-img" src="../img/desconectarte.png">
-      <button class="exit-input" id="cerrar">Cerrar sesión</button>
-    </div>
-  </div>
-  <div class="main">
+    <!--<div class="exit-container">-->
+      <ul class="main-nav">
+        <li><a href="#/login"> Inicio </a></li>
+        <li><a href="#/profile">Mi Perfil</a></li>
+        <li><a href="#/home" id="cerrar"><img class="exit-img" src="../img/desconectarte.png">Cerrar Sesión </a></li>
+      </ul>
+    <!--<button class="exit-input" id="cerrar">Cerrar sesión</button>-->
+  <!--</div>-->
+  </header>
+  <main>
     <div class="container-user">
-      <div class="color-img">
-        <img src='${nameEmail().photoURL}'/>
-      </div>
+      <!--<div class="color-img"></div>-->
+      <img class="color-img" src="../img/fruit_1.jpg">
       <div class="email-user">
-        <p id="name-user">${nameEmail().email}</p>
+        <img class="img-perfil" src='${currentUser().photoURL}'/>
+        <p class="select">${currentUser().email}</p>
       </div>
     </div>
-    <div class="colunm-post">
-      <p><textarea class="estilotextarea"name="comentarios" required  placeholder="¿Que quieres compartir?"></textarea></p>
-      <p><input type="submit" value="compartir"class="inpu"></p>
+    <div class="total">
+      <div class="colunm-post">
+        <textarea class="estilotextarea"name="comentarios" required  placeholder="¿Que quieres compartir?" id="comentario"></textarea>
+        <div class= "options-post">
+          <i class="btn-img fa fa-picture-o" aria-hidden="true"></i> 
+          <select id="post-privacy" >
+            <option value="public" id="public">Public</option>
+            <option value="private" id="private">Private</option>
+          </select>
+          <input type="submit" value="Compartir"class="btn-compartir" id="compartir">
+        </div>
+      </div>
+      <div class="posts-content" id="posts-content"></div>
     </div>
-  </div>`;
-  // console.log(nameEmail().photoURL);
-  divContainer.innerHTML = homeTemplate;
-  divContainer.classList.add('container-home');
-  // console.log(nameEmail());
-  // divContainer.querySelector('#name-user').innerHTML = nameEmail().email;
-  divContainer.querySelector('#cerrar').addEventListener('click', () => {
-    viewExit();
-  });
-  return divContainer;
-};
+  </main>`;
+  homeContainer.innerHTML = homeTemplate;
+  homeContainer.classList.add('container-home');
 
-/* <i class="fa fa-picture-o" aria-hidden="true"></i>
-<i class="fa fa-paper-plane" aria-hidden="true"></i>
-<i class="fa fa-heart-o" aria-hidden="true"></i>
-<i class="fa fa-heart" aria-hidden="true"></i>
-${user.email} */
+  const exit = homeContainer.querySelector('#cerrar');
+  const buttonCompartir = homeContainer.querySelector('#compartir');
+  const totalView = homeContainer.querySelector('#posts-content');
+
+  exit.addEventListener('click', controllerExit);
+  buttonCompartir.addEventListener('click', createPost);
+  arrPost.forEach(obj => totalView.appendChild(viewPosts(obj)));
+
+  return homeContainer;
+};

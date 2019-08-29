@@ -1,6 +1,8 @@
-import { screenLogin } from './view/login.js';
-import { screenRegister } from './view/register.js';
-import { screenHome } from './view/home.js';
+import { viewLogin } from './view/login.js';
+import { viewRegister } from './view/register.js';
+import { viewHome } from './view/home.js';
+import { viewProfile } from './view/profile.js';
+import { readPosts } from './model/model-firestore.js';
 
 const viewTmp = (router) => {
   const root = document.getElementById('root');
@@ -8,13 +10,24 @@ const viewTmp = (router) => {
   switch (router) {
     case '#/login':
       root.innerHTML = '';
-      root.appendChild(screenLogin());
+      root.appendChild(viewLogin());
       break;
     case '#/register':
-      root.appendChild(screenRegister());
+      root.appendChild(viewRegister());
       break;
     case '#/home':
-      root.appendChild(screenHome());
+      // const call = (array1) => {
+      //   console.log(array1);
+      //   root.innerHTML = '';
+      //   root.appendChild(viewHome(array1));
+      // }
+      readPosts((call) => {
+        root.innerHTML = '';
+        root.appendChild(viewHome(call));
+      });
+      break;
+    case '#/profile':
+      root.appendChild(viewProfile());
       break;
     default:
       root.innerHTML = 'Hola';

@@ -1,25 +1,25 @@
-// importamos la funcion que vamos a testear
 import {
   loginEmail,
   loginRegister,
   loginOut,
   loginGoogle,
   loginFacebook,
-  nameEmail,
-} from '../src/controller/control.js';
+  currentUser,
+} from '../src/model/model-firebase.js';
+
 // configurando firebase mock
 const firebasemock = require('firebase-mock');
 
 const mockauth = new firebasemock.MockFirebase();
-// const mockfirestore = new firebasemock.MockFirestore();
+const mockfirestore = new firebasemock.MockFirestore();
 const mockdatabase = new firebasemock.MockFirebase();
-// mockfirestore.autoFlush();
+mockfirestore.autoFlush();
 mockauth.autoFlush();
 global.firebase = firebasemock.MockFirebaseSdk(
-// use null if your code does not use RTDB
+  // use null if your code does not use RTDB
   path => (path ? mockdatabase.child(path) : null),
   () => mockauth,
-  // () => mockfirestore,
+  () => mockfirestore,
 );
 
 // iniciando tests
@@ -48,8 +48,10 @@ describe('loginOut', () => {
     expect(typeof loginOut).toBe('function');
   });
   it('Debería poder Cerrar Sesión', () => {
-    loginOut().then((rsp) => {
-      expect(rsp).toBe(rsp);
+    loginEmail('etr604@gmail.com', '123456').then(() => {
+      loginOut().then((response) => {
+        expect(response).toBe('undefined');
+      });
     });
   });
 });
@@ -73,15 +75,15 @@ describe('loginFacebook', () => {
     });
   });
 });
-describe('nameEmail', () => {
+describe('currentUser', () => {
   it('debería ser una función', () => {
-    expect(typeof nameEmail).toBe('function');
+    expect(typeof currentUser).toBe('function');
   });
-  it('debería devolver usuario con sesión activa', (done) => {
+  it('debería devolver usuario con sesión activa', () => {
     loginEmail('etr604@gmail.com', '123456').then(() => {
-      const user = nameEmail();
-      expect(user.email).toEqual('etr604@gmail.com');
-      done();
+      currentUser().then((user) => {
+        expect(user.email).toBe('etr604@gmail.com');
+      });
     });
   });
 });
