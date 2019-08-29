@@ -1,74 +1,51 @@
-import { viewExit, createPost } from '../controller.js';
-import { nameEmail } from '../model/model-firebase.js';
-import { screenPost } from './post.js';
-// import { screenComent } from './coment.js';
+import { controllerExit, createPost } from '../controller.js';
+import { currentUser } from '../model/model-firebase.js';
+import { viewPosts } from './post.js';
 
-export const screenHome = (post) => {
-  const divContainer = document.createElement('div');
-  divContainer.innerHTML = '';
+export const viewHome = (arrPost) => {
+  const homeContainer = document.createElement('div');
+  homeContainer.innerHTML = '';
   const homeTemplate = `  
-  <div class="header">
-    <select class="select">
-      <option value=0>${nameEmail().displayName}</option>
-    </select>
+  <header>
     <img class="foods-kids" src="../img/foods-kids.png" alt="nombre foods kids de la página web"/>
-    <div class="exit-container">
-      <img class="exit-img" src="../img/desconectarte.png">
-      <button class="exit-input" id="cerrar">Cerrar sesión</button>
-    </div>
-  </div>
-  <div class="main">
+      <ul class="main-nav">
+        <li><a href="#/profile">${currentUser().displayName}</a></li>
+        <li><a href="#/home" id="cerrar"><img class="exit-img" src="../img/desconectarte.png">Cerrar Sesión </a></li>
+      </ul>
+  </header>
+  <main>
     <div class="container-user">
-      <div class="color-img">
-      </div>
+      <img class="color-img" src="../img/fruit_1.jpg">
       <div class="email-user">
-      <img class="img-perfil" src='${nameEmail().photoURL}'/>
-        <p id="name-user">${nameEmail().email}</p>
+        <img class="img-perfil" src='${currentUser().photoURL}'/>
+        <p class="select">${currentUser().email}</p>
       </div>
     </div>
     <div class="total">
-    <div class="colunm-post">
-      <textarea class="estilotextarea"name="comentarios" required  placeholder="¿Que quieres compartir?" id="comentario"></textarea>
-      <div class= "options-post">
-      <i class="btn-img fa fa-picture-o" aria-hidden="true"></i> 
-      <select id="post-privacy" >
-        <option value="public" id="public">Public</option>
-        <option value="private" id="private">Private</option>
-      </select>
-      <input type="submit" value="Compartir"class="btn-compartir" id="compartir">
+      <div class="colunm-post">
+        <textarea class="estilotextarea"name="comentarios" required  placeholder="¿Que quieres compartir?" id="comentario"></textarea>
+        <div class= "options-post">
+          <i class="btn-img fa fa-picture-o" aria-hidden="true"></i> 
+          <select id="post-privacy" >
+            <option value="public" id="public">Public</option>
+            <option value="private" id="private">Private</option>
+          </select>
+          <input type="submit" value="Compartir"class="btn-compartir pointer" id="compartir">
+        </div>
       </div>
+      <div class="posts-content" id="posts-content"></div>
     </div>
-    <div class="posts-content" id="comentariosContenedor"></div>
-  </div>
-  </div>`;
-  // console.log(nameEmail().photoURL);
-  divContainer.innerHTML = homeTemplate;
-  divContainer.classList.add('container-home');
-  //  console.log(nameEmail());
-  // divContainer.querySelector('#name-user').innerHTML = nameEmail().email;
-  divContainer.querySelector('#cerrar').addEventListener('click', () => {
-    viewExit();
-  });
-  const buttonCompartir = divContainer.querySelector('#compartir');
-  // const comentariosContenedor = divContainer.querySelector('#comentarioContenedor');
-  buttonCompartir.addEventListener('click', () => {
-    createPost();
-  });
+  </main>`;
+  homeContainer.innerHTML = homeTemplate;
+  homeContainer.classList.add('container-home');
 
-  const totalView = divContainer.querySelector('#comentariosContenedor');
+  const exit = homeContainer.querySelector('#cerrar');
+  const buttonCompartir = homeContainer.querySelector('#compartir');
+  const totalView = homeContainer.querySelector('#posts-content');
 
-  for (let i = 0; i < post.length; i += 1) {
-    totalView.appendChild(screenPost(post[i]));
-  }
-  // post.forEach(element => {
-  //   totalView.appendChild(screenPost(screenComent(element)));
-  // });
+  exit.addEventListener('click', controllerExit);
+  buttonCompartir.addEventListener('click', createPost);
+  arrPost.forEach(obj => totalView.appendChild(viewPosts(obj)));
 
-  return divContainer;
+  return homeContainer;
 };
-
-/* <i class="fa fa-picture-o" aria-hidden="true"></i>
-<i class="fa fa-paper-plane" aria-hidden="true"></i>
-<i class="fa fa-heart-o" aria-hidden="true"></i>
-<i class="fa fa-heart" aria-hidden="true"></i>
-${user.email} */
