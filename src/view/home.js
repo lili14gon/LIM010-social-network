@@ -1,5 +1,5 @@
 import { viewExit, createPost } from '../controller.js';
-import { nameEmail } from '../Model/Model-firebase.js';
+import { nameEmail } from '../model/model-firebase.js';
 import { screenPost } from './post.js';
 // import { screenComent } from './coment.js';
 

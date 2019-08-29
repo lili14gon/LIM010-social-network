@@ -2,8 +2,8 @@
 
 import {
   deletePost, editPost, addComment, readComent, editLikes, editPrivacity,
-} from '../Model/Model-firestore.js';
-import { nameEmail } from '../Model/Model-firebase.js';
+} from '../model/model-firestore.js';
+import { nameEmail } from '../model/model-firebase.js';
 import { screenComent } from './coment.js';
 import { timePublic } from '../controller.js';
 // import { viewDeletePost } from '../controller.js';

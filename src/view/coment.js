@@ -1,5 +1,5 @@
-import { nameEmail } from '../Model/Model-firebase.js';
-import { deleteComment, editComment } from '../Model/Model-firestore.js';
+import { nameEmail } from '../model/model-firebase.js';
+import { deleteComment, editComment } from '../model/model-firestore.js';
 // import { nameEmail } from '../Model/Model-firebase.js';
 
 export const screenComent = (data) => {
