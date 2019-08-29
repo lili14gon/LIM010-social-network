@@ -1,41 +1,58 @@
+// const firebasemock = require('firebase-mock');
+// // const mockauth = new firebasemock.MockFirebase();
+// const mockfirestore = new firebasemock.MockFirestore();
+// const mockdatabase = new firebasemock.MockFirebase();
+// mockfirestore.autoFlush();
+// // mockauth.autoFlush();
+//   // use null if your code does not use RTDB
+//   path => (path ? mockdatabase.child(path) : null),
+//   // () => mockauth,
+//   () => mockfirestore,
+import MockFirebase from 'mock-cloud-firestore';
 import {
   createData,
-  // readPost,
 } from '../src/Model/Model-firestore.js';
 
-const firebasemock = require('firebase-mock');
+const fixtureData = {
+  __collection__: {
+    Posts: {
+      __doc__: {
+        abc123d: {
+          email: 'maria12@hotmail.com',
+          like: '0',
+          privacidad: 'private',
+          text: 'Que bueno es hoy',
+          time: '28/8/2019- 12:54:22 ',
+        },
+        abd543e: {
+          email: 'lili16@gmail.com',
+          like: '1',
+          privacidad: 'Public',
+          text: 'Un dia para mejorar',
+          time: '29/8/2019- 10:21:21 ',
+        },
+      },
+    },
+  },
+};
 
-// const mockauth = new firebasemock.MockFirebase();
-const mockfirestore = new firebasemock.MockFirestore();
-const mockdatabase = new firebasemock.MockFirebase();
-mockfirestore.autoFlush();
-// mockauth.autoFlush();
-global.firebase = firebasemock.MockFirebaseSdk(
-  // use null if your code does not use RTDB
-  path => (path ? mockdatabase.child(path) : null),
-  // () => mockauth,
-  () => mockfirestore,
-);
+global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true });
 
 describe('createData', () => {
-  it('debería retornar un objeto', () => {
-    expect(typeof createData('hola como estar', 'etr604@gmail.com')).toBe('object');
-  });
-  it('debería ser una función', () => {
-    expect(typeof createData).toBe('function');
-  });
-  it('Deberia de poder agregar una post e email', () => {
-    createData('hola como estar', 'etr604@gmail.com').then((data) => {
-      expect(data).toBe('hola como estar', 'etr604@gmail.com');
+  it('debería crear un post', () => {
+    createData('Que bueno es hoy', 'lili_lu16@hotmail.com', 'OC3BrOuwhCSFA8t9APu7bRJqeYr1',
+      'public', 1, '28/08/2019- 12:30:12').then((post) => {
+      firebase.firestore().collection('Post').doc(post.id).get()
+        .then((data) => {
+          expect(data).toBe({
+            email: 'lili_lu16@hotmail.com',
+            idUsuario: 'OC3BrOuwhCSFA8t9APu7bRJqeYr1',
+            like: 1,
+            privacidad: 'public',
+            text: 'Que bueno es hoy',
+            time: '28/08/2019- 12:30:12',
+          });
+        });
     });
   });
 });
-
-// describe('readPost', () => {
-//   it('debería retornar un objeto', () => {
-//     expect(typeof readPost('hola como estar', 'etr604@gmail.com')).toBe('object');
-//   });
-//   it('debería ser una función', () => {
-//     expect(typeof readPost).toBe('function');
-//   });
-// });

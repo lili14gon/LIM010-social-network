@@ -1,4 +1,7 @@
-import { deletePost, editPost, addComment, readComent, editLikes } from '../Model/Model-firestore.js';
+/* eslint-disable no-console */
+import {
+  deletePost, editPost, addComment, readComent, editLikes,
+} from '../Model/Model-firestore.js';
 import { nameEmail } from '../Model/Model-firebase.js';
 import { screenComent } from './coment.js';
 import { timePublic } from '../controller.js';
@@ -43,7 +46,6 @@ export const screenPost = (datoPost) => {
     const eliminar = divContainer.querySelector('#btn-delete');
     const guardar = divContainer.querySelector('#guardar');
     // const likes = divContainer.querySelector('#likes');
-    
     if (datoPost.idUsuario !== nameEmail().uid) {
       eliminar.classList.add('hide');
       editar.classList.add('hide');
@@ -78,7 +80,6 @@ export const screenPost = (datoPost) => {
       dislike.classList.remove('hide');
       const valor = datoPost.like + 1;
       editLikes(datoPost.id, valor);
-      console.log('holitasssssssssssssssssssss');
     });
     dislike.addEventListener('click', () => {
       const valor = datoPost.like - 1;
@@ -89,7 +90,6 @@ export const screenPost = (datoPost) => {
     const comentar = divContainer.querySelector('#button-coment');
     comentar.addEventListener('click', () => {
       const comentario = divContainer.querySelector('#comment-new').value;
-      console.log(comentario);
       const date = timePublic();
       addComment(comentario, nameEmail().email, datoPost.id, datoPost.email, date)
         .then((response) => {

@@ -1,9 +1,3 @@
-// const createData = (post, correo, id, estado) => firebase.firestore().collection('Posts').add({
-//   text: post,
-//   email: correo,
-//   idUsuario: id,
-//   privacidad: estado,
-// });
 const createData = (post, correo, id, estado, likes, date) => firebase.firestore().collection('Posts').add({
   text: post,
   email: correo,
@@ -41,12 +35,12 @@ const addComment = (text, email, postId, id, date) => firebase.firestore().colle
     time: date,
   });
 const readComent = (idPost, callback) => {
-  firebase.firestore().collection('Posts').doc(idPost).collection('comment').orderBy('time', 'desc')
+  firebase.firestore().collection('Posts').doc(idPost).collection('comment')
+    .orderBy('time', 'desc')
     .onSnapshot((datos) => {
       const data = [];
       datos.forEach((doc) => {
         data.push({ id: doc.id, ...doc.data() });
-        // console.log(datos.length);
       });
       callback(data);
     });

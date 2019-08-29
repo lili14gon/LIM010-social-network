@@ -25,8 +25,8 @@ export const screenComent = (data) => {
   const textArea = divContainer.querySelector('#comment');
   const edit = divContainer.querySelector('#edit-coment');
   const save = divContainer.querySelector('#save');
-  console.log(nameEmail().email);
-  console.log(data.idUsuario);
+  // console.log(nameEmail().email);
+  // console.log(data.idUsuario);
 
   if (nameEmail().email !== data.idUsuario) {
     eliminar.classList.add('hide');
