@@ -4,11 +4,11 @@ import {
   editPost,
   addComment,
   readComments,
-  editLike,
+  editLikes,
   editPrivacity,
-} from '../model/model-firestore.js';
+} from '../model/Model-firestore.js';
 
-import { currentUser } from '../model/model-firebase.js';
+import { currentUser } from '../model/Model-firebase.js';
 import { viewComment } from './comment.js';
 import { timePublic } from '../controller.js';
 
@@ -87,7 +87,7 @@ export const viewPosts = (objPost) => {
     like.addEventListener('click', () => {
       // like.classList.add('hide');
       const valor = objPost.like + 1;
-      editLike(objPost.id, valor);
+      editLikes(objPost.id, valor);
     });
     const comentar = postContainer.querySelector('#button-coment');
     comentar.addEventListener('click', () => {

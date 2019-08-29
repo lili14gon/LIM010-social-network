@@ -20,7 +20,7 @@ const deletePost = idD => firebase.firestore().collection('posts').doc(idD).dele
 const editPrivacity = (idD, newEstado) => firebase.firestore().collection('posts').doc(idD).update({
   privacidad: newEstado,
 });
-const editLike = (idD, newLikes) => firebase.firestore().collection('posts').doc(idD).update({
+const editLikes = (idD, newLikes) => firebase.firestore().collection('posts').doc(idD).update({
   like: newLikes,
 });
 
@@ -64,6 +64,6 @@ export {
   readComments,
   deleteComment,
   editComment,
-  editLike,
+  editLikes,
   editPrivacity,
 };

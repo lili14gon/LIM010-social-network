@@ -1,5 +1,5 @@
-import { currentUser } from '../model/model-firebase.js';
-import { deleteComment, editComment } from '../model/model-firestore.js';
+import { currentUser } from '../model/Model-firebase.js';
+import { deleteComment, editComment } from '../model/Model-firestore.js';
 
 export const viewComment = (objComment) => {
   const commentContainer = document.createElement('div');

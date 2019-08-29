@@ -7,9 +7,9 @@ import {
   loginRegister,
   currentUser,
   loginOut,
-} from './model/model-firebase.js';
+} from './model/Model-firebase.js';
 
-import { addPost } from './model/model-firestore.js';
+import { addPost } from './model/Model-firestore.js';
 
 const changeRoute = (route) => {
   window.location.hash = route;
@@ -123,19 +123,6 @@ export const controllerGoogle = () => {
     console.log(error);
   });
 };
-
-// export const createPost = () => {
-//   const comentario = document.getElementById('comentario').value;
-//   const privacidad = document.getElementById('post-privacy').value;
-//   console.log(privacidad);
-//   addPost(comentario, currentUser().email, currentUser().uid, privacidad)
-//     .then((response) => {
-//       document.getElementById('comentario').value = '';
-//       console.log('se agrego a tu colleccion', response.id);
-//     }).catch((error) => {
-//       console.log('no se agrego', error);
-//     });
-// };
 
 export const timePublic = () => {
   const f = new Date();

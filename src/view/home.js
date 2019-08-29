@@ -1,5 +1,5 @@
 import { controllerExit, createPost } from '../controller.js';
-import { currentUser } from '../model/model-firebase.js';
+import { currentUser } from '../model/Model-firebase.js';
 import { viewPosts } from './post.js';
 
 export const viewHome = (arrPost) => {

@@ -16,7 +16,6 @@ const loginFacebook = () => {
 };
 
 const currentUser = () => firebase.auth().currentUser;
-
 export {
   loginEmail,
   loginRegister,
