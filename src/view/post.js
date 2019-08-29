@@ -22,25 +22,25 @@ export const viewPosts = (objPost) => {
           <div class="flex-creador-privicity">
             <p id="nombre" class="creador">Publicado por ${objPost.email} | </p>
             <p id="privacidad-no-user">${objPost.privacidad}</p>
-            <select class="hide select" id="post-privacy-user" >
+            <select class="hide select pointer" id="post-privacy-user" >
               <option value="public" id="public">public</option>
               <option value="private" id="private">private</option>
             </select>
           </div>
           <p class="clock"><i class="fa fa-clock-o" aria-hidden="true"></i> ${objPost.time}</p>
         </div>
-        <i id="btn-delete" class="delete fa fa-trash" aria-hidden="true"></i>
+        <i id="btn-delete" class="delete pointer fa fa-trash" aria-hidden="true"></i>
       </div>
       <textarea class="textarea-post" name="comentarios" id="newcoment">${objPost.text}</textarea>
       <div class="comandos-post">
-        <i id="like" class="btn-img fa fa-heart-o" aria-hidden="true"></i>
+        <i id="like" class="btn-img pointer fa fa-heart-o" aria-hidden="true"></i>
         <p id="count" class="count" >${objPost.like}</p>
-        <i id="editar" class="btn-img fa fa-pencil-square-o" aria-hidden="true"></i>
-        <i id="guardar" class="hide btn-img fa fa-floppy-o" aria-hidden="true"></i>
+        <i id="editar" class="btn-img pointer fa fa-pencil-square-o" aria-hidden="true"></i>
+        <i id="guardar" class="hide btn-img pointer fa fa-floppy-o" aria-hidden="true"></i>
       </div>
       <div id="textarea-comment" class="textarea-comment">
         <textarea id="comment-new" class="text-coment" type="text" placeholder="Escribe tu comentario" /></textarea>
-        <i id="button-coment" class="btn-comment fa fa-comment-o" aria-hidden="true"></i>
+        <i id="button-coment" class="btn-comment pointer fa fa-comment-o" aria-hidden="true"></i>
       </div>
       <div id="comments-container" class="background"></<div>
     `;

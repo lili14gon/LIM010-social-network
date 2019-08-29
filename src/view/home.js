@@ -7,20 +7,14 @@ export const viewHome = (arrPost) => {
   homeContainer.innerHTML = '';
   const homeTemplate = `  
   <header>
-    <p class="select">${currentUser().displayName}</p>
     <img class="foods-kids" src="../img/foods-kids.png" alt="nombre foods kids de la página web"/>
-    <!--<div class="exit-container">-->
       <ul class="main-nav">
-        <li><a href="#/login"> Inicio </a></li>
-        <li><a href="#/profile">Mi Perfil</a></li>
+        <li><a href="#/profile">${currentUser().displayName}</a></li>
         <li><a href="#/home" id="cerrar"><img class="exit-img" src="../img/desconectarte.png">Cerrar Sesión </a></li>
       </ul>
-    <!--<button class="exit-input" id="cerrar">Cerrar sesión</button>-->
-  <!--</div>-->
   </header>
   <main>
     <div class="container-user">
-      <!--<div class="color-img"></div>-->
       <img class="color-img" src="../img/fruit_1.jpg">
       <div class="email-user">
         <img class="img-perfil" src='${currentUser().photoURL}'/>
@@ -36,7 +30,7 @@ export const viewHome = (arrPost) => {
             <option value="public" id="public">Public</option>
             <option value="private" id="private">Private</option>
           </select>
-          <input type="submit" value="Compartir"class="btn-compartir" id="compartir">
+          <input type="submit" value="Compartir"class="btn-compartir pointer" id="compartir">
         </div>
       </div>
       <div class="posts-content" id="posts-content"></div>

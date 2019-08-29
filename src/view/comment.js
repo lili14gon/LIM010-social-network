@@ -12,9 +12,9 @@ export const viewComment = (objComment) => {
     <div class="flex">
       <textarea id="comment" class="text-coment" type="text">${objComment.comentario}</textarea>
       <div class="flex-comment">
-        <i id="btn-delete-comentario" class="buttons-comments fa fa-trash" aria-hidden="true"></i>
-        <i id="edit-coment" class="buttons-comments fa fa-pencil-square-o" aria-hidden="true"></i>
-        <i id="save" class="hide buttons-comments fa fa-floppy-o" aria-hidden="true"></i>
+        <i id="btn-delete-comentario" class="buttons-comments pointer fa fa-trash" aria-hidden="true"></i>
+        <i id="edit-coment" class="buttons-comments pointer fa fa-pencil-square-o" aria-hidden="true"></i>
+        <i id="save" class="hide buttons-comments pointer fa fa-floppy-o" aria-hidden="true"></i>
       </div>
     </div>
     `;

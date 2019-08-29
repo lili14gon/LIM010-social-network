@@ -1,4 +1,4 @@
-const addPost = (post, correo, id, estado, likes, date) => firebase.firestore().collection('Posts').add({
+const addPost = (post, correo, id, estado, likes, date) => firebase.firestore().collection('posts').add({
   text: post,
   email: correo,
   idUsuario: id,
@@ -7,7 +7,7 @@ const addPost = (post, correo, id, estado, likes, date) => firebase.firestore().
   time: date,
 });
 const readPosts = (callback) => {
-  firebase.firestore().collection('Posts').orderBy('time', 'desc').onSnapshot((datos) => {
+  firebase.firestore().collection('posts').orderBy('time', 'desc').onSnapshot((datos) => {
     const array = [];
     datos.forEach((doc) => {
       array.push({ id: doc.id, ...doc.data() });
@@ -15,19 +15,19 @@ const readPosts = (callback) => {
     callback(array);
   });
 };
-const deletePost = idD => firebase.firestore().collection('Posts').doc(idD).delete();
+const deletePost = idD => firebase.firestore().collection('posts').doc(idD).delete();
 
-const editPrivacity = (idD, newEstado) => firebase.firestore().collection('Posts').doc(idD).update({
+const editPrivacity = (idD, newEstado) => firebase.firestore().collection('posts').doc(idD).update({
   privacidad: newEstado,
 });
-const editLike = (idD, newLikes) => firebase.firestore().collection('Posts').doc(idD).update({
+const editLike = (idD, newLikes) => firebase.firestore().collection('posts').doc(idD).update({
   like: newLikes,
 });
 
-const editPost = (id, newText) => firebase.firestore().collection('Posts').doc(id).update({
+const editPost = (id, newText) => firebase.firestore().collection('posts').doc(id).update({
   text: newText,
 });
-const addComment = (text, email, postId, id, date) => firebase.firestore().collection('Posts').doc(postId).collection('comment')
+const addComment = (text, email, postId, id, date) => firebase.firestore().collection('posts').doc(postId).collection('comment')
   .add({
     comentario: text,
     correo: email,
@@ -36,7 +36,7 @@ const addComment = (text, email, postId, id, date) => firebase.firestore().colle
     time: date,
   });
 const readComments = (idPost, callback) => {
-  firebase.firestore().collection('Posts').doc(idPost).collection('comment')
+  firebase.firestore().collection('posts').doc(idPost).collection('comment')
     .orderBy('time', 'desc')
     .onSnapshot((datos) => {
       const data = [];
@@ -47,10 +47,10 @@ const readComments = (idPost, callback) => {
       callback(data);
     });
 };
-const deleteComment = (idD, id) => firebase.firestore().collection('Posts').doc(idD).collection('comment')
+const deleteComment = (idD, id) => firebase.firestore().collection('posts').doc(idD).collection('comment')
   .doc(id)
   .delete();
-const editComment = (idD, id, newText) => firebase.firestore().collection('Posts').doc(idD).collection('comment')
+const editComment = (idD, id, newText) => firebase.firestore().collection('posts').doc(idD).collection('comment')
   .doc(id)
   .update({
     comentario: newText,
