@@ -5,7 +5,7 @@ import {
   loginGoogle,
   loginFacebook,
   currentUser,
-} from '../src/model/Model-firebase.js';
+} from '../src/model/model-firebase.js';
 
 // configurando firebase mock
 const firebasemock = require('firebase-mock');

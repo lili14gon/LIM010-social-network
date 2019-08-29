@@ -1,4 +1,4 @@
-import { currentUser } from '../model/Model-firebase.js';
+import { currentUser } from '../model/model-firebase.js';
 
 export const viewProfile = () => {
   const profileContainer = document.createElement('div');

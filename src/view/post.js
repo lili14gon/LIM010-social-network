@@ -6,9 +6,9 @@ import {
   readComments,
   editLikes,
   editPrivacity,
-} from '../model/Model-firestore.js';
+} from '../model/model-firestore.js';
 
-import { currentUser } from '../model/Model-firebase.js';
+import { currentUser } from '../model/model-firebase.js';
 import { viewComment } from './comment.js';
 import { timePublic } from '../controller.js';
 
