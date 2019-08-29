@@ -9,11 +9,11 @@
 //   // () => mockauth,
 //   () => mockfirestore,
 import MockFirebase from 'mock-cloud-firestore';
-import { createData } from '../src/Model/Model-firestore';
+import { addPost } from '../src/model/Model-firestore';
 
 const fixtureData = {
   __collection__: {
-    Posts: {
+    posts: {
       __doc__: {
         abc123d: {
           email: 'maria12@hotmail.com',
@@ -36,11 +36,11 @@ const fixtureData = {
 
 global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true });
 
-describe('createData', () => {
+describe('addPost', () => {
   it('debería crear un post', () => {
-    createData('Que bueno es hoy', 'lili_lu16@hotmail.com', 'OC3BrOuwhCSFA8t9APu7bRJqeYr1',
+    addPost('Que bueno es hoy', 'lili_lu16@hotmail.com', 'OC3BrOuwhCSFA8t9APu7bRJqeYr1',
       'public', 1, '28/08/2019- 12:30:12').then((post) => {
-      firebase.firestore().collection('Post').doc(post.id).get()
+      firebase.firestore().collection('post').doc(post.id).get()
         .then((data) => {
           expect(data).toBe({
             email: 'lili_lu16@hotmail.com',
