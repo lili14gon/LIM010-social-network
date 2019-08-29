@@ -4,8 +4,8 @@ import {
   loginOut,
   loginGoogle,
   loginFacebook,
-  nameEmail,
-} from '../src/Model/Model-firebase.js';
+  currentUser,
+} from '../src/model/model-firebase.js';
 
 // configurando firebase mock
 const firebasemock = require('firebase-mock');
@@ -75,13 +75,13 @@ describe('loginFacebook', () => {
     });
   });
 });
-describe('nameEmail', () => {
+describe('currentUser', () => {
   it('debería ser una función', () => {
-    expect(typeof nameEmail).toBe('function');
+    expect(typeof currentUser).toBe('function');
   });
   it('debería devolver usuario con sesión activa', () => {
     loginEmail('etr604@gmail.com', '123456').then(() => {
-      nameEmail().then((user) => {
+      currentUser().then((user) => {
         expect(user.email).toBe('etr604@gmail.com');
       });
     });

@@ -1,8 +1,3 @@
-// export const crearUsuarioConEmailYPasswoard = (email, password) => {
-//   return firebase.auth().createUserWithEmailAndPassword(email, password);
-// };
-
-
 const loginEmail = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password);
 
 // eslint-disable-next-line max-len
@@ -20,12 +15,12 @@ const loginFacebook = () => {
   return firebase.auth().signInWithPopup(provider);
 };
 
-const nameEmail = () => firebase.auth().currentUser;
+const currentUser = () => firebase.auth().currentUser;
 export {
   loginEmail,
   loginRegister,
   loginOut,
   loginGoogle,
   loginFacebook,
-  nameEmail,
+  currentUser,
 };

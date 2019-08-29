@@ -5,11 +5,11 @@ import {
   loginFacebook,
   loginGoogle,
   loginRegister,
-  nameEmail,
+  currentUser,
   loginOut,
-} from './Model/Model-firebase.js';
+} from './model/model-firebase.js';
 
-import { createData } from './Model/Model-firestore.js';
+import { addPost } from './model/model-firestore.js';
 
 const changeRoute = (route) => {
   window.location.hash = route;
@@ -19,7 +19,7 @@ const maysFirst = (string) => {
   const resultFirst = string.charAt(0).toUpperCase() + string.slice(1);
   return resultFirst;
 };
-export const viewLogin = () => {
+export const controllerLogin = () => {
   window.event.preventDefault();
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
@@ -42,7 +42,7 @@ export const viewLogin = () => {
   });
 };
 const emailVerification = () => {
-  nameEmail().sendEmailVerification()
+  currentUser().sendEmailVerification()
     .then((response) => {
       console.log(response);
     }).catch((error) => {
@@ -50,7 +50,7 @@ const emailVerification = () => {
     });
 };
 
-export const viewRegister = () => {
+export const controllerRegister = () => {
   window.event.preventDefault();
   const name = document.getElementById('name').value;
   const email = document.getElementById('email').value;
@@ -94,7 +94,7 @@ export const viewRegister = () => {
   });
 };
 
-export const viewExit = () => {
+export const controllerExit = () => {
   loginOut().then((response) => {
     // Sign-out successful.
     changeRoute('#/login');
@@ -106,7 +106,7 @@ export const viewExit = () => {
   });
 };
 
-export const viewFacebook = () => {
+export const controllerFacebook = () => {
   loginFacebook().then((response) => {
     console.log(response);
     changeRoute('#/home');
@@ -115,7 +115,7 @@ export const viewFacebook = () => {
   });
 };
 
-export const viewGoogle = () => {
+export const controllerGoogle = () => {
   loginGoogle().then((response) => {
     console.log(response);
     changeRoute('#/home');
@@ -123,19 +123,6 @@ export const viewGoogle = () => {
     console.log(error);
   });
 };
-
-// export const createPost = () => {
-//   const comentario = document.getElementById('comentario').value;
-//   const privacidad = document.getElementById('post-privacy').value;
-//   console.log(privacidad);
-//   createData(comentario, nameEmail().email, nameEmail().uid, privacidad)
-//     .then((response) => {
-//       document.getElementById('comentario').value = '';
-//       console.log('se agrego a tu colleccion', response.id);
-//     }).catch((error) => {
-//       console.log('no se agrego', error);
-//     });
-// };
 
 export const timePublic = () => {
   const f = new Date();
@@ -152,7 +139,7 @@ export const createPost = () => {
   let likes = document.getElementById('contador');
   likes = 0;
   console.log(privacidad);
-  createData(comentario, nameEmail().email, nameEmail().uid, privacidad, likes, date)
+  addPost(comentario, currentUser().email, currentUser().uid, privacidad, likes, date)
     .then((response) => {
       document.getElementById('comentario').value = '';
       console.log('se agrego a tu colleccion', response.id);

@@ -1,60 +1,61 @@
 /* eslint-disable no-console */
-
 import {
-  deletePost, editPost, addComment, readComent, editLikes, editPrivacity,
-} from '../Model/Model-firestore.js';
-import { nameEmail } from '../Model/Model-firebase.js';
-import { screenComent } from './coment.js';
-import { timePublic } from '../controller.js';
-// import { viewDeletePost } from '../controller.js';
+  deletePost,
+  editPost,
+  addComment,
+  readComments,
+  editLikes,
+  editPrivacity,
+} from '../model/model-firestore.js';
 
-export const screenPost = (datoPost) => {
-  const divContainer = document.createElement('div');
+import { currentUser } from '../model/model-firebase.js';
+import { viewComment } from './comment.js';
+import { timePublic } from '../controller.js';
+
+export const viewPosts = (objPost) => {
+  const postContainer = document.createElement('div');
   let postTemplate = '';
-  if (datoPost.privacidad === 'public' || datoPost.idUsuario === nameEmail().uid) {
+  if (objPost.privacidad === 'public' || objPost.idUsuario === currentUser().uid) {
     postTemplate = `   
       <div class="header-post">
         <div class="flex-creador">
-        <div class="flex-creador-privicity">
-          <p id="nombre" class="creador">Publicado por ${datoPost.email} | </p>
-          <p id="privacidad-no-user">${datoPost.privacidad}</p>
-          <select class="hide select" id="post-privacy-user" >
-  <option value="public" id="public">public</option>
-  <option value="private" id="private">private</option>
-</select></div>
-          <p class="clock"><i class="fa fa-clock-o" aria-hidden="true"></i> ${datoPost.time}</p>
+          <div class="flex-creador-privicity">
+            <p id="nombre" class="creador">Publicado por ${objPost.email} | </p>
+            <p id="privacidad-no-user">${objPost.privacidad}</p>
+            <select class="hide select pointer" id="post-privacy-user" >
+              <option value="public" id="public">public</option>
+              <option value="private" id="private">private</option>
+            </select>
+          </div>
+          <p class="clock"><i class="fa fa-clock-o" aria-hidden="true"></i> ${objPost.time}</p>
         </div>
-          <i id="btn-delete" class="delete fa fa-trash" aria-hidden="true"></i>
+        <i id="btn-delete" class="delete pointer fa fa-trash" aria-hidden="true"></i>
       </div>
-      <textarea class="textarea-post" name="comentarios" id="newcoment">${datoPost.text}</textarea>
+      <textarea class="textarea-post" name="comentarios" id="newcoment">${objPost.text}</textarea>
       <div class="comandos-post">
-        <i id="like" class="btn-img fa fa-heart-o" aria-hidden="true"></i>
-        <i id="dislike" class=" fa fa-heart" aria-hidden="true"></i>
-        <!--<a id="like"><img class="imgPequeño" src="../img/corazon-blanco.png" /></a>-->
-        <!--<a id="dislike"><img class="imgPequeño" src="../img/corazon-rojo.png" /></a>-->
-        <p id="count" class="count" >${datoPost.like}</p>
-        <i id="editar" class="btn-img fa fa-pencil-square-o" aria-hidden="true"></i>
-        <i id="guardar" class="hide btn-img fa fa-floppy-o" aria-hidden="true"></i>
-        <!--<button type="" class="inpu" id="editar">editar</button>-->
-       <!--<button type="" class="hide" id="edita-guarda">guardar</button>-->    
+        <i id="like" class="btn-img pointer fa fa-heart-o" aria-hidden="true"></i>
+        <p id="count" class="count" >${objPost.like}</p>
+        <i id="editar" class="btn-img pointer fa fa-pencil-square-o" aria-hidden="true"></i>
+        <i id="guardar" class="hide btn-img pointer fa fa-floppy-o" aria-hidden="true"></i>
       </div>
       <div id="textarea-comment" class="textarea-comment">
         <textarea id="comment-new" class="text-coment" type="text" placeholder="Escribe tu comentario" /></textarea>
-        <i id="button-coment" class="btn-comment fa fa-comment-o" aria-hidden="true"></i>
-        <!--<button type="" class="" id="button-coment">comentar</button>-->
+        <i id="button-coment" class="btn-comment pointer fa fa-comment-o" aria-hidden="true"></i>
       </div>
-      <div id="coment" class="background"></<div>
+      <div id="comments-container" class="background"></<div>
     `;
-    divContainer.innerHTML = postTemplate;
-    divContainer.classList.add('container-posts');
-    const textArea = divContainer.querySelector('#newcoment');
-    const editar = divContainer.querySelector('#editar');
-    const eliminar = divContainer.querySelector('#btn-delete');
-    const guardar = divContainer.querySelector('#guardar');
-    const postPrivacyUser = divContainer.querySelector('#post-privacy-user');
-    postPrivacyUser.value = datoPost.privacidad;
-    const privacidadNoUser = divContainer.querySelector('#privacidad-no-user');
-    if (datoPost.idUsuario !== nameEmail().uid) {
+    postContainer.innerHTML = postTemplate;
+    postContainer.classList.add('container-posts');
+
+    const textArea = postContainer.querySelector('#newcoment');
+    const editar = postContainer.querySelector('#editar');
+    const eliminar = postContainer.querySelector('#btn-delete');
+    const guardar = postContainer.querySelector('#guardar');
+    const postPrivacyUser = postContainer.querySelector('#post-privacy-user');
+    postPrivacyUser.value = objPost.privacidad;
+    const privacidadNoUser = postContainer.querySelector('#privacidad-no-user');
+
+    if (objPost.idUsuario !== currentUser().uid) {
       eliminar.classList.add('hide');
       editar.classList.add('hide');
       textArea.disabled = true;
@@ -62,75 +63,60 @@ export const screenPost = (datoPost) => {
       textArea.disabled = true;
       postPrivacyUser.classList.remove('hide');
       privacidadNoUser.classList.add('hide');
-      // const newPrivacity = privacidadNoUser.value;
       postPrivacyUser.addEventListener('click', (event) => {
         const indice = event.target.value;
-        editPrivacity(datoPost.id, indice);
+        editPrivacity(objPost.id, indice);
       });
-      // eliminar.classList.remove('hide');
       eliminar.addEventListener('click', () => {
-        deletePost(datoPost.id);
+        deletePost(objPost.id);
       });
       editar.addEventListener('click', () => {
-        // cont += 1;
-        // if (cont === 1) {
-        // editar.innerText = 'guardar';
         guardar.classList.remove('hide');
         editar.classList.add('hide');
         textArea.disabled = false;
         textArea.select();
       });
       guardar.addEventListener('click', () => {
-        editPost(datoPost.id, textArea.value);
+        editPost(objPost.id, textArea.value);
         editar.classList.remove('hide');
         guardar.classList.add('hide');
         textArea.disabled = true;
       });
     }
-    const like = divContainer.querySelector('#like');
-    const dislike = divContainer.querySelector('#dislike');
-    dislike.classList.add('hide');
-    like.addEventListener('click', (event) => {
-      event.preventDefault();
-      like.classList.add('hide');
-      dislike.classList.remove('hide');
-      const valor = datoPost.like + 1;
-      editLikes(datoPost.id, valor);
+    const like = postContainer.querySelector('#like');
+    like.addEventListener('click', () => {
+      // like.classList.add('hide');
+      const valor = objPost.like + 1;
+      editLikes(objPost.id, valor);
     });
-    // count.innerHTML = '';
-    // dislike.addEventListener('click', () => {
-    //   const valor = datoPost.like - 1;
-    //   editLikes(datoPost.id, valor);
-    //   like.classList.remove('hide');
-    //   dislike.classList.add('hide');
-    // });
-    const comentar = divContainer.querySelector('#button-coment');
+    const comentar = postContainer.querySelector('#button-coment');
     comentar.addEventListener('click', () => {
-      const comentario = divContainer.querySelector('#comment-new').value;
+      const comentario = postContainer.querySelector('#comment-new').value;
       // console.log(comentario);
       const date = timePublic();
-      addComment(comentario, nameEmail().email, datoPost.id, datoPost.email, date)
+      addComment(comentario, currentUser().email, objPost.id, objPost.email, date)
         .then((response) => {
-          divContainer.querySelector('#comment-new').value = '';
-          console.log('se agrego a tu colleccion', response.id);
+          postContainer.querySelector('#comment-new').value = '';
+          console.log('Se agregó a tu collección', response.id);
         }).catch((error) => {
-          console.log('no se agrego', error);
+          console.log('No se agregó', error);
         });
     });
-    const coment = divContainer.querySelector('#coment');
+
     // const call = (dato) => {
     //   coment.innerHTML = '';
     //   dato.forEach(element => {
-    //     coment.appendChild(screenComent(element));
+    //     coment.appendChild(viewComment(element));
     //   });
     // };
-    // readComent(datoPost.id, call);
-    readComent(datoPost.id, (dato) => {
-      coment.innerHTML = '';
-      dato.forEach((element) => {
-        coment.appendChild(screenComent(element));
+    // readComents(objPost.id, call);
+    const comments = postContainer.querySelector('#comments-container');
+    readComments(objPost.id, (dato) => {
+      comments.innerHTML = '';
+      dato.forEach((obj) => {
+        comments.appendChild(viewComment(obj));
       });
     });
   }
-  return divContainer;
+  return postContainer;
 };
