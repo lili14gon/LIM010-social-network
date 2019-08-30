@@ -1,16 +1,8 @@
 /* eslint-disable no-console */
-// const firebasemock = require('firebase-mock');
-// // const mockauth = new firebasemock.MockFirebase();
-// const mockfirestore = new firebasemock.MockFirestore();
-// const mockdatabase = new firebasemock.MockFirebase();
-// mockfirestore.autoFlush();
-// // mockauth.autoFlush();
-//   // use null if your code does not use RTDB
-//   path => (path ? mockdatabase.child(path) : null),
-//   // () => mockauth,
-//   () => mockfirestore,
 import MockFirebase from 'mock-cloud-firestore';
-import { addPost, readPosts } from '../src/model/model-firestore.js';
+import {
+  addPost, readPosts, deletePost, editPost, editPrivacity, editLikes,
+} from '../src/model/model-firestore';
 
 const fixtureData = {
   __collection__: {
@@ -36,25 +28,63 @@ const fixtureData = {
 };
 
 global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true });
+describe('addPost', () => {
+  it('debería crear un post', done => addPost('Que bueno es hoy', 'lili_lu16@hotmail.com', 'OC3BrOuwhCSFA8t9APu7bRJqeYr1',
+    'public', 1, '28/08/2019- 12:30:12').then(() => {
+    const callback = (posts) => {
+    // console.log(posts);
+      const resultado = posts.find(elemento => elemento.text === 'Que bueno es hoy');
+      expect(resultado.text).toBe('Que bueno es hoy');
+      done();
+    };
+    readPosts(callback);
+  }));
+});
 
-describe('createData', () => {
-  it('debería crear un post', (done) => {
-    addPost('Que bueno es hoy', 'lili_lu16@hotmail.com', 'OC3BrOuwhCSFA8t9APu7bRJqeYr1',
-      'public', 1, '28/08/2019- 12:30:12').then(() => {
-      const callback = (posts) => {
-        console.log(posts);
-        done();
-      };
-      readPosts(callback);
-      // firebase.firestore().collection('Post').doc(posts.id).get()
-      // expect(posts).toBe({
-      //   email: 'lili_lu16@hotmail.com',
-      //   idUsuario: 'OC3BrOuwhCSFA8t9APu7bRJqeYr1',
-      //   like: 1,
-      //   privacidad: 'public',
-      //   text: 'Que bueno es hoy',
-      //   time: '28/08/2019- 12:30:12',
-      // });
-    });
-  });
+describe('deletePost', () => {
+  it('deberia de eliminar un post con el id de post', done => deletePost('abd543e').then(() => {
+    const callback = (posts) => {
+      console.log(posts);
+      const resultado = posts.find(elemento => elemento.id === 'abd543e');
+      expect(resultado).toBe(undefined);
+      done();
+    };
+    readPosts(callback);
+  }));
+});
+
+describe('editPost', () => {
+  it('deberia de editar el texto del posts con el id de post', done => editPost('abc123d', 'ya es tarde').then(() => {
+    const callback = (posts) => {
+      console.log(posts);
+      const resultado = posts.find(elemento => elemento.text === 'ya es tarde');
+      expect(resultado.text).toBe('ya es tarde');
+      done();
+    };
+    readPosts(callback);
+  }));
+});
+
+describe('editPrivacity', () => {
+  it('deberia cambiar la privacidad', done => editPrivacity('abc123d', 'public').then(() => {
+    const callback = (posts) => {
+      console.log(posts);
+      const result = posts.find(elemento => elemento.text === 'ya es tarde');
+      expect(result.privacidad).toBe('public');
+      done();
+    };
+    readPosts(callback);
+  }));
+});
+
+describe('editLikes', () => {
+  it('deberia aumentar el conteo de likes en 1', done => editLikes('abc123d', 1).then(() => {
+    const callback = (posts) => {
+      console.log(posts);
+      const result = posts.find(elemento => elemento.text === 'ya es tarde');
+      expect(result.like).toBe(1);
+      done();
+    };
+    readPosts(callback);
+  }));
 });
