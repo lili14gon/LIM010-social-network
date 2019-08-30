@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import MockFirebase from 'mock-cloud-firestore';
 import {
-  addPost, readPosts, deletePost, editPost, editPrivacity, editLikes,
+  addPost, readPosts, deletePost, editPost, editPrivacity, editLikes, addComment, readComments,
 } from '../src/model/model-firestore';
 
 const fixtureData = {
@@ -9,18 +9,40 @@ const fixtureData = {
     posts: {
       __doc__: {
         abc123d: {
+          text: 'Que dia es hoy',
           email: 'maria12@hotmail.com',
+          idUsuario: 'AB4CrOuwhCSFA8t9APu7bRJqeZv4',
           like: '0',
           privacidad: 'private',
-          text: 'Que dia es hoy',
-          time: '28/8/2019- 12:54:22 ',
+          time: '28/8/2019- 12:54:22',
+          __collection__: {
+            comment: {
+              __doc__: {
+                xyz123a: {
+                  comentario: 'Gracias Foods Kids!',
+                  correo: 'lili16@gmail.com',
+                  idPost: 'abc123d',
+                  idUsuario: 'OC3BrOuwhCSFA8t9APu7bRJqeYr1',
+                  time: '29/8/2019- 15:5:15',
+                },
+                xyz456b: {
+                  comentario: 'Hoy Foods Kids cumple un mes',
+                  correo: 'etr604@gmail.com',
+                  idPost: 'abc123d',
+                  idUsuario: 'EB5CrOuwhCSFA8t9APu7bRJqeTy5',
+                  time: '28/8/2019- 13:15:36',
+                },
+              },
+            },
+          },
         },
         abd543e: {
+          text: 'Un dia para mejorar',
           email: 'lili16@gmail.com',
+          idUsuario: 'OC3BrOuwhCSFA8t9APu7bRJqeYr1',
           like: '1',
           privacidad: 'Public',
-          text: 'Un dia para mejorar',
-          time: '29/8/2019- 10:21:21 ',
+          time: '29/8/2019- 10:21:21',
         },
       },
     },
@@ -32,7 +54,7 @@ describe('addPost', () => {
   it('debería crear un post', done => addPost('Que bueno es hoy', 'lili_lu16@hotmail.com', 'OC3BrOuwhCSFA8t9APu7bRJqeYr1',
     'public', 1, '28/08/2019- 12:30:12').then(() => {
     const callback = (posts) => {
-    // console.log(posts);
+      // console.log(posts);
       const resultado = posts.find(elemento => elemento.text === 'Que bueno es hoy');
       expect(resultado.text).toBe('Que bueno es hoy');
       done();
@@ -86,5 +108,18 @@ describe('editLikes', () => {
       done();
     };
     readPosts(callback);
+  }));
+});
+
+describe('addComment', () => {
+  it('debería poder agregar un comentario a un post', done => addComment('Nos reuniremos para celebrar mañana', 'maria12@hotmail.com',
+    'abc123d', 'AB4CrOuwhCSFA8t9APu7bRJqeZv4', '29/8/2019- 16:30:37').then(() => {
+    const callback = (comment) => {
+      console.log(comment);
+      const resultado = comment.find(elemento => elemento.comentario === 'Nos reuniremos para celebrar mañana');
+      expect(resultado.comentario).toBe('Nos reuniremos para celebrar mañana');
+      done();
+    };
+    readComments('abc123d', callback);
   }));
 });
