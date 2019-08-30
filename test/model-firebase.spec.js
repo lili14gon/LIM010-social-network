@@ -11,15 +11,15 @@ import {
 const firebasemock = require('firebase-mock');
 
 const mockauth = new firebasemock.MockFirebase();
-const mockfirestore = new firebasemock.MockFirestore();
+// const mockfirestore = new firebasemock.MockFirestore();
 const mockdatabase = new firebasemock.MockFirebase();
-mockfirestore.autoFlush();
+// mockfirestore.autoFlush();
 mockauth.autoFlush();
 global.firebase = firebasemock.MockFirebaseSdk(
   // use null if your code does not use RTDB
   path => (path ? mockdatabase.child(path) : null),
   () => mockauth,
-  () => mockfirestore,
+  // () => mockfirestore,
 );
 
 // iniciando tests
