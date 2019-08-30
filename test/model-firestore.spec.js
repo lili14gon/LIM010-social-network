@@ -2,6 +2,7 @@
 import MockFirebase from 'mock-cloud-firestore';
 import {
   addPost, readPosts, deletePost, editPost, editPrivacity, editLikes, addComment, readComments,
+  deleteComment, editComment,
 } from '../src/model/model-firestore';
 
 const fixtureData = {
@@ -118,6 +119,30 @@ describe('addComment', () => {
       console.log(comment);
       const resultado = comment.find(elemento => elemento.comentario === 'Nos reuniremos para celebrar mañana');
       expect(resultado.comentario).toBe('Nos reuniremos para celebrar mañana');
+      done();
+    };
+    readComments('abc123d', callback);
+  }));
+});
+
+describe('deleteComment', () => {
+  it('deberia de eliminar un comentario de un post específicando ambos id', done => deleteComment('abc123d', 'xyz123a').then(() => {
+    const callback = (comment) => {
+      console.log(comment);
+      const resultado = comment.find(elemento => elemento.id === 'xyz123a');
+      expect(resultado).toBe(undefined);
+      done();
+    };
+    readComments('abc123d', callback);
+  }));
+});
+
+describe('editComment', () => {
+  it('deberia de editar el texto comentario de un post con el id de ambos', done => editComment('abc123d', 'xyz456b', 'Hoy Foods Kids cumple un mes más').then(() => {
+    const callback = (comment) => {
+      console.log(comment);
+      const resultado = comment.find(elemento => elemento.comentario === 'Hoy Foods Kids cumple un mes más');
+      expect(resultado.comentario).toBe('Hoy Foods Kids cumple un mes más');
       done();
     };
     readComments('abc123d', callback);
