@@ -9,7 +9,6 @@ export const viewLogin = () => {
   loginContainer.innerHTML = '';
   const loginTemplate = `  
   <img class="logo" src="../img/icon1.png" alt="logo de la web foods kids"/>
-  <img class="img" src="../img/logo1.png" alt="logo food kids de la web"/>
   <form id="screen-login" class="flex-form">
     <img class="foods-kids" src="../img/foods-kids.png" alt="nombre foods kids de la página web"/>
     <p class="welcome"> ¡Bienvenido!</p>
