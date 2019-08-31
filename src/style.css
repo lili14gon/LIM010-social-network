@@ -90,7 +90,7 @@ margin: 10px 0;
     font-size: 18px;
 }
 .logo, .foods-kids, .welcome-description {
-    display: none;
+      display: none;  
 }
 .register-ok {
     font-size: 16px;
@@ -257,7 +257,7 @@ main {
     border: 1px solid;
  }
  .hide {
-     display: none;
+    display: none; 
 
  }
  .imgPequeño{
@@ -450,7 +450,7 @@ main {
         font-size: 16px;
     }
     .logo, .foods-kids, .welcome-description {
-        display: block;
+          display: block;  
     }
     .welcome, .img {
         display: none;
