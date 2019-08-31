@@ -1,14 +1,4 @@
 /* eslint-disable no-console */
-// const firebasemock = require('firebase-mock');
-// // const mockauth = new firebasemock.MockFirebase();
-// const mockfirestore = new firebasemock.MockFirestore();
-// const mockdatabase = new firebasemock.MockFirebase();
-// mockfirestore.autoFlush();
-// // mockauth.autoFlush();
-//   // use null if your code does not use RTDB
-//   path => (path ? mockdatabase.child(path) : null),
-//   // () => mockauth,
-//   () => mockfirestore,
 import MockFirebase from 'mock-cloud-firestore';
 import { addPost, readPosts } from '../src/model/model-firestore';
 
@@ -38,23 +28,12 @@ const fixtureData = {
 global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true });
 
 describe('createData', () => {
-  it('debería crear un post', (done) => {
-    addPost('Que bueno es hoy', 'lili_lu16@hotmail.com', 'OC3BrOuwhCSFA8t9APu7bRJqeYr1',
-      'public', 1, '28/08/2019- 12:30:12').then(() => {
-      const callback = (posts) => {
-        console.log(posts);
-        done();
-      };
-      readPosts(callback);
-      // firebase.firestore().collection('Post').doc(posts.id).get()
-      // expect(posts).toBe({
-      //   email: 'lili_lu16@hotmail.com',
-      //   idUsuario: 'OC3BrOuwhCSFA8t9APu7bRJqeYr1',
-      //   like: 1,
-      //   privacidad: 'public',
-      //   text: 'Que bueno es hoy',
-      //   time: '28/08/2019- 12:30:12',
-      // });
-    });
-  });
+  it('debería crear un post', done => addPost('Que bueno es hoy', 'lili_lu16@hotmail.com', 'OC3BrOuwhCSFA8t9APu7bRJqeYr1',
+    'public', 1, '28/08/2019- 12:30:12').then(() => {
+    const callback = (posts) => {
+      console.log(posts);
+      done();
+    };
+    readPosts(callback);
+  }));
 });

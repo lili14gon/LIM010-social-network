@@ -233,13 +233,13 @@ main {
     font-weight: bold;
 }
  .estilotextarea{
-    width: 500px;
+    width: 100%;
     height: 70px;
-    margin: 15px;
+    margin-bottom: 15px;
     border-radius: 3px;
     background: #f1f1f1;
     box-sizing: border-box;
-    padding: 8px;
+    padding: 10px;
  }
  .inpu{
     margin:5px;
@@ -286,6 +286,15 @@ main {
     justify-content: space-between;
     align-items: center;
     margin: 0 15px 15px 15px;
+ } .options-post {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.colunm-post {
+
+    padding: 15px;
  }
  .btn-img {
     color: #f2ea77;
@@ -393,7 +402,7 @@ main {
     padding: 0 10px;
     /* padding: 15px; */
     align-items: center;
-    display: flex;
+     display: flex; 
     color: #2f4f4f;
 }
 /* .main-nav li a:hover{
@@ -436,13 +445,7 @@ main {
     justify-content: center;
     align-items: center;
 }
-@media screen and (min-width:764px) {
-    /* .fondo-fruit {
-        background-image: url('./img/clock-vegetables-fruit.jpg');
-        background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    } */
+@media screen and (max-width:764px) { 
     * {
         font-size: 16px;
     }
@@ -481,5 +484,28 @@ main {
     .ir-login {
         font-size: 18px;
     }
-    /* F */
+    main{
+        flex-direction: column;
+        padding: 25px;
+    }
+    .container-user {
+        width: 100%;
+    }
+    .img-perfil {
+        width: 70px;
+    }
+    /* F */  
 }
+@media screen and (max-width:425px) {
+    .current-user {
+        display: none !important;
+    }
+
+    .foods-kids {
+        width: 140px;
+    }
+
+    .header-post {
+        display: block;
+    }
+ }

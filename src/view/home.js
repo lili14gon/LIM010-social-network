@@ -9,7 +9,7 @@ export const viewHome = (arrPost) => {
   <header>
     <img class="foods-kids" src="../img/foods-kids.png" alt="nombre foods kids de la página web"/>
       <ul class="main-nav">
-        <li><a href="#/profile">${currentUser().displayName}</a></li>
+        <li class="current-user"><a href="#/profile">${currentUser().displayName}</a></li>
         <li><a href="#/home" id="cerrar"><img class="exit-img" src="../img/desconectarte.png">Cerrar Sesión </a></li>
       </ul>
   </header>
